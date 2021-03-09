@@ -1,0 +1,28 @@
+.mainHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(254,187,0,1) 0%, rgba(0,212,255,1) 100%);
+}
+.headerLinks{
+
+}
+.userLinks{
+    display: flex;
+}
+.link{
+    list-style-type: none;
+    font-family: 'Bangers', cursive;
+    font-size: 3vh;
+    margin-right: 2vh;
+}
+h1{
+    font-family: 'Orbitron', sans-serif
+}
+.linksContainer{
+display: flex;
+align-content: center;
+padding-right: 4vh;
+}
