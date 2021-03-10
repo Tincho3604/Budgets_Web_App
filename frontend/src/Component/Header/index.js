@@ -1,22 +1,27 @@
 import React from 'react';
-import styles from './style.css'
+import './style.css'
 
 const Header = () => {
+
 return<>
-<div class="mainHeader">
+<div className="mainHeader">
     <div>
-        <h1>Budget App</h1>
+        <h1 id="title">Budget App</h1>
     </div>
     <div>
-        <div class="linksContainer">
-            <ul class="headerLinks">
-                <li class="link">Register amount</li>
+        <div className="linksContainer">
+            <ul className="headerLinks">
+                <li className="link">Register amount</li>
             </ul>
-            <ul class="userLinks">
-                <li class="link" >Sign In</li>
-                <li class="link" >Sign Up</li>
+            <ul className="userLinks">
+                <li className="link">Sign In</li>
+                <li className="link">Sign Up</li>
             </ul>
         </div>
+    </div>
+</div>
+<div className="bannerContainer">
+    <div>
     </div>
 </div>
 </>

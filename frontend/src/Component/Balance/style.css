@@ -1,0 +1,100 @@
+.mainBalanceContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    font-family: 'Amatic SC', cursive;
+    width: 40%;
+    height: 50vh;
+    opacity: 0.75;
+    border-radius: 10px;
+    margin-top: 200px;
+    background-image: url('../../Images/balance.jpg');
+    background-size: cover;
+    background-position: 25% 1%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.balanceTitle{
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 25px;
+
+}
+.infoContainer{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 100px;
+}
+.incomeContainer p{
+color:rgb(1, 112, 44);
+font-size: 40px;
+font-family: 'Black Ops One', cursive;
+}
+.incomeContainer h2{
+    font-family: 'Bangers', cursive;
+    letter-spacing: 5px;
+}
+
+.egressContainer p{
+    color:rgb(175, 0, 0);
+    font-size: 40px;
+    font-family: 'Black Ops One', cursive;
+}
+
+.egressContainer h2{
+    font-family: 'Bangers', cursive;
+    letter-spacing: 5px;
+}
+
+html,body{
+    height:100%;
+}
+
+.buttonSeeMore{
+  background-color: rgb(98, 122, 255);
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    width: 40%;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    font-family: 'Special Elite', cursive;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.buttonSeeMore:hover{
+    background:rgb(0, 127, 211);
+    color:#000000;
+}
+.buttonSeeMore:before,.buttonSeeMore:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    transition:400ms ease all;
+}
+.buttonSeeMore:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+    }
+.buttonSeeMore:hover:before,.buttonSeeMore:hover:after{
+    width:100%;
+    transition:800ms ease all;
+    }
+
+    .listContainer:hover{
+        transform: rotate(-360deg);
+        -webkit-transform: rotate(-360deg);
+        -o-transform: rotate(-360deg); 
+        -moz-transform: rotate(-360deg);
+    }
+        
