@@ -19,7 +19,7 @@ const toggleList = () => {
 }
 
 return ( 
-<div id="main-container">
+<div className="main-container-table">
     <h1>{title}</h1>
     <div class="table-wrapper">
     
@@ -48,7 +48,7 @@ return (
     </table>
 </div>
 <div className="Button">
-    <button className="btn btn-1 btn-sep icon-info" onClick={toggleList}>{!list ? 'Collapse list in half' : 'Show 5 remaining'}</button>
+    <button className="btn btn-1 btn-sep icon-info" onClick={toggleList}>{!list ? 'Collapse list in half' : 'Show half of the list'}</button>
 </div>
 </div>
 

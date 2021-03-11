@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './style.css'
 import TableRecords from '../TableRecords/index'
+import GlobalTable from '../GlobalTable/index'
 
 const Balance = () => {
     const titles = [
@@ -32,14 +33,24 @@ const Balance = () => {
     ]
     return (
     <div className="balanceContainer">
+    
+    <GlobalTable
+    titleColumn={['Money Income', 'Money egress']}
+    numValue={[15000, 15000]}
+    title={'Balance sheet of money entered and withdrawn.'}
+    />
 
+    <GlobalTable
+    numValue={[200000]}
+    titleColumn={['Total Amount']}
+    title={'Current money'}
+    />
     <TableRecords 
     listRecords={redux}
     textColumn={titles}
     title={'Summary of the record of income and expenses.'}
     />
-
-
+    
     
     </div>
     )}
