@@ -24,7 +24,7 @@ export const SidebarData = [
     },
     {
     title: 'Register operation',
-    path: '/register operation',
+    path: '/register',
     icon: <BsIcons.BsPencil/>,
     cName: 'nav-text'
     },
