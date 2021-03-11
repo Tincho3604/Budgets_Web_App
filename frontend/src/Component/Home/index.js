@@ -7,16 +7,11 @@ import './style.css'
 const Home = () => {
 return (
     <>
- 
-    <Header/>
-    <div className="mainHome">
-  
+        <Header/>
         <Balance/>
-    
         <Footer/>
-    </div>
-</>
-)
+    </>
+    )
 }
 
 export default Home
