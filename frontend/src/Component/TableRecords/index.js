@@ -38,7 +38,7 @@ return (
         return (
         <tr className={content.type === 'Ingress' ? 'containerExtrac' : 'containerIngress'} key={index}>
             <td>{content.date}</td>
-            <td>{content.type}<img className="iconImage" src={content.type === 'Ingress' ? money : ATM} alt="money"/></td>
+            <td><img className="iconImage" src={content.type === 'Ingress' ? money : ATM} alt="money"/></td>
             <td>{content.concept}</td>
             <td>{content.type === 'Ingress' ? '+' : '-'}{content.amount}</td>
         </tr>
@@ -47,7 +47,9 @@ return (
     </tbody>
     </table>
 </div>
-<button className="btn btn-1 btn-sep icon-info" onClick={toggleList}>{!list ? 'Collapse list in half' : 'Show 5 remaining'}</button>
+<div className="Button">
+    <button className="btn btn-1 btn-sep icon-info" onClick={toggleList}>{!list ? 'Collapse list in half' : 'Show 5 remaining'}</button>
+</div>
 </div>
 
 )}

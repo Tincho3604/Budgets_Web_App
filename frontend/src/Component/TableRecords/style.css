@@ -2,7 +2,6 @@
 .table-wrapper{
   margin: 10px 70px 70px;
   box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
-  
 }
 
 .fl-table {
@@ -14,19 +13,18 @@
   width: 100%;
   max-width: 100%;
   white-space: nowrap;
-  background-color: rgb(0, 0, 0);
-  border-radius: 50px;
+  background-color: white;
 }
 
 .fl-table td, .fl-table th {
   text-align: center;
   padding: 8px;
-  
+  font-family: 'Iceland', cursive;
 }
 
 .fl-table td {
-  border-right: 0.5px;
-  font-size: 12px;
+  border-right: 1px solid #f8f8f8;
+  font-size: 22px;
 }
 
 .fl-table thead th {
@@ -38,9 +36,11 @@
 .fl-table thead th:nth-child(odd) {
   color: #ffffff;
   background: #324960;
-  
 }
 
+.fl-table tr:nth-child(even) {
+
+}
 
 
 @media (max-width: 767px) {
@@ -78,7 +78,7 @@
       overflow-x: hidden;
       overflow-y: auto;
       width: 120px;
-      font-size: 13px;
+      font-size: 19px;
       text-overflow: ellipsis;
   }
   .fl-table thead th {
@@ -88,22 +88,12 @@
   .fl-table tbody tr {
       display: table-cell;
   }
-  .fl-table tbody tr:nth-child(odd) {
-      background: none;
-  }
-  .fl-table tr:nth-child(even) {
-      background: transparent;
-  }
-  .fl-table tr td:nth-child(odd) {
-      background: #F8F8F8;
-      border-right: 1px solid #E6E4E4;
-  }
-  .fl-table tr td:nth-child(even) {
-      border-right: 1px solid #E6E4E4;
-  }
   .fl-table tbody td {
       display: block;
       text-align: center;
+  }
+  .Button{
+    display: none;
   }
 }
 
@@ -123,20 +113,12 @@
 
 #main-container{
 	margin: 150px auto;
-	width: 800px;
     text-align: center;
-    border-radius: 50px;
 }
 h1{
     font-family: 'Poiret One', cursive;
     font-size: 35px;
     
-}
-
-th, td{
-	padding: 20px;
-  font-family: 'Special Elite', cursive;
-  
 }
 
 .currentBalance{
@@ -179,8 +161,8 @@ tr:nth-child(even){
 }
 
 .iconImage{
-    width: 40px;
-    height: 30px;
+    width: 30px;
+    height: 20px;
     background:none
 }
 
