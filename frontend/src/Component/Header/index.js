@@ -1,30 +1,19 @@
 import React from 'react';
 import './style.css'
+import NavBar from '../../Component/NavBar/index'
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 const Header = () => {
-
-return<>
-<div className="mainHeader">
-    <div>
-        <h1 id="title">Budget App</h1>
-    </div>
-    <div>
-        <div className="linksContainer">
-            <ul className="headerLinks">
-                <li className="link">Register amount</li>
-            </ul>
-            <ul className="userLinks">
-                <li className="link">Sign In</li>
-                <li className="link">Sign Up</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div className="bannerContainer">
-    <div>
-    </div>
-</div>
-</>
+return (
+        <>
+        <Router>
+            <NavBar/>
+                <Switch>
+                <Route path='/' />
+            </Switch>
+        </Router>
+        </>
+    )
 }
 
 export default Header

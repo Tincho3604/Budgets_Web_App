@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import './style.css'
-import money from '../../Images/money.png'
-import ATM from '../../Images/extrac_money.png'
+import {Ingress, showHalf, hideHalf} from '../../Constants/index'
+import * as MdIcons from "react-icons/md";
 
 const TableRecords = ({listRecords, textColumn, title}) => { 
 
@@ -36,20 +36,20 @@ return (
         <tbody>
         {infoTable?.map((content,index) => {
         return (
-        <tr className={content.type === 'Ingress' ? 'containerExtrac' : 'containerIngress'} key={index}>
+        <tr className={content.type === Ingress ? 'containerExtrac' : 'containerIngress'} key={index}>
             <td>{content.date}</td>
-            <td><img className="iconImage" src={content.type === 'Ingress' ? money : ATM} alt="money"/></td>
+            <td>{content.type === Ingress ? <MdIcons.MdAttachMoney/> : <MdIcons.MdMoneyOff/>}</td>
             <td>{content.concept}</td>
-            <td>{content.type === 'Ingress' ? '+' : '-'}{content.amount}</td>
+            <td>{content.type === Ingress ? '+' : '-'}{content.amount}</td>
         </tr>
         )
     })}
     </tbody>
     </table>
 </div>
-<div className="Button">
-    <button className="btn btn-1 btn-sep icon-info" onClick={toggleList}>{!list ? 'Collapse list in half' : 'Show half of the list'}</button>
-</div>
+    <div className="Button">
+        <button className="btn btn-1 btn-sep icon-info" onClick={toggleList}>{!list ? hideHalf : showHalf}</button>
+    </div>
 </div>
 
 )}

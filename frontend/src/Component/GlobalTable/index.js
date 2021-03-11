@@ -17,7 +17,7 @@ return (
 	    <tbody>
 		    <tr>
 		        {numValue?.map(num => {
-	            return <td>{num}</td>
+	            return <td>$ {num}</td>
 			})}
 		    </tr>
 	    </tbody>
