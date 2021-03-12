@@ -1,0 +1,14 @@
+.infoModal{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(163, 244, 255);
+    border-radius: 5px;
+    font-family: 'Karma', serif;
+    width: 95px;
+    font-size: 9px;
+    line-height:normal;
+    text-align: center;
+    opacity: 0.8;
+    font-weight: bold;
+}

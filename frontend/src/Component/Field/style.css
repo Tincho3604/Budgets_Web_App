@@ -1,0 +1,97 @@
+.mainElementsContainer{
+    width: 250px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+
+}
+.modalContainer{
+    margin-left: 20px;
+}
+.inputs{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+position: relative;
+}
+
+label{
+    font-family: 'Electrolize', sans-serif;
+    letter-spacing: 8px;
+}
+
+input{
+    width: 196px;
+    height: 30px;
+    border :none;
+    font-family: 'Julius Sans One', sans-serif;
+    font-weight: bold;
+    border-radius: 3px;
+    }
+
+.inputs::after{
+    content: "";
+    width: 0%;
+    height: 2px;
+    background-color: rgb(31, 203, 255);
+    position: absolute;
+    bottom:0;
+    left: 40%;
+    transform:  translateX(-50%);
+    transition: 0.8s all;
+}
+
+.inputs:hover::after{
+    width: 80%;
+}
+input:focus{
+    outline: none;
+}
+.submit{
+    border-radius: 5px;
+}
+
+.inputContainer{
+    width: 250px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.selectForm{
+    background-color: rgb(255, 255, 255);
+    width: 200px;
+    height: 30px;
+    border:none;
+    font-family: 'Julius Sans One', sans-serif;
+    font-weight: bold;
+}
+.selectForm:focus{
+    outline: none;
+}
+
+.submitButton{
+    border-radius: 3px;
+}
+
+.modalContainer{
+    display: none;
+}
+
+.inputContainer:hover + .modalContainer{
+    display: block;
+}
+
+.selectForm{
+    background-color: rgb(255, 255, 255);
+    width: 200px;
+    height: 30px;
+    border:none;
+    font-family: 'Julius Sans One', sans-serif;
+    font-weight: bold;
+}
+.selectForm:focus{
+    outline: none;
+}

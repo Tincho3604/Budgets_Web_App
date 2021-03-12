@@ -21,9 +21,9 @@ const toggleList = () => {
 return ( 
 <div className="main-container-table">
     <h1>{title}</h1>
-    <div class="table-wrapper">
+    <div className="table-wrapper">
     
-    <table class="fl-table">
+    <table className="fl-table">
     <thead className="currentBalance">
             <tr>
                 {textColumn?.map((titles,index) => {

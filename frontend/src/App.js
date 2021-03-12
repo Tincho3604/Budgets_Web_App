@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from '../src/Pages/Home/index';
 import Register from '../src/Pages/Register/index';
 
-// import Statistics from './Component/Statistics/index';
-
 function App() {
   return (
     <>
