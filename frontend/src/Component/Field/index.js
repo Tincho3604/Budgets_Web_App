@@ -3,24 +3,17 @@ import { types, onShowInfo, fieldInfo } from '../../Constants/index';
 import InfoModal from '../../Component/InfoModal/index';
 import './style.css'
 
-const Field = ({name, id, placeholder, htmlFor, labelText, inputType, icon}) => {
-
+const Field = ({name, id, placeHolder, htmlFor, labelText, inputType, icon, type, optionText}) => {
     const handleSubmit = e => console.log("test")
-    const infoFunction = type => onShowInfo(type)
-    const test = value => {
-        if(value) return <h1>as</h1> 
-    }
-    return(
-       <>
-        {fieldInfo.map((item,index) => {
-        if(item.inputType === "input"){ 
-        return ( 
+
+    if(inputType === "input"){ 
+        return(
             <div className="inputs">
-                <label htmlFor={item.htmlFor} id="form-label">{item.labelText}</label>
+                <label htmlFor={htmlFor} id="form-label">{labelText}</label>
                 <div className="mainElementsContainer">
                     <div className="inputContainer">
-                        {item.icon}
-                        <input type={item.type} name={item.name} id={item.id} placeholder={item.placeholder}/>
+                        {icon}
+                        <input type={type} name={name} id={id} placeholder={placeHolder}/>
                     </div>
                     <div className="modalContainer">
                         <InfoModal/>
@@ -33,9 +26,9 @@ const Field = ({name, id, placeholder, htmlFor, labelText, inputType, icon}) => 
                 <label>Type</label>
                 <div className="mainElementsContainer">
                     <div className="inputContainer">
-                        {item.icon}
+                        {icon}
                         <select className="selectForm">
-                            {item.optionText.map((option,index) => {
+                            {optionText.map((option,index) => {
                                 return <option value={option} key={index}>{option}</option>
                             })}
                         </select>
@@ -45,10 +38,7 @@ const Field = ({name, id, placeholder, htmlFor, labelText, inputType, icon}) => 
                     </div>
                 </div>
             </div>
-            )}
-        })}
-        </>
-    )
+    )}
 }
 
 export default Field

@@ -42,7 +42,6 @@ export const fieldInfo = [
     {type:"date", inputType:"input", name:"date", id:"date", placeHolder:"Ingress date", htmlFor:"date", labelText:"Date", icon:<FcIcons.FcOvertime size={IconSize} onClick={()=>infoFunction("date")} />},
     {inputType:"select", placeHolder:"Ingress date", htmlFor:"date", labelText:"Type", 
     optionText: types,
-    optionValue:[{value:"ingress"},{value:"egress"}],
     icon:<FcIcons.FcRules size={IconSize} onClick={()=>infoFunction("type")} />},
 ]
 
