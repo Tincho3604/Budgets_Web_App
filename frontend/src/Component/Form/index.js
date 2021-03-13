@@ -40,7 +40,6 @@ return (
                                 />
                             )
                         })}
-
                     <input type="submit" className="submitButton" value="Register operation"/>
                 </div>
             </form>

@@ -64,8 +64,8 @@ export const fieldInfo = [
         return [
             /^[A-Za-z]+$/
         ].every((pattern) => pattern.test(value)) || "Only letters"
+        }
     }
-}
 },
     
 

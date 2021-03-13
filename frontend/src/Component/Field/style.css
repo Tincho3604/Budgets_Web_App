@@ -68,12 +68,17 @@ option{
     background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(38,184,244,1) 0%, rgba(123,122,120,1) 0%, rgba(236,47,16,1) 0%, rgba(133,122,120,1) 0%, rgba(175,57,57,1) 0%, rgba(69,68,68,1) 0%, rgba(0,0,0,1) 0%, rgba(0,37,67,1) 0%, rgba(0,69,125,1) 0%, rgba(0,94,169,1) 0%, rgba(0,138,247,1) 100%, rgba(0,0,0,1) 100%);
     color:rgb(255, 255, 255);
 }
+.errorMessage{
+    color:rgb(235, 140, 128);
+    font-family: 'Cutive Mono', monospace;
+    font-size: 18px;
+}
 }
 
 @media (max-width: 1000px) and (min-width: 500px){
     .mainElementsContainer{
         width: 250px;
-        height: 5vh;
+        height: 6vh;
         display: flex;
         align-items: center;
     }
@@ -115,7 +120,7 @@ option{
         flex-direction: row-reverse;
         align-items: center;
         justify-content: space-between;
-        margin-top: 5px;
+        
     }
     
     #selectForm{
@@ -140,12 +145,17 @@ option{
         background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(38,184,244,1) 0%, rgba(123,122,120,1) 0%, rgba(236,47,16,1) 0%, rgba(133,122,120,1) 0%, rgba(175,57,57,1) 0%, rgba(69,68,68,1) 0%, rgba(0,0,0,1) 0%, rgba(0,37,67,1) 0%, rgba(0,69,125,1) 0%, rgba(0,94,169,1) 0%, rgba(0,138,247,1) 100%, rgba(0,0,0,1) 100%);
         color:rgb(255, 255, 255);
     }
+    .errorMessage{
+        color:rgb(235, 140, 128);
+        font-family: 'Cutive Mono', monospace;
+        font-size: 15px;
+    }
 }
 
 @media (max-width: 500px) and (min-width: 200px){
     .mainElementsContainer{
         width: 250px;
-        height: 5vh;
+        height: 6vh;
         display: flex;
         align-items: center;
     }
@@ -210,13 +220,18 @@ option{
         background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(38,184,244,1) 0%, rgba(123,122,120,1) 0%, rgba(236,47,16,1) 0%, rgba(133,122,120,1) 0%, rgba(175,57,57,1) 0%, rgba(69,68,68,1) 0%, rgba(0,0,0,1) 0%, rgba(0,37,67,1) 0%, rgba(0,69,125,1) 0%, rgba(0,94,169,1) 0%, rgba(0,138,247,1) 100%, rgba(0,0,0,1) 100%);
         color:rgb(255, 255, 255);
     }
+    .errorMessage{
+        color:rgb(235, 140, 128);
+        font-family: 'Cutive Mono', monospace;
+        font-size: 14px;
+    }
 }
 
 
-@media (max-height: 670px) {
+@media (max-height: 670px) and (min-height: 300px){
     .mainElementsContainer{
         width: 250px;
-        height: 2vh;
+        height: 7vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -288,9 +303,9 @@ option{
         color:rgb(255, 255, 255);
     }
     .errorMessage{
-        color:rgb(255, 8, 8);
+        color:rgb(235, 140, 128);
         font-family: 'Cutive Mono', monospace;
-        font-size: 12px;
+        font-size: 10px;
     }
 }
 
@@ -303,7 +318,7 @@ option{
 
 
 /* Input */
-.eachInput {
+.eachInput, .submitButton{
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
@@ -314,15 +329,11 @@ option{
     -webkit-transition-property: transform;
     transition-property: transform;
 }
-.eachInput:hover, .eachInput:focus, .eachInput:active {
+.eachInput:hover,.submitButton:hover, .eachInput:focus,.submitButton:focus, .eachInput:active,.submitButton:active {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
 }
 
-.errorMessage{
-    color:rgb(255, 8, 8);
-    font-family: 'Cutive Mono', monospace;
-}
 
 /* Icon*/
 @-webkit-keyframes iconContainer {
