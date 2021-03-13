@@ -1,0 +1,16 @@
+.mainContainerGraphics {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.test{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 600px) and (min-width: 200px){
+.mainContainerGraphics {
+    display: flex;
+    flex-direction: column;
+    }
+}

@@ -1,0 +1,20 @@
+.pieGraphics{
+width: 50%;  
+text-align: center;  
+}
+
+.pieGraphics h2{
+    color: rgb(0, 0, 0);
+    font-family: 'Orbitron', sans-serif;
+}
+
+@media (max-width: 600px) and (min-width: 200px){
+    .pieGraphics {
+    width: 100%;
+        }
+        .pieGraphics h2{
+            color: rgb(0, 0, 0);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+        }
+    }

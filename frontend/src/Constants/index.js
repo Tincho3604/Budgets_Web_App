@@ -1,7 +1,6 @@
 import * as AiIcons from 'react-icons/ai';
 import * as BsIcons from "react-icons/bs";
 import * as FcIcons from "react-icons/fc";
-
 import swal from 'sweetalert';
 
 //Size
@@ -9,10 +8,21 @@ export const IconSize = 25
 
 
 //Strings
+export const defaultTitleBarTable = 'Income / Expense bars table'
+export const defaultTitleCakeTable = 'Income / Expense Pie table'
+export const defaultLabel = 'Percentages of operations';
 export const Ingress = 'Ingress';
-export const showHalf = 'Show half of the list'
-export const hideHalf = 'Collapse list in half'
-export const types = ["Ingress", "Egress"]
+export const Egress = 'Egress';
+export const showHalf = 'Show half of the list';
+export const hideHalf = 'Collapse list in half';
+export const types = ["Ingress", "Egress"];
+export const defaultBackgroundColorEgress = 'rgba(247, 120, 112)';
+export const defaultBackgroundColorIngress = 'rgba(53, 238, 198)';
+
+
+//Numbers
+export const borderWidth = 1
+
 
 
 //Function

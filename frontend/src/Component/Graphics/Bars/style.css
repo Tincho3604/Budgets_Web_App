@@ -1,0 +1,22 @@
+.barGraphics{
+    text-align: center;
+    width: 50%;
+}
+
+.barGraphics h2{
+    color: rgb(0, 0, 0);
+    font-family: 'Orbitron', sans-serif;
+}
+
+
+@media (max-width: 600px) and (min-width: 200px){
+    .barGraphics {
+    width: 100%;
+        }
+        
+.barGraphics h2{
+    color: rgb(0, 0, 0);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+        }
+    }

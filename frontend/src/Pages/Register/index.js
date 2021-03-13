@@ -6,7 +6,9 @@ function Register() {
     return (
     <>
         <Header />
-        <Form title={"Transaction registration form"}/>
+        <Form 
+        title={"Transaction registration form"}
+        />
         <Footer/>
     </>
     )
