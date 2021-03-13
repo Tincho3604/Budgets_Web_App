@@ -1,18 +1,9 @@
+@media (max-width: 2000px) and (min-width: 1000px){
 .mainElementsContainer{
     width: 250px;
-    height: 35px;
+    height: 5vh;
     display: flex;
     align-items: center;
-
-}
-.modalContainer{
-    margin-left: 20px;
-}
-.inputs{
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-position: relative;
 }
 
 label{
@@ -21,14 +12,23 @@ label{
     font-weight: bold;
 }
 
+    .inputs{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+    }
+
 input{
-    width: 196px;
-    height: 30px;
+    width: 200px;
+    height: 4vh;
     border :none;
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
     font-weight: bold;
     border-radius: 3px;
-    }
+
+}
 
 input:focus{
     outline: none;
@@ -46,73 +46,323 @@ input:focus{
     margin-top: 5px;
 }
 
-.selectForm{
+#selectForm{
     background-color: rgb(255, 255, 255);
     width: 200px;
-    height: 30px;
+    height: 4vh;
+    font-size: 20px;
     border:none;
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     font-weight: bold;
 }
-.selectForm:focus{
+option{
+    font-weight: bold;
+}
+#selectForm:focus{
     outline: none;
 }
 
 .submitButton{
     border-radius: 3px;
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(38,184,244,1) 0%, rgba(123,122,120,1) 0%, rgba(236,47,16,1) 0%, rgba(133,122,120,1) 0%, rgba(175,57,57,1) 0%, rgba(69,68,68,1) 0%, rgba(0,0,0,1) 0%, rgba(0,37,67,1) 0%, rgba(0,69,125,1) 0%, rgba(0,94,169,1) 0%, rgba(0,138,247,1) 100%, rgba(0,0,0,1) 100%);
+    color:rgb(255, 255, 255);
+}
 }
 
-.modalContainer{
-    display: none;
-}
-
-.inputContainer:hover + .modalContainer{
-    display: block;
-}
-
-.selectForm{
-    background-color: rgb(255, 255, 255);
-    width: 200px;
-    height: 30px;
-    border:none;
-    font-family: 'Julius Sans One', sans-serif;
-    font-weight: bold;
-}
-.selectForm:focus{
-    outline: none;
-}
-
-
-
-
-
-
-@media (max-width: 438px) and (min-width: 200px){
+@media (max-width: 1000px) and (min-width: 500px){
     .mainElementsContainer{
         width: 250px;
-        height: 35px;
-    
-    }
-    .inputs{
-    align-items: center;
+        height: 5vh;
+        display: flex;
+        align-items: center;
     }
     
     label{
-        padding-right: 45px;
+        font-family: 'Archivo', sans-serif;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
     }
+    
+        .inputs{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+        }
     
     input{
-        width: 120px;
-        height: 30px;
+        width: 200px;
+        height: 5vh;
+        border :none;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 3px;
+    
     }
     
+    input:focus{
+        outline: none;
+    }
+    .submit{
+        border-radius: 5px;
+    }
     
     .inputContainer{
-        justify-content: space-evenly;
+        width: 250px;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 5px;
     }
     
-    .selectForm{
-        width: 120px;
-        height: 30px;
+    #selectForm{
+        background-color: rgb(255, 255, 255);
+        width: 200px;
+        height: 4vh;
+        font-size: 20px;
+        border:none;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: bold;
+    }
+    option{
+        font-weight: bold;
+    }
+    #selectForm:focus{
+        outline: none;
+    }
+    
+    .submitButton{
+        border-radius: 3px;
+        background: rgb(131,58,180);
+        background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(38,184,244,1) 0%, rgba(123,122,120,1) 0%, rgba(236,47,16,1) 0%, rgba(133,122,120,1) 0%, rgba(175,57,57,1) 0%, rgba(69,68,68,1) 0%, rgba(0,0,0,1) 0%, rgba(0,37,67,1) 0%, rgba(0,69,125,1) 0%, rgba(0,94,169,1) 0%, rgba(0,138,247,1) 100%, rgba(0,0,0,1) 100%);
+        color:rgb(255, 255, 255);
     }
 }
+
+@media (max-width: 500px) and (min-width: 200px){
+    .mainElementsContainer{
+        width: 250px;
+        height: 5vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    label{
+        font-family: 'Archivo', sans-serif;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+    }
+    
+        .inputs{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+        }
+    
+    input{
+        width: 200px;
+        height: 4vh;
+        border :none;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 3px;
+    }
+    
+    input:focus{
+        outline: none;
+    }
+    .submit{
+        border-radius: 5px;
+    }
+    
+    .inputContainer{
+        width: 230px;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    
+    #selectForm{
+        background-color: rgb(255, 255, 255);
+        width: 200px;
+        height: 4vh;
+        font-size: 20px;
+        border:none;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: bold;
+    }
+    option{
+        font-weight: bold;
+    }
+    #selectForm:focus{
+        outline: none;
+    }
+    .submitButton{
+        border-radius: 3px;
+        background: rgb(131,58,180);
+        background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(38,184,244,1) 0%, rgba(123,122,120,1) 0%, rgba(236,47,16,1) 0%, rgba(133,122,120,1) 0%, rgba(175,57,57,1) 0%, rgba(69,68,68,1) 0%, rgba(0,0,0,1) 0%, rgba(0,37,67,1) 0%, rgba(0,69,125,1) 0%, rgba(0,94,169,1) 0%, rgba(0,138,247,1) 100%, rgba(0,0,0,1) 100%);
+        color:rgb(255, 255, 255);
+    }
+}
+
+
+@media (max-height: 670px) {
+    .mainElementsContainer{
+        width: 250px;
+        height: 2vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    label{
+        font-family: 'Archivo', sans-serif;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        padding-left: 15px;
+        font-size: 15px;
+        margin-bottom:10px ;
+    }
+    
+        .inputs{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+        }
+    
+    input{
+        width: 150px;
+        height: 4vh;
+        border :none;
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 3px;
+    }
+    
+    input:focus{
+        outline: none;
+    }
+    .submit{
+        border-radius: 5px;
+    }
+    
+    .inputContainer{
+        width: 230px;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    
+    #selectForm{
+        background-color: rgb(255, 255, 255);
+        width: 150px;
+        height: 4vh;
+        font-size: 20px;
+        border:none;
+        font-family: 'Rajdhani', sans-serif;
+        font-weight: bold;
+    }
+    option{
+        font-weight: bold;
+    }
+    #selectForm:focus{
+        outline: none;
+    }
+    .submitButton{
+        border-radius: 3px;
+        font-size: 12px;
+        width: 100px;
+        background: rgb(131,58,180);
+        background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(38,184,244,1) 0%, rgba(123,122,120,1) 0%, rgba(236,47,16,1) 0%, rgba(133,122,120,1) 0%, rgba(175,57,57,1) 0%, rgba(69,68,68,1) 0%, rgba(0,0,0,1) 0%, rgba(0,37,67,1) 0%, rgba(0,69,125,1) 0%, rgba(0,94,169,1) 0%, rgba(0,138,247,1) 100%, rgba(0,0,0,1) 100%);
+        color:rgb(255, 255, 255);
+    }
+    .errorMessage{
+        color:rgb(255, 8, 8);
+        font-family: 'Cutive Mono', monospace;
+        font-size: 12px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* Input */
+.eachInput {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+.eachInput:hover, .eachInput:focus, .eachInput:active {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.errorMessage{
+    color:rgb(255, 8, 8);
+    font-family: 'Cutive Mono', monospace;
+}
+
+/* Icon*/
+@-webkit-keyframes iconContainer {
+    25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    }
+    75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    }
+}
+@keyframes iconContainer {
+    25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    }
+    75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+    }
+}
+.iconContainer {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(5px) translateZ(0);
+    transform: perspective(5px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    }
+    .iconContainer:hover, .iconContainer:focus, .iconContainer:active {
+    -webkit-animation-name: iconContainer;
+    animation-name: iconContainer;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+} 
+
+
+
+

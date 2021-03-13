@@ -26,11 +26,6 @@ const Balance = () => {
         {date:'23/1/1994', type:'Extract',concept:'Contenido Info', amount:5000},
     ]
     
-
-    const redux2 = [
-        {type:'Ingress', total:2000},
-        {type:'Extract', total:5000}
-    ]
     return (
     <div className="balanceContainer">
     
