@@ -5,11 +5,12 @@ import swal from 'sweetalert';
 
 //Size
 export const IconSize = 25
-
+export const valueWidth = {width:'100%'}
 
 //Strings
 export const defaultTitleBarTable = 'Income / Expense bars table'
-export const defaultTitleCakeTable = 'Income / Expense Pie table'
+export const defaultTitleCakeTable = 'Income / Expense pie table'
+export const defaultHorizontalTable = 'Income / Expense Horizontal table'
 export const defaultLabel = 'Percentages of operations';
 export const Ingress = 'Ingress';
 export const Egress = 'Egress';
@@ -18,14 +19,14 @@ export const hideHalf = 'Collapse list in half';
 export const types = ["Ingress", "Egress"];
 export const defaultBackgroundColorEgress = 'rgba(247, 120, 112)';
 export const defaultBackgroundColorIngress = 'rgba(53, 238, 198)';
-
+export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September', 'October', 'November', 'December'];
 
 //Numbers
 export const borderWidth = 1
+export const amountIngress = [0,0,0,0,0,0,0,0,0,0,0,0]
+export const amountEgress = [0,0,0,0,0,0,0,0,0,0,0,0]
 
-
-
-//Function
+//Functions
 export const onShowInfo = value => {
     const found = infoModal.find(element => {
     return element.type === value
@@ -38,6 +39,28 @@ export const onShowInfo = value => {
         });
     }
 export const infoFunction = type => onShowInfo(type)
+
+
+export const parseNum = value => {
+    return parseInt(value.split('-').slice(1).slice(0,1))
+}
+
+export const sumAmounts = arr => { 
+
+    const group = arr.reduce((p,c)=>{ 
+        p[c.id] = (p[c.id]  || 0)+c.amount;
+        return p;
+    },{})
+    
+    const result = Object.keys(group).map(e=>{ 
+        const o = {};
+        o.id = e;
+        o.amount = group[e];
+        return o;
+    })
+    
+    return result
+    }
 
 
 //Info Objects
@@ -72,7 +95,7 @@ export const fieldInfo = [
     },
     validate: (value) => {
         return [
-            /^[A-Za-z]+$/
+            /^[A-Za-z\s]+$/ 
         ].every((pattern) => pattern.test(value)) || "Only letters"
         }
     }
