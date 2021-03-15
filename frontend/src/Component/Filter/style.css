@@ -14,14 +14,14 @@
     border-radius: 15px;
     text-align: center;
     margin-bottom: 15px;
+    position:relative;
+    z-index: 2000;
 }
 .filter{
     display: flex;
     align-items: center;
     align-content: center;
     justify-content: space-around;
-    padding-left:3rem ;
-    
 }
 
 .buttonFilter{
@@ -56,4 +56,71 @@
     outline: none;
 }
 
-/*mainFilterContainer*/
+
+#selectFilter{
+    height: 4vh;
+    width: 8vw;
+    border: none;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    background-color: #6bb6fc;
+    font-family: 'Orbitron', sans-serif;
+    margin:0 auto;
+    text-align: center;
+}
+
+#selectFilter:focus{
+outline: none;
+}
+
+.classFilter{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+@media (max-width: 800px)and (min-width: 300px){
+    .mainFilterContainer{
+        width: 70vw;
+    }
+    .mainFilterContainer h2{
+        font-size: 1.2rem;
+    }
+    .filter{
+        flex-direction: column;
+        height: 30vh;
+    }
+    #selectFilter{
+        height: 4vh;
+        width: 30vw;
+    }
+
+    
+    .buttonFilter{
+        margin: 0 auto;
+        width: 35vw;
+        height: 5vh;
+        font-family: 'Goldman', cursive;
+        font-size: 0.7rem;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 2000px)and (min-width: 800px){
+    .mainFilterContainer{
+        width: 50vw;
+    }
+    #selectFilter{
+        height: 4vh;
+        width: 15vw;
+    }
+
+    .buttonFilter{
+        margin: 0 auto;
+        width: 15vw;
+        height: 5vh;
+        font-family: 'Goldman', cursive;
+        font-size: 0.8rem;
+        margin-top: 20px;
+    }
+}

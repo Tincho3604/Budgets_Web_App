@@ -13,7 +13,10 @@ const Field = ({
     type, 
     optionText, 
     refForm, 
-    errors}) => {
+    errors,
+    idSelect,
+    classSelect
+}) => {
     
         if(inputType === "input"){ 
         return(
@@ -40,14 +43,14 @@ const Field = ({
             </div>
         )}else{
             return(
-            <div className="inputs">
+            <div className={classSelect}>
                 <label>{labelText}</label>
                 <div className="mainElementsContainer">
                     <div className="inputContainer">
                         <div className="iconContainer">
                             {icon}
                         </div>
-                        <select name={name} id="selectForm" className="eachInput" ref={refForm}>
+                        <select name={name} id={idSelect} className="eachInput" ref={refForm}>
                             {optionText.map((option,index) => {
                                 return <option value={option} key={index}>{option}</option>
                             })}

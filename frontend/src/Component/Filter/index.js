@@ -7,7 +7,7 @@ const Filter = () => {
     //name ref value={option}
 return(
     <div className="mainFilterContainer">
-        <h2>Filter Records</h2>
+        <h2>Records filter</h2>
         <div className="filter">
             {fieldFilterAmount.map((item,index) => {
                 return (
@@ -21,6 +21,8 @@ return(
                     id={item.id}
                     optionText={item.optionText}
                     key={index}
+                    idSelect={'selectFilter'}
+                    classSelect={'classFilter'}
                 />
                 )
             })}
@@ -36,6 +38,8 @@ return(
                     id={item.id}
                     optionText={item.optionText}
                     key={index}
+                    idSelect={'selectFilter'}
+                    classSelect={'classFilter'}
                 />
                 )
             })}

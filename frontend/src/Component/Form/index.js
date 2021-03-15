@@ -40,6 +40,8 @@ return (
                                     errors={errors}
                                     key={index}
                                     refForm={register(item.registerInfo)}
+                                    idSelect={'selectForm'}
+                                    classSelect={'inputs'}
                                 />
                             )
                         })}
