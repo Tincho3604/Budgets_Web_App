@@ -5,16 +5,24 @@ import './style.css';
 import backGroundForm from '../../Images/registrerWallpaper.jpg';
 import { useForm } from 'react-hook-form';
 import {alertsForm} from '../../Constants/index';
-
+import Axios from 'axios';
 
 const Form = ({title}) => {
     const {register, handleSubmit, errors } = useForm();
 
     const onSubmit = (data,e) => {
-        console.log(data)
         e.preventDefault();
         e.target.reset();
         alertsForm('Your Registry was successfully saved.','success','¡Done!','Ok')
+        
+        Axios.post("http://localhost:4000/create", {
+            concept: data.concept,
+            amount: data.amount,
+            date: data.date,
+            type: data.type
+        }).then(() => {
+            alert("Info send");
+        })
     }
 return (    
     <div className="mainFormContainer">
