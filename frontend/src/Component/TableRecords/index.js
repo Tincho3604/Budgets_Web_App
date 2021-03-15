@@ -19,7 +19,7 @@ const toggleList = () => {
 }
 
 return ( 
-<div className="main-container-table">
+<div className="main-container-table"npm>
     <h1>{title}</h1>
     <div className="table-wrapper">
     

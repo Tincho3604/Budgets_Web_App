@@ -4,7 +4,6 @@ import {fieldFilterAmount, fieldFilterMonths, FilterButtonText} from '../../Cons
 import './style.css';
 
 const Filter = () => {
-    //name ref value={option}
 return(
     <div className="mainFilterContainer">
         <h2>Records filter</h2>

@@ -12,7 +12,7 @@ const GlobalTable = () => {
                 {amount: "5000", concept: "Pago de luz", date: "2021-01-10",type: "Egress"}
             ]
     return (
-        <div className="MainGlobalTable" style={{'overflow-x':'auto'}}>
+        <div className="MainGlobalTable" style={{'overflowX':'auto'}}>
             <table className="styledTable">
                 <thead>
                 <tr>

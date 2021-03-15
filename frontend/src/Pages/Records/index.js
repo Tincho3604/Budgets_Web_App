@@ -10,10 +10,9 @@ return(
     <>
         <Header/>
         <div className="mainRecordsContainer">
-        <Filter/>
-        <GlobalTable/>
+            <Filter/>
+            <GlobalTable/>
         </div>
-
     </>
     )
 }
