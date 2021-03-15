@@ -1,32 +1,64 @@
 import * as AiIcons from 'react-icons/ai';
 import * as BsIcons from "react-icons/bs";
 import * as FcIcons from "react-icons/fc";
+import * as FiIcons from "react-icons/fi";
+
+
+
 import swal from 'sweetalert';
 
 //Size
-export const IconSize = 25
-export const valueWidth = {width:'100%'}
+export const IconSize = 25;
+export const valueWidth = {width:'100%'};
 
 //Strings
-export const defaultTitleBarTable = 'Income / Expense bars table'
-export const defaultTitleCakeTable = 'Income / Expense pie table'
+export const defaultTitleBarTable = 'Income / Expense bars table';
+export const defaultTitleCakeTable = 'Income / Expense pie table';
+export const formRegisterTitle = 'Transaction registration form';
+export const deleteButtonText = "Delete";
+export const editButtonText = "Edit";
 export const defaultHorizontalTable = 'Income / Expense Horizontal table'
 export const defaultLabel = 'Percentages of operations';
 export const Ingress = 'Ingress';
 export const Egress = 'Egress';
+export const FilterButtonText = 'Filter Values'
+export const IngressIconColor = 'green';
+export const EgressIconColor = 'red';
 export const showHalf = 'Show half of the list';
 export const hideHalf = 'Collapse list in half';
 export const types = ["Ingress", "Egress"];
 export const defaultBackgroundColorEgress = 'rgba(247, 120, 112)';
 export const defaultBackgroundColorIngress = 'rgba(53, 238, 198)';
 export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September', 'October', 'November', 'December'];
+export const columnInfo = [
+    {title:'Date'},
+    {title:'Type'},
+    {title:'Concept'},
+    {title:'Amount'},
+]
+
 
 //Numbers
 export const borderWidth = 1
 export const amountIngress = [0,0,0,0,0,0,0,0,0,0,0,0]
 export const amountEgress = [0,0,0,0,0,0,0,0,0,0,0,0]
+export const filterAmountTypes = [
+    "0 - 1000",
+    "1000 - 5000",
+    "5000 - 10000",
+    "10000 - 50000",
+    "+ 50000 "
+]
 
 //Functions
+export const alertsForm = (text,type,title,button) =>
+ swal({
+    title: title,
+    text: text,
+    icon: type,
+    button: button
+    });
+
 export const onShowInfo = value => {
     const found = infoModal.find(element => {
     return element.type === value
@@ -39,7 +71,6 @@ export const onShowInfo = value => {
         });
     }
 export const infoFunction = type => onShowInfo(type)
-
 
 export const parseNum = value => {
     return parseInt(value.split('-').slice(1).slice(0,1))
@@ -61,6 +92,7 @@ export const sumAmounts = arr => {
     
     return result
     }
+
 
 
 //Info Objects
@@ -118,8 +150,8 @@ export const fieldInfo = [
         message:'Amount is required'
     },
     maxLength:{
-        value: 7,
-        message:'Maximum 20 characters'
+        value: 5, 
+        message:'Maximum 5 characters'
     },
     minLength: {
         value: 2,
@@ -164,8 +196,24 @@ export const fieldInfo = [
     />},
 ]
 
+export const fieldFilterAmount = [
+    {name:"type", 
+    inputType:"select", 
+    placeHolder:"Select Amount", 
+    htmlFor:"date", 
+    labelText:"Filter by income",
+    optionText: filterAmountTypes,
+    }
+]
 
-
+export const fieldFilterMonths = [{
+    name:"type", 
+    inputType:"select", 
+    placeHolder:"Select Month", 
+    htmlFor:"date", 
+    labelText:"Filter by months",
+    optionText: months,
+}]
 
 // Nav Info
 export const SidebarData = [
@@ -187,4 +235,11 @@ export const SidebarData = [
     icon: <BsIcons.BsPencil/>,
     cName: 'nav-text'
     },
+    {
+        title: 'Global Records',
+        path: '/records',
+        icon: <FiIcons.FiDatabase/>,
+        cName: 'nav-text'
+        },
 ];
+

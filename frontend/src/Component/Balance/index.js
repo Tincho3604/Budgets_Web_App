@@ -1,17 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import './style.css'
-import TableRecords from '../TableRecords/index'
-import GlobalTable from '../GlobalTable/index'
+import React from 'react';
+import './style.css';
+import TableRecords from '../TableRecords/index';
+import HomeTable from '../HomeTable/index';
+import {columnInfo} from '../../Constants/index';
 
 const Balance = () => {
-    const titles = [
-        {title:'Date'},
-        {title:'Type'},
-        {title:'Concept'},
-        {title:'Amount'},
-]
-
-
 
     const redux = [
         {date:'Primero', type:'Ingress', concept:'Contenido Info', amount:2000},
@@ -29,20 +22,20 @@ const Balance = () => {
     return (
     <div className="balanceContainer">
     
-    <GlobalTable
+    <HomeTable
     titleColumn={['Money Income', 'Money egress']}
     numValue={[15000, 15000]}
     title={'Balance sheet of money entered and withdrawn.'}
     />
 
-    <GlobalTable
+    <HomeTable
     numValue={[200000]}
     titleColumn={['Total Amount']}
     title={'Current money'}
     />
     <TableRecords 
     listRecords={redux}
-    textColumn={titles}
+    textColumn={columnInfo}
     title={'Summary of the record of income and expenses.'}
     />
     

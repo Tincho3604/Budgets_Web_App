@@ -4,6 +4,7 @@ import {fieldInfo} from '../../Constants/index';
 import './style.css';
 import backGroundForm from '../../Images/registrerWallpaper.jpg';
 import { useForm } from 'react-hook-form';
+import {alertsForm} from '../../Constants/index';
 
 
 const Form = ({title}) => {
@@ -11,7 +12,9 @@ const Form = ({title}) => {
 
     const onSubmit = (data,e) => {
         console.log(data)
+        e.preventDefault();
         e.target.reset();
+        alertsForm('Your Registry was successfully saved.','success','¡Done!','Ok')
     }
 return (    
     <div className="mainFormContainer">

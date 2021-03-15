@@ -2,8 +2,20 @@ import React,{useState} from 'react';
 import { useForm } from 'react-hook-form';
 import './style.css'
 
-const Field = ({name, id, placeHolder, htmlFor, labelText, inputType, icon, type, optionText, refForm, errors}) => {
-    if(inputType === "input"){ 
+const Field = ({
+    name, 
+    id, 
+    placeHolder, 
+    htmlFor, 
+    labelText, 
+    inputType, 
+    icon, 
+    type, 
+    optionText, 
+    refForm, 
+    errors}) => {
+    
+        if(inputType === "input"){ 
         return(
             <div className="inputs">
                 <label htmlFor={htmlFor} id="form-label">{labelText}</label>
@@ -29,7 +41,7 @@ const Field = ({name, id, placeHolder, htmlFor, labelText, inputType, icon, type
         )}else{
             return(
             <div className="inputs">
-                <label>Type</label>
+                <label>{labelText}</label>
                 <div className="mainElementsContainer">
                     <div className="inputContainer">
                         <div className="iconContainer">

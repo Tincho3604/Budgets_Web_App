@@ -1,9 +1,6 @@
 body{
    margin:0;
    padding:0;
-   /*
    background: rgb(131,58,180);
-   background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-*/
-
+   background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(146,216,245,1) 0%, rgba(123,122,120,1) 0%, rgba(236,47,16,1) 0%, rgba(133,122,120,1) 0%, rgba(175,57,57,1) 0%, rgba(69,68,68,1) 0%, rgba(0,0,0,1) 0%, rgba(0,37,67,1) 0%, rgba(0,69,125,1) 0%, rgba(0,0,0,1) 0%, rgba(140,168,190,1) 0%, rgba(226,228,230,1) 100%, rgba(0,138,247,1) 100%);
 }

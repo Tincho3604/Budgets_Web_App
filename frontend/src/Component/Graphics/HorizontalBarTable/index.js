@@ -13,7 +13,7 @@ const HorizontalBarTable = ({
     primaryBackgroundColor,
     secondaryBackgroundColor
 }) => {
-    console.log(amountsEgress,amountsIngress)
+
     const data = {
         labels: labels,
         datasets: [{
