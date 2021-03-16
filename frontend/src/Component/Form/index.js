@@ -1,30 +1,28 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import Field from '../../Component/Field/index';
 import {fieldInfo} from '../../Constants/index';
 import './style.css';
 import backGroundForm from '../../Images/registrerWallpaper.jpg';
 import { useForm } from 'react-hook-form';
 import {alertsForm} from '../../Constants/index';
-import Axios from 'axios';
+import {createRecord} from '../../Redux/actions/recordsActions';
+import { connect } from 'react-redux';
 
-const Form = ({title}) => {
+
+const Form = ({title,props}) => {
     const {register, handleSubmit, errors } = useForm();
+    
+    const [formData, setFormData] = useState([])
 
+    
     const onSubmit = (data,e) => {
         e.preventDefault();
         e.target.reset();
         alertsForm('Your Registry was successfully saved.','success','¡Done!','Ok')
-        
-        Axios.post("http://localhost:4000/create", {
-            concept: data.concept,
-            amount: data.amount,
-            date: data.date,
-            type: data.type
-        }).then(() => {
-            alert("Info send");
-        })
+        createRecord(data)
     }
-return (    
+
+    return (    
     <div className="mainFormContainer">
         <div className="imgContainer">  
             <img src={backGroundForm} alt="imgForm" className="imgForm"/>
@@ -61,4 +59,10 @@ return (
     )
 }
 
-export default Form
+const mapDispatchToProps = dispatch => {
+    return {
+	createRecord
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Form)

@@ -2,14 +2,16 @@ import * as AiIcons from 'react-icons/ai';
 import * as BsIcons from "react-icons/bs";
 import * as FcIcons from "react-icons/fc";
 import * as FiIcons from "react-icons/fi";
-
-
-
 import swal from 'sweetalert';
+import moment from 'moment';
 
 //Size
 export const IconSize = 25;
 export const valueWidth = {width:'100%'};
+
+//API ROUTE 
+export const ROUTE_API = 'http://localhost:4000';
+
 
 //Strings
 export const defaultTitleBarTable = 'Income / Expense bars table';
@@ -92,8 +94,7 @@ export const sumAmounts = arr => {
     
     return result
     }
-
-
+    export const formatDate = (date) => moment(date).format('MM/DD/YYYY')
 
 //Info Objects
 export const infoModal = [

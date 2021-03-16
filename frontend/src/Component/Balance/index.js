@@ -4,21 +4,8 @@ import TableRecords from '../TableRecords/index';
 import HomeTable from '../HomeTable/index';
 import {columnInfo} from '../../Constants/index';
 
-const Balance = () => {
+const Balance = (listRecords) => {
 
-    const redux = [
-        {date:'Primero', type:'Ingress', concept:'Contenido Info', amount:2000},
-        {date:'23/1/1994', type:'Extract', concept:'Contenido Info',  amount:5000},
-        {date:'23/1/1994', type:'Extract',concept:'Contenido Info', amount:5000},
-        {date:'12/10/1997', type:'Ingress',concept:'Contenido Info', amount:2000},
-        {date:'Segundo', type:'Extract',concept:'Contenido Info', amount:5000},
-        {date:'11/05/2001', type:'Ingress',concept:'Contenido Info', amount:2000},
-        {date:'12/10/1997', type:'Ingress',concept:'Contenido Info', amount:2000},
-        {date:'23/1/1994', type:'Extract',concept:'Contenido Info', amount:5000},
-        {date:'12/10/1997', type:'Ingress',concept:'Contenido Info', amount:2000},
-        {date:'23/1/1994', type:'Extract',concept:'Contenido Info', amount:5000},
-    ]
-    
     return (
     <div className="balanceContainer">
     
@@ -34,7 +21,7 @@ const Balance = () => {
     title={'Current money'}
     />
     <TableRecords 
-    listRecords={redux}
+    listRecords={listRecords.listRecords}
     textColumn={columnInfo}
     title={'Summary of the record of income and expenses.'}
     />

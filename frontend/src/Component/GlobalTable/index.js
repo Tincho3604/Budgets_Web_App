@@ -2,15 +2,13 @@ import React from 'react';
 import './style.css';
 import DeleteButton from '../DeleteButton/index';
 import EditButton from '../EditButton';
-import {Ingress, IngressIconColor, EgressIconColor} from '../../Constants/index';
+import {Ingress, IngressIconColor, EgressIconColor, formatDate} from '../../Constants/index';
 import * as MdIcons from "react-icons/md";
 
-const GlobalTable = () => {
+const GlobalTable = ({
+    recordsList
+}) => {
 
-    const obj = [
-                {amount: "5000", concept: "Cuotas alimentaria", date: "2021-01-10",type: "Ingress"},
-                {amount: "5000", concept: "Pago de luz", date: "2021-01-10",type: "Egress"}
-            ]
     return (
         <div className="MainGlobalTable" style={{'overflowX':'auto'}}>
             <table className="styledTable">
@@ -25,10 +23,10 @@ const GlobalTable = () => {
                 </tr>
             </thead>
             <tbody>
-        {obj?.map((item,index) => {
+        {recordsList?.map((item,index) => {
             return (
                     <tr key={index}>
-                        <td>{item.date}</td>
+                        <td>{formatDate(item.date)}</td>
                         <td>{item.type === Ingress ? <MdIcons.MdAttachMoney color={IngressIconColor}/> : <MdIcons.MdMoneyOff color={EgressIconColor}/>}</td>
                         <td style={item.type === Ingress ?{color:IngressIconColor} : {color:EgressIconColor}}>{item.amount}</td>
                         <td>{item.concept}</td>

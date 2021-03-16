@@ -1,5 +1,6 @@
 const initialState = {
 	records:[],
+    firstTenRecords:[],
     horizontalBarTable:[],
     pieGraphic:[],
     barTable:[],
@@ -9,7 +10,7 @@ const initialState = {
     currentMoney:[]
 }
 
-function productReducer(state = initialState, action) {
+function recordsReducer(state = initialState, action) {
 	switch (action.type) {
 		
         case "GET_ALL_RECORDS":	
@@ -17,6 +18,12 @@ function productReducer(state = initialState, action) {
 				...state,
 				records: action.payload,
 			}
+            
+        case "GET_FIRST_TEN_RECORDS":	
+			return {
+				...state,
+				firstTenRecords: action.payload,
+			}    
 		
         case "GET_AMOUNT_HORIZONTAL_BAR_TABLE":	
 			return {
@@ -61,4 +68,4 @@ function productReducer(state = initialState, action) {
 	}
 }
 
-export default productReducer;
+export default recordsReducer;

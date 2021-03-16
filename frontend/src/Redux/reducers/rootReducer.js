@@ -1,9 +1,9 @@
 
-import records from './records'
+import recordsReducer from './records'
 const {combineReducers} = require("redux")
 
 const rootReducer = combineReducers({
-    records
+    recordsReducer
 })
 
-export default  rootReducer
+export default rootReducer

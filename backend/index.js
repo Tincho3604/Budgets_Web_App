@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
-
+const recordsRoute = require('./routes/records');
 
 //importing routes
 const recordsRoutes = require('./routes/records')
@@ -17,25 +17,13 @@ const db = mysql.createConnection({
     database: 'budget_db'
 });
 
-app.post("/create", (req, res) => {
-    const concept= req.body.concept;
-    const amount = req.body.amount;
-    const date = req.body.date;
-    const type = req.body.type;
-    
-    db.query(
-        "INSERT INTO records (concept, amount , date, type) VALUES (?,?,?,?)",
-    [concept, amount , date, type],
-    (err, result) => {
-        if(err){
-            console.log(err)
-        }else{
-            res.send("Values inserted");
-            }
-        }
-    );
-});
+app.use(recordsRoutes);
 
-app.listen(4000, () => {
-    console.log("Server running on port 4000")
+const port = process.env.PORT || 4000;
+const host = process.env.HOST || '0.0.0.0';
+
+app.listen(port, host, () => {
+	console.log(`Listening on port ${port}`);
+
 })
+
