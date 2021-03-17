@@ -62,11 +62,13 @@ router.get("/getFirstTenRecords", (req, res) => {
 });
 
 
-//SUM AMOUNT EGRESS
-router.get("/getTotalEgress", (req, res) => {
+//DELETE RECORD
+router.delete("/deleteRecord/:id", (req, res) => {
+    const id = req.params.id; 
     db.query(
-        "SELECT sum(amount) from records WHERE type = 'Egress'",
-    (err, result) => {
+        "DELETE FROM records WHERE id = ?",
+    [id],
+        (err, result) => {
         if(err){
             console.log(err)
         }else{
@@ -76,18 +78,7 @@ router.get("/getTotalEgress", (req, res) => {
     );
 });
 
-//SUM AMOUNT INGRESS
-router.get("/getTotalIngress", (req, res) => {
-    db.query(
-        "SELECT sum(amount) from records WHERE type = 'Ingress'",
-    (err, result) => {
-        if(err){
-            console.log(err)
-        }else{
-            res.send(result);
-            }
-        }
-    );
-});
+
+
 
 module.exports = router;

@@ -6,6 +6,7 @@ import Register from '../src/Pages/Register/index';
 import Statistics from  '../src/Pages/Statistics/index';
 import Records from '../src/Pages/Records/index';
 
+
 function App() {
   return (
     <>

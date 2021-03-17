@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import {alertsForm} from '../../Constants/index';
 import {createRecord} from '../../Redux/actions/recordsActions';
 import { connect } from 'react-redux';
-
+import successIcon from '../../Images/success-icon.jpg'
 
 const Form = ({title,props}) => {
     const {register, handleSubmit, errors } = useForm();
@@ -18,7 +18,12 @@ const Form = ({title,props}) => {
     const onSubmit = (data,e) => {
         e.preventDefault();
         e.target.reset();
-        alertsForm('Your Registry was successfully saved.','success','¡Done!','Ok')
+        alertsForm("Register Saved", 
+        "Record saved succesfully", 
+        'Continue', 
+        successIcon,
+        '100px'
+        )
         createRecord(data)
     }
 

@@ -4,9 +4,6 @@ import Footer from '../../Component/Footer/index'
 import Bars from '../../Component/Graphics/Bars/index';
 import Cake from '../../Component/Graphics/Cake/index';
 import HorizontalBarTable from '../../Component/Graphics/HorizontalBarTable/index';
-import {getAllRecords} from '../../Redux/actions/recordsActions';
-import { connect } from 'react-redux';
-import {loadLocalStorage, setLocalStorage} from '../../useLocalStorage/index';
 import Axios from 'axios';
 import {ROUTE_API} from '../../Constants/index';
 import {
@@ -26,7 +23,6 @@ import {
     amountIngress,
     amountEgress,
     valueWidth,
-    sumArray,
     totalEgressIngress
 } from '../../Constants/index';
 
@@ -114,11 +110,6 @@ useEffect(() => {
     )
 }
 
-
-const mapDispatchToProps = {
-    getAllRecords
-}
-
-export default connect(null, mapDispatchToProps)(Statistics)
+export default Statistics
 
 

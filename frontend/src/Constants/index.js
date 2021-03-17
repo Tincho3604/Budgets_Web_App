@@ -4,7 +4,10 @@ import * as FcIcons from "react-icons/fc";
 import * as FiIcons from "react-icons/fi";
 import swal from 'sweetalert';
 import moment from 'moment';
-
+import Swal from 'sweetalert2'
+import deletedIcon from '../Images/delete-icon.jpg'
+import successIcon from '../Images/success-icon.jpg'
+import infoIcon from '../Images/info-modal.png'
 //Size
 export const IconSize = 25;
 export const valueWidth = {width:'100%'};
@@ -53,25 +56,82 @@ export const filterAmountTypes = [
 ]
 
 //Functions
-export const alertsForm = (text,type,title,button) =>
- swal({
-    title: title,
-    text: text,
-    icon: type,
-    button: button
-    });
+export const alertsForm = (text,title,button,image,width) =>
+Swal.fire({
+	title: title,
+	text: text,
+	// html:
+	//icon:,
+	confirmButtonText: button,
+	// footer:
+	//   width: '50%',
+	padding: '1rem',
+	// background:
+	// grow:
+	backdrop: true,
+	timer: 10000,
+	timerProgressBar: true,
+	// toast: true,
+	 position: 'center',
+	allowOutsideClick: false,
+	allowEscapeKey: false,
+	allowEnterKey: false,
+	stopKeydownPropagation: true,
+
+	// input:
+	// inputPlaceholder:
+	// inputValue:
+	// inputOptions:
+	
+	//  customClass:
+	// 	container:
+	// 	popup:
+	// 	header:
+	// 	title:
+	// 	closeButton:
+	// 	icon:
+	// 	image:
+	// 	content:
+	// 	input:
+	// 	actions:
+	// 	confirmButton:
+	// 	cancelButton:
+	// 	footer:	
+
+	// showConfirmButton:
+	// confirmButtonColor:
+	// confirmButtonAriaLabel:
+
+	// showCancelButton:
+	// cancelButtonText:
+	// cancelButtonColor:
+	cancelButtonAriaLabel: 'Cerrar Alerta',
+	
+	// buttonsStyling:
+	 showCloseButton: true,
+	// closeButtonAriaLabel:
+
+
+	imageUrl: image,
+	imageWidth: width || '200px',
+	// imageHeight:
+	imageAlt: 'Icon Deleted'
+});
+
+
 
 export const onShowInfo = value => {
     const found = infoModal.find(element => {
     return element.type === value
 });
-    swal({
-        title: "Information",
-        text: found.text,
-        icon: "info",
-        button: "Ok"
-        });
+    alertsForm(
+    found.text, 
+    "Information Field", 
+    'Continue', 
+    infoIcon
+        )
     }
+
 export const infoFunction = type => onShowInfo(type)
 
 export const parseNum = value => {
