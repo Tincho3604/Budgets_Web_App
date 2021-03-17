@@ -7,7 +7,8 @@ import HorizontalBarTable from '../../Component/Graphics/HorizontalBarTable/inde
 import {getAllRecords} from '../../Redux/actions/recordsActions';
 import { connect } from 'react-redux';
 import {loadLocalStorage, setLocalStorage} from '../../useLocalStorage/index';
-
+import Axios from 'axios';
+import {ROUTE_API} from '../../Constants/index';
 import {
     defaultLabel, 
     Ingress, 
@@ -25,7 +26,8 @@ import {
     amountIngress,
     amountEgress,
     valueWidth,
-    sumArray
+    sumArray,
+    totalEgressIngress
 } from '../../Constants/index';
 
 import './style.css';
@@ -39,48 +41,39 @@ const Statistics = (props) => {
         {id:'',amount:''},
     ])
     
-    const [general, setGeneral] = useState(loadLocalStorage('allValues'))
+    const [general, setGeneral] = useState()
 
     ingress?.ingress?.map((item) => amountIngress[item.id] = item.amount)
     egress?.egress?.map((item) => amountEgress[item.id] = item.amount)
 
-    const GraphicAmountIngress = sumArray(general.filter(item => item.type === 'Ingress').map(item => item.amount))
-    const GraphicAmountEgress = sumArray(general.filter(item => item.type === 'Egress').map(item => item.amount))
+    const GraphicAmountIngress = totalEgressIngress(general, 'Ingress')
+    const GraphicAmountEgress = totalEgressIngress(general, 'Egress')
 
 
-useEffect(() => {
-    const f = async() => {
-        const response = await props.getAllRecords()
-        setGeneral([...response])
-        }
-    f()  
-}, []);
 
 useEffect(() => {
-    setLocalStorage('allValues',general)
+    Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
+        setGeneral(response.data)
+        setIngress({
+            ingress: sumAmountsByAmount(response.data.filter(item => item.type === 'Ingress').map(item => {
+                return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
+            })
+        )})
+
+        setEgress({
+            egress: sumAmountsByAmount(response.data.filter(item => item.type === 'Egress').map(item => {
+                return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
+            })
+        )})
+
+    }) 
 }, []);
 
-    useEffect(() => {
-            setIngress({
-                ingress: sumAmountsByAmount(general.filter(item => item.type === 'Ingress').map(item => {
-                    return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
-                })
-            )})
-
-            setEgress({
-                egress: sumAmountsByAmount(general.filter(item => item.type === 'Egress').map(item => {
-                    return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
-                })
-            )})
-            
-    }, []);
-    
-    
     return(
     <>
         <Header/>
         <div className="test">
-            <div className="mainContainerGraphics">
+        <div className="mainContainerGraphics">
                 <Bars
                     title={defaultTitleBarTable}
                     labels={defaultLabel}
@@ -127,4 +120,5 @@ const mapDispatchToProps = {
 }
 
 export default connect(null, mapDispatchToProps)(Statistics)
+
 
