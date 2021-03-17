@@ -3,47 +3,34 @@ import Header from '../../Component/Header/index'
 import Footer from '../../Component/Footer/index'
 import Balance from '../../Component/Balance/index'
 import './style.css'
-import { connect } from 'react-redux';
-import {getFirstTenRecords, getTotalEgress, getTotalIngress} from '../../Redux/actions/recordsActions';
-import {setLocalStorage, loadLocalStorage} from '../../useLocalStorage/index';
-import {formatAmountArrays, calculateCurrentMoney } from '../../Constants/index'
+import Axios from 'axios';
+import {ROUTE_API, totalEgressIngress} from '../../Constants/index';
 
 
 const Home = (props) => {
-const[list, setList] = useState(loadLocalStorage('value'))
-const[amountEgress, setAmountEgress] = useState(loadLocalStorage('egressAmount'))
-const[amountIngress, setAmountIngress] = useState(loadLocalStorage('ingressAmount'))
+const[list, setList] = useState()
+const [allList, setAllList] = useState()
 
-const infoFirstTable =  formatAmountArrays(amountIngress,amountEgress);
+const currentEgressAmount = totalEgressIngress(allList,'Egress')
+const currentIngressAmount = totalEgressIngress(allList,'Ingress')
+
+const currentValue =  currentIngressAmount - currentEgressAmount 
 
 useEffect(() => {
-        props.getFirstTenRecords()
-        props.getTotalEgress()
-        props.getTotalIngress()
-        const f = async() => {
-			const responseTenRecords = await props.getFirstTenRecords()
-			const responseEgressAmount = await props.getTotalEgress()
-            const responseIngressAmount = await props.getTotalIngress()
-            setAmountEgress([...responseEgressAmount])
-            setAmountIngress([...responseIngressAmount])
-            setList([...responseTenRecords])
-            }
-        f()   
+    Axios.get(`${ROUTE_API}/getFirstTenRecords`).then((response) => {
+        setList(response.data)
+    })
+    Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
+        setAllList(response.data)
+    })
     }, []);
-
-    useEffect(() => {
-        setLocalStorage('value',list)
-        setLocalStorage('egressAmount',amountEgress)
-        setLocalStorage('ingressAmount',amountIngress)
-    }, []);
-    
 
     return (
     <>
         <Header/>
         <Balance
-        numValue={[infoFirstTable]}
-        currentValue={calculateCurrentMoney(infoFirstTable)}
+        numValue={[currentIngressAmount, currentEgressAmount]}
+        currentValue={[currentValue]}
         listRecords={list}
         />
         <Footer/>
@@ -51,19 +38,5 @@ useEffect(() => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return{
-        firstTenRecords: state.recordsReducer.firstTenRecords,
-        totalAmountEgress: state.recordsReducer.totalAmountEgress
-    }
-}
-const mapDispatchToProps = {
-    getFirstTenRecords,
-    getTotalEgress,
-    getTotalIngress
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
-
-
+export default Home
 

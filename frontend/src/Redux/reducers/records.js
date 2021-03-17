@@ -15,6 +15,7 @@ function recordsReducer(state = initialState, action) {
 		
         case "GET_ALL_RECORDS":	
 			return {
+            
 				...state,
 				records: action.payload,
 			}
@@ -34,7 +35,8 @@ function recordsReducer(state = initialState, action) {
         case "GET_AMOUNT_PIE_GRAPHIC":
             return {
                 ...state,
-                pieGraphic: action.payload
+                pieGraphic: action.payload,
+
             }
         
         case "GET_BAR_TABLE":

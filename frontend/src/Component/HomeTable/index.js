@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import './style.css'
     const HomeTable = ({numValue, titleColumn, title}) => {
-
+console.log('numValue',numValue)
 		const y = numValue < 0 ? "rrr" : ''
 return (
 <div className="main-container-table">

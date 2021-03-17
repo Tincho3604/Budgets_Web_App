@@ -5,7 +5,7 @@ import * as MdIcons from "react-icons/md";
 
 const TableRecords = ({listRecords, textColumn, title}) => { 
 return ( 
-<div className="main-container-table"npm>
+<div className="main-container-table">
     <h1>{title}</h1>
     <div className="table-wrapper">
     
@@ -20,7 +20,7 @@ return (
             </tr>
         </thead>
         <tbody>
-        {listRecords.map((content,index) => {
+        {listRecords?.map((content,index) => {
         return (
         <tr className={content.type === Ingress ? 'containerExtrac' : 'containerIngress'} key={index}>
             <td>{formatDate(content.date)}</td>

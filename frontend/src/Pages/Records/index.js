@@ -4,19 +4,26 @@ import Footer from '../../Component/Footer/index';
 import GlobalTable from '../../Component/GlobalTable/index';
 import Filter from '../../Component/Filter/index';
 import {getAllRecords} from '../../Redux/actions/recordsActions';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import {setLocalStorage, loadLocalStorage} from '../../useLocalStorage/index';
 import './style.css';
-
+import Axios from 'axios';
+import {ROUTE_API} from '../../Constants/index';
 
 const Records = (props) => {
-    const dispatch = useDispatch()
 
-    const [records, setRecords] = useState([])
+    const [valuesFinal, setValuesFinal] = useState()
+
+
 
     useEffect(() => {
-        dispatch(getAllRecords())
-        setRecords(props.recordsList)
-    },[]);
+        Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
+            setValuesFinal(response.data)
+        })
+    }, []);
+console.log('valuesFinal',valuesFinal)
+
+
 
 return(
     <>
@@ -24,18 +31,19 @@ return(
         <div className="mainRecordsContainer">
             <Filter/>
             <GlobalTable 
-            recordsList={records}
+            recordsList={valuesFinal}
             />
         </div>
     </>
     )
 }
 
-const mapStateToProps = (state) => {
-    return{
-        recordsList: state.recordsReducer.records
+const mapStateToProps = state => {
+    return {
+	  test:state.recordsReducer.records
     }
 }
+
 const mapDispatchToProps = dispatch => {
     return {
         getAllRecords

@@ -11,12 +11,12 @@ const Balance = ({listRecords,numValue, currentValue}) => {
     
     <HomeTable
     titleColumn={['Money Income', 'Money egress']}
-    numValue={numValue[0]}
+    numValue={numValue}
     title={'Balance sheet of money entered and withdrawn.'}
     />
 
     <HomeTable
-    numValue={[currentValue]}
+    numValue={currentValue}
     titleColumn={['Total Amount']}
     title={'Current balance of money'}
     />

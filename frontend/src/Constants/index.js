@@ -79,6 +79,8 @@ export const parseNum = value => {
 }
 export const sumArray = (arr) => arr.reduce((sum, value) => ( sum + value ), 0);
 
+export const totalEgressIngress = (arr, key) => arr?.filter(item => item.type === key).map(item => item.amount).reduce((sum, value) => ( sum + value ), 0)
+
 export const sumAmountsByAmount = arr => { 
 
     const group = arr.reduce((p,c)=>{ 
@@ -96,7 +98,7 @@ export const sumAmountsByAmount = arr => {
     return result
     }
     export const formatDate = (date) => moment(date).format('MM/DD/YYYY')
-    export const formatAmountArrays = (arrEgress, arrIngress) => Object.values(arrEgress[0]).concat(Object.values(arrIngress[0]))
+
     export const calculateCurrentMoney = (arr) => arr.reduce((accum, currentValue) => accum - currentValue) 
 
 //Info Objects
