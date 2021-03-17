@@ -77,8 +77,9 @@ export const infoFunction = type => onShowInfo(type)
 export const parseNum = value => {
     return parseInt(value.split('-').slice(1).slice(0,1))
 }
+export const sumArray = (arr) => arr.reduce((sum, value) => ( sum + value ), 0);
 
-export const sumAmounts = arr => { 
+export const sumAmountsByAmount = arr => { 
 
     const group = arr.reduce((p,c)=>{ 
         p[c.id] = (p[c.id]  || 0)+c.amount;
@@ -95,6 +96,8 @@ export const sumAmounts = arr => {
     return result
     }
     export const formatDate = (date) => moment(date).format('MM/DD/YYYY')
+    export const formatAmountArrays = (arrEgress, arrIngress) => Object.values(arrEgress[0]).concat(Object.values(arrIngress[0]))
+    export const calculateCurrentMoney = (arr) => arr.reduce((accum, currentValue) => accum - currentValue) 
 
 //Info Objects
 export const infoModal = [

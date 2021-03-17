@@ -1,9 +1,8 @@
 import React, {useState} from 'react'
 import './style.css'
-const HomeTable = ({numValue, titleColumn, title}) => {
+    const HomeTable = ({numValue, titleColumn, title}) => {
 
-	const arrayTitle =['Titulo1','Titulo2']
-	const arrayNums = [1200,2500]
+		const y = numValue < 0 ? "rrr" : ''
 return (
 <div className="main-container-table">
     <h1>{title}</h1>
@@ -18,13 +17,13 @@ return (
 	    <tbody>
 		    <tr>
 		        {numValue?.map((num,index) => {
-	            return <td key={index}>$ {num}</td>
+	            return <td id={y} key={index}>$ {num}</td>
 			})}
 		    </tr>
 	    </tbody>
     </table>
 </div>
-)
+) 
 }
 
 export default HomeTable

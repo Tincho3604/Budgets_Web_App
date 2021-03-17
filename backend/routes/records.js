@@ -62,6 +62,32 @@ router.get("/getFirstTenRecords", (req, res) => {
 });
 
 
+//SUM AMOUNT EGRESS
+router.get("/getTotalEgress", (req, res) => {
+    db.query(
+        "SELECT sum(amount) from records WHERE type = 'Egress'",
+    (err, result) => {
+        if(err){
+            console.log(err)
+        }else{
+            res.send(result);
+            }
+        }
+    );
+});
 
+//SUM AMOUNT INGRESS
+router.get("/getTotalIngress", (req, res) => {
+    db.query(
+        "SELECT sum(amount) from records WHERE type = 'Ingress'",
+    (err, result) => {
+        if(err){
+            console.log(err)
+        }else{
+            res.send(result);
+            }
+        }
+    );
+});
 
 module.exports = router;

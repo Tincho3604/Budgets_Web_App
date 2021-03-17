@@ -4,6 +4,9 @@ import Footer from '../../Component/Footer/index'
 import Bars from '../../Component/Graphics/Bars/index';
 import Cake from '../../Component/Graphics/Cake/index';
 import HorizontalBarTable from '../../Component/Graphics/HorizontalBarTable/index';
+import {getAllRecords} from '../../Redux/actions/recordsActions';
+import { connect } from 'react-redux';
+import {loadLocalStorage, setLocalStorage} from '../../useLocalStorage/index';
 
 import {
     defaultLabel, 
@@ -18,16 +21,16 @@ import {
     types,
     months,
     parseNum,
-    sumAmounts,
+    sumAmountsByAmount,
     amountIngress,
     amountEgress,
-    valueWidth
+    valueWidth,
+    sumArray
 } from '../../Constants/index';
 
 import './style.css';
 
-const Statistics = () => {
-    
+const Statistics = (props) => {
     const [ingress, setIngress] = useState([
         {id:'',amount:''},
     ])       
@@ -36,40 +39,43 @@ const Statistics = () => {
         {id:'',amount:''},
     ])
     
-  ingress?.ingress?.map((item,index) => amountIngress[item.id] = item.amount)
-  egress?.egress?.map((item,index) => amountEgress[item.id] = item.amount)
+    const [general, setGeneral] = useState(loadLocalStorage('allValues'))
+
+    ingress?.ingress?.map((item) => amountIngress[item.id] = item.amount)
+    egress?.egress?.map((item) => amountEgress[item.id] = item.amount)
+
+    const GraphicAmountIngress = sumArray(general.filter(item => item.type === 'Ingress').map(item => item.amount))
+    const GraphicAmountEgress = sumArray(general.filter(item => item.type === 'Egress').map(item => item.amount))
+
+
+useEffect(() => {
+    const f = async() => {
+        const response = await props.getAllRecords()
+        setGeneral([...response])
+        }
+    f()  
+}, []);
+
+useEffect(() => {
+    setLocalStorage('allValues',general)
+}, []);
 
     useEffect(() => {
-        const objGeneral = [
-            // Primera Mitad
-            {amount: "1000.59", concept: "cuotasremix", date: "2021-01-10",type: "Ingress"},
-            {amount: "2000", concept: "cuotasremix", date: "2021-02-10",type: "Ingress"},
-            {amount: "3000", concept: "cuotasremix", date: "2021-03-10",type: "Ingress"},
-            {amount: "4000", concept: "cuotasremix", date: "2021-04-10",type: "Ingress"},
-            {amount: "5000", concept: "cuotasremix", date: "2021-01-10",type: "Ingress"},
-            
-            // Segunda Mitad
-            {amount: "6000", concept: "cuotasremix", date: "2021-05-10",type: "Egress"},
-            {amount: "7000", concept: "cuotasremix", date: "2021-06-10",type: "Egress"},
-            {amount: "8000", concept: "cuotasremix", date: "2021-03-10",type: "Egress"},
-            {amount: "9000", concept: "cuotasremix", date: "2021-04-10",type: "Egress"},
-            {amount: "10000", concept: "cuotasremix", date: "2021-05-10",type: "Egress"}
-            ]
-        
             setIngress({
-                ingress: sumAmounts(objGeneral.filter(item => item.type === 'Ingress').map(item => {
-                    return { id: parseNum(item.date), amount: Math.round(item.amount * 100) / 100 };
+                ingress: sumAmountsByAmount(general.filter(item => item.type === 'Ingress').map(item => {
+                    return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
                 })
             )})
 
             setEgress({
-                egress: sumAmounts(objGeneral.filter(item => item.type === 'Egress').map(item => {
-                    return { id: parseNum(item.date), amount: Math.round(item.amount * 100) / 100 };
+                egress: sumAmountsByAmount(general.filter(item => item.type === 'Egress').map(item => {
+                    return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
                 })
             )})
-        
+            
     }, []);
-
+    
+    
     return(
     <>
         <Header/>
@@ -80,8 +86,8 @@ const Statistics = () => {
                     labels={defaultLabel}
                     primaryLabel={Egress}
                     secondaryLabel={Ingress}
-                    amountsEgress={[15,25,36]}
-                    amountsIngress={[30,55,10]}
+                    amountsEgress={[ GraphicAmountEgress]}
+                    amountsIngress={[ GraphicAmountIngress]}
                     primaryBackgroundColor={defaultBackgroundColorEgress}
                     secondaryBackgroundColor={defaultBackgroundColorIngress}
                     borderWidth={borderWidth}
@@ -90,8 +96,8 @@ const Statistics = () => {
                 <Cake 
                     title={defaultTitleCakeTable}
                     labels={types}
-                    amountsEgress={2500}
-                    amountsIngress={2500}
+                    amountsEgress={ GraphicAmountEgress}
+                    amountsIngress={ GraphicAmountIngress}
                     primaryBackgroundColor={defaultBackgroundColorEgress}
                     secondaryBackgroundColor={defaultBackgroundColorIngress}
                     borderWidth={borderWidth}
@@ -115,4 +121,10 @@ const Statistics = () => {
     )
 }
 
-export default Statistics
+
+const mapDispatchToProps = {
+    getAllRecords
+}
+
+export default connect(null, mapDispatchToProps)(Statistics)
+

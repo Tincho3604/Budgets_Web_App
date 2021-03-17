@@ -4,26 +4,26 @@ import TableRecords from '../TableRecords/index';
 import HomeTable from '../HomeTable/index';
 import {columnInfo} from '../../Constants/index';
 
-const Balance = (listRecords) => {
+const Balance = ({listRecords,numValue, currentValue}) => {
 
     return (
     <div className="balanceContainer">
     
     <HomeTable
     titleColumn={['Money Income', 'Money egress']}
-    numValue={[15000, 15000]}
+    numValue={numValue[0]}
     title={'Balance sheet of money entered and withdrawn.'}
     />
 
     <HomeTable
-    numValue={[200000]}
+    numValue={[currentValue]}
     titleColumn={['Total Amount']}
-    title={'Current money'}
+    title={'Current balance of money'}
     />
     <TableRecords 
-    listRecords={listRecords.listRecords}
+    listRecords={listRecords}
     textColumn={columnInfo}
-    title={'Summary of the record of income and expenses.'}
+    title={'List of the first 10 records'}
     />
     
     

@@ -8,9 +8,9 @@ export const setLocalStorage = (key, value) => {
   }
   
   
-  export const loadLocalStorage = () => {
+  export const loadLocalStorage = (key) => {
     try{
-        const serializedState =  localStorage.getItem('value')
+        const serializedState =  localStorage.getItem(key)
         if(serializedState === null) return undefined
         return JSON.parse(serializedState)
     }catch(e){

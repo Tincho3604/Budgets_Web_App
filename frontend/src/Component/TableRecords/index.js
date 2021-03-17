@@ -4,7 +4,6 @@ import {Ingress, showHalf, hideHalf, formatDate} from '../../Constants/index'
 import * as MdIcons from "react-icons/md";
 
 const TableRecords = ({listRecords, textColumn, title}) => { 
-console.log(listRecords)
 return ( 
 <div className="main-container-table"npm>
     <h1>{title}</h1>

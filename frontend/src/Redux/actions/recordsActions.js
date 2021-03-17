@@ -24,6 +24,7 @@ export const getAllRecords = () => {
             type: "GET_ALL_RECORDS",
             payload: response.data
         })
+        return response.data
     }
 }
 
@@ -41,3 +42,26 @@ export const getFirstTenRecords = () => {
 }
 
 
+export const getTotalEgress = () => {
+    return async (dispatch, getState) => {
+        const response = await axios.get(`${ROUTE_API}/getTotalEgress`)
+        dispatch({
+            type: "GET_TOTAL_AMOUNT_EGRESS",
+            payload: response.data
+        })
+        return response.data
+    }
+}
+
+
+
+export const getTotalIngress = () => {
+    return async (dispatch, getState) => {
+        const response = await axios.get(`${ROUTE_API}/getTotalIngress`)
+        dispatch({
+            type: "GET_TOTAL_AMOUNT_INGRESS",
+            payload: response.data
+        })
+        return response.data
+    }
+}
