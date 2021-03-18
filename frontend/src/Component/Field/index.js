@@ -15,12 +15,14 @@ const Field = ({
     refForm, 
     errors,
     idSelect,
-    classSelect
+    classSelect,
+    classInput,
+    disabled
 }) => {
     
         if(inputType === "input"){ 
         return(
-            <div className="inputs">
+            <div className={classInput}>
                 <label htmlFor={htmlFor} id="form-label">{labelText}</label>
                 <div className="mainElementsContainer">
                     <div className="inputContainer">
@@ -34,6 +36,7 @@ const Field = ({
                             id={id} 
                             placeholder={placeHolder} 
                             ref={refForm}
+                            disabled={disabled}
                         />
                     </div>
                 </div>

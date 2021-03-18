@@ -20,6 +20,8 @@ export const createRecord = (data) => {
 export const getAllRecords = () => {
     return async (dispatch, getState) => {
         const response = await axios.get(`${ROUTE_API}/getAllRegisters`)
+        
+        console.log('Response --> ',response)
         dispatch({
             type: "GET_ALL_RECORDS",
             payload: response.data

@@ -1,9 +1,10 @@
-.mainFilterContainer{
+.mainUpdateFormContainer{
     display: flex;
     flex-direction: column;
     align-content: center;
+    justify-content: space-around;
     background: rgb(63,94,251);
-    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(33,37,40,1) 100%, rgba(74,252,70,1) 100%);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(144,197,237,1) 100%, rgba(74,252,70,1) 100%);
     margin: 0 auto;
     font-size: 1.5em;
     font-family: 'Goldman', cursive;
@@ -16,29 +17,29 @@
     margin-bottom: 15px;
     position:relative;
 }
-.filter{
+.updater{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    align-content: center;
     justify-content: space-around;
 }
 
-.buttonFilter{
-    margin: 0 auto;
+.buttonUpdater{
     border:none;
-    background-color: rgb(49, 151, 199);
+    background-color: rgb(141, 227, 230);
     color:rgb(0, 0, 0);
     font-weight: bold;
-    width: 8vw;
+    width: 12vw;
     height: 5vh;
     font-family: 'Goldman', cursive;
     font-size: 1rem;
     border-radius: 10px;
     letter-spacing: 1px;
-
+    margin-top: 10px;
+    margin-right: 40px;
 }
 
-.buttonFilter{
+.buttonUpdater{
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
@@ -49,62 +50,24 @@
     -webkit-transition-property: transform;
     transition-property: transform;
 }
-.buttonFilter:hover, .buttonFilter:focus, .buttonFilter:active {
+.buttonUpdater:hover, .buttonUpdater:focus, .buttonUpdater:active {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
     outline: none;
 }
 
 
-#selectFilter{
-    height: 4vh;
-    width: 8vw;
-    border: none;
-    border-radius: 5px;
-    color: rgb(0, 0, 0);
-    background-color: #6bb6fc;
-    font-family: 'Orbitron', sans-serif;
-    margin:0 auto;
-    text-align: center;
-}
 
-#selectFilter:focus{
-outline: none;
-}
 
-.classFilter{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-}
-
-@media (max-width: 2000px)and (min-width: 800px){
-    .mainFilterContainer{
-        width: 30vw;
-    }
-    .mainFilterContainer h2{
-
-    }
-    .filter{
-        flex-direction: column;
-    }
-    .buttonFilter{
-      
-        width: 20vw;
-        margin-top: 20px;
-        
-    }
-
-}
 
 @media (max-width: 800px)and (min-width: 300px){
-    .mainFilterContainer{
+    .mainUpdateFormContainer{
         width: 70vw;
     }
-    .mainFilterContainer h2{
+    .mainUpdateFormContainer h2{
         font-size: 1.2rem;
     }
-    .filter{
+    .updater{
         flex-direction: column;
         height: 30vh;
     }
@@ -114,7 +77,7 @@ outline: none;
     }
 
     
-    .buttonFilter{
+    .buttonUpdater{
         margin: 0 auto;
         width: 35vw;
         height: 5vh;
@@ -125,7 +88,7 @@ outline: none;
 }
 
 @media (max-width: 1000px)and (min-width: 800px){
-    .mainFilterContainer{
+    .mainUpdateFormContainer{
         width: 50vw;
     }
     #selectFilter{
@@ -133,7 +96,7 @@ outline: none;
         width: 15vw;
     }
 
-    .buttonFilter{
+    .buttonUpdater{
         margin: 0 auto;
         width: 15vw;
         height: 5vh;

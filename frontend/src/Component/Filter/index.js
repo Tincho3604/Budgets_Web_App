@@ -11,18 +11,18 @@ return(
             {fieldFilterAmount.map((item,index) => {
                 return (
                     <Field
-                    name={item.name}
-                    inputType={item.inputType}
-                    placeHolder={item.placeHolder}
-                    htmlFor={item.htmlFor}
-                    type={item.type}
-                    labelText={item.labelText}
-                    id={item.id}
-                    optionText={item.optionText}
-                    key={index}
-                    idSelect={'selectFilter'}
-                    classSelect={'classFilter'}
-                />
+                        name={item.name}
+                        inputType={item.inputType}
+                        placeHolder={item.placeHolder}
+                        htmlFor={item.htmlFor}
+                        type={item.type}
+                        labelText={item.labelText}
+                        id={item.id}
+                        optionText={item.optionText}
+                        key={index}
+                        idSelect={'selectFilter'}
+                        classSelect={'classFilter'}
+                    />
                 )
             })}
             {fieldFilterMonths.map((item,index) => {

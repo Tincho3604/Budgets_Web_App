@@ -12,9 +12,6 @@ import successIcon from '../../Images/success-icon.jpg'
 const Form = ({title,props}) => {
     const {register, handleSubmit, errors } = useForm();
     
-    const [formData, setFormData] = useState([])
-
-    
     const onSubmit = (data,e) => {
         e.preventDefault();
         e.target.reset();
@@ -53,6 +50,7 @@ const Form = ({title,props}) => {
                                     refForm={register(item.registerInfo)}
                                     idSelect={'selectForm'}
                                     classSelect={'inputs'}
+                                    classInput={'inputs'}
                                 />
                             )
                         })}

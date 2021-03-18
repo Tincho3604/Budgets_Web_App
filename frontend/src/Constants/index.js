@@ -32,6 +32,7 @@ export const EgressIconColor = 'red';
 export const showHalf = 'Show half of the list';
 export const hideHalf = 'Collapse list in half';
 export const types = ["Ingress", "Egress"];
+export const options = ["AMOUNT","DATE","CONCEPT"]
 export const defaultBackgroundColorEgress = 'rgba(247, 120, 112)';
 export const defaultBackgroundColorIngress = 'rgba(53, 238, 198)';
 export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September', 'October', 'November', 'December'];
@@ -56,13 +57,13 @@ export const filterAmountTypes = [
 ]
 
 //Functions
-export const alertsForm = (text,title,button,image,width) =>
-Swal.fire({
-	title: title,
-	text: text,
+export const alertsForm = () =>(async () => {
+    const {value} = await Swal.fireSwal.fire({
+	//title: title,
+	//text: text,
 	// html:
 	//icon:,
-	confirmButtonText: button,
+	confirmButtonText: 'confirmar',
 	// footer:
 	//   width: '50%',
 	padding: '1rem',
@@ -108,15 +109,16 @@ Swal.fire({
 	cancelButtonAriaLabel: 'Cerrar Alerta',
 	
 	// buttonsStyling:
-	 showCloseButton: true,
+	showCloseButton: true,
 	// closeButtonAriaLabel:
 
 
-	imageUrl: image,
-	imageWidth: width || '200px',
+	//imageUrl: image,
+	//imageWidth: width || '200px',
 	// imageHeight:
 	imageAlt: 'Icon Deleted'
 });
+})
 
 
 
@@ -124,23 +126,22 @@ export const onShowInfo = value => {
     const found = infoModal.find(element => {
     return element.type === value
 });
-    alertsForm(
+}
+
+
+/*   
+alertsForm(
     found.text, 
     "Information Field", 
     'Continue', 
     infoIcon
-        )
-    }
+    */  
+
 
 export const infoFunction = type => onShowInfo(type)
-
-export const parseNum = value => {
-    return parseInt(value.split('-').slice(1).slice(0,1))
-}
+export const parseNum = value => parseInt(value.split('-').slice(1).slice(0,1))
 export const sumArray = (arr) => arr.reduce((sum, value) => ( sum + value ), 0);
-
 export const totalEgressIngress = (arr, key) => arr?.filter(item => item.type === key).map(item => item.amount).reduce((sum, value) => ( sum + value ), 0)
-
 export const sumAmountsByAmount = arr => { 
 
     const group = arr.reduce((p,c)=>{ 
@@ -157,9 +158,30 @@ export const sumAmountsByAmount = arr => {
     
     return result
     }
-    export const formatDate = (date) => moment(date).format('MM/DD/YYYY')
-
-    export const calculateCurrentMoney = (arr) => arr.reduce((accum, currentValue) => accum - currentValue) 
+export const formatDate = (date) => moment(date).format('MM/DD/YYYY')
+export const calculateCurrentMoney = (arr) => arr.reduce((accum, currentValue) => accum - currentValue) 
+export const checkEdit = (arr) => {
+    let index = parseInt(arr[0])
+    let value = arr[1]
+    
+    if(options[index] === "DATE"){
+        if(value.length > 7 && value.length <= 10){
+            return formatDate(value) === 'Ivalid date' ? false : formatDate(value)
+    }else{
+        return false
+    }
+} else if(options[index] === "AMOUNT")  {
+    if(value.split('').length >= 2 && value.split('').length <= 5){
+        return [/^[1-9]\d*$/].every((pattern) => pattern.test(value)) || "Only Numbers"
+        }
+    } else if (options[index] === "CONCEPT"){
+    if(value.length >= 5 && value.length <= 20){
+        return [/^[A-Za-z\s]+$/].every((pattern) => pattern.test(value)) || "Only letters"
+        }else{
+            return false
+        }
+    }
+}
 
 //Info Objects
 export const infoModal = [
@@ -309,3 +331,69 @@ export const SidebarData = [
         },
 ];
 
+export const fieldInfoRecords = [
+    {type:"text", 
+    inputType:"input",
+    name:"concept", 
+    id:"concept", 
+    placeHolder:"Ingress concept", 
+    htmlFor:"concept", 
+    registerInfo:{ required: {
+        value: true,
+        message:'Concept is required'
+    },
+    maxLength:{
+        value: 20,
+        message:'Maximum 20 characters'
+    },
+    minLength: {
+        value: 5,
+        message: 'Minimum 5 characters'
+    },
+    validate: (value) => {
+        return [
+            /^[A-Za-z\s]+$/ 
+        ].every((pattern) => pattern.test(value)) || "Only letters"
+        }
+    }
+},
+    
+
+    {type:"number", 
+    inputType:"input", 
+    name:"amount", 
+    id:"amount", 
+    placeHolder:"Ingress amount", 
+    htmlFor:"amount", 
+    registerInfo:{ required: {
+        value: true,
+        message:'Amount is required'
+    },
+    maxLength:{
+        value: 5, 
+        message:'Maximum 5 characters'
+    },
+    minLength: {
+        value: 2,
+        message: 'Minimum 2 characters'
+    },
+    validate: (value) => {
+        return [
+            /^[1-9]\d*$/
+        ].every((pattern) => pattern.test(value)) || "Only Numbers"
+    }
+}
+},
+    {type:"date",
+    inputType:"input",
+    name:"date", 
+    id:"date",
+    placeHolder:"Ingress date", 
+    htmlFor:"date",  
+    registerInfo:{ required: {
+        value: true,
+        message:'Date is required'
+            },
+        }
+    },
+]

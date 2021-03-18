@@ -10,8 +10,7 @@ import {ROUTE_API} from '../../Constants/index';
 const Records = (props) => {
 
     const [valuesFinal, setValuesFinal] = useState()
-   
-
+    
     useEffect(() => {
         Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
             setValuesFinal(response.data)
@@ -22,11 +21,11 @@ return(
     <>
         <Header/>
         <div className="mainRecordsContainer">
-            <Filter/>
-            <GlobalTable 
+            <GlobalTable
             recordsList={valuesFinal}
-            />
+        />
         </div>
+     
     </>
     )
 }

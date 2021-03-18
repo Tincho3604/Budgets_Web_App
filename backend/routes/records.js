@@ -78,6 +78,22 @@ router.delete("/deleteRecord/:id", (req, res) => {
     );
 });
 
+//UPDATE AMOUNT
+router.put("/updateAmount", (req, res) => {
+    const amount = req.body.amount;
+    const id = req.body.id
+    db.query(
+        "UPDATE records SET amount = ? WHERE id = ?",
+        [amount,id],
+        (err, result) => {
+            if(err){
+                console.log(err)
+            }else{
+                res.send(result);
+        }
+        }
+    );
+})
 
 
 
