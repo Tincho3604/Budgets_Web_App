@@ -5,8 +5,6 @@ import * as FiIcons from "react-icons/fi";
 import swal from 'sweetalert';
 import moment from 'moment';
 import Swal from 'sweetalert2'
-import deletedIcon from '../Images/delete-icon.jpg'
-import successIcon from '../Images/success-icon.jpg'
 import InfoIcon from '../Images/info-modal.png'
 //Size
 export const IconSize = 25;
@@ -122,6 +120,22 @@ export const sumAmountsByAmount = arr => {
     }
 export const formatDate = (date) => moment(date).format('MM/DD/YYYY')
 export const calculateCurrentMoney = (arr) => arr.reduce((accum, currentValue) => accum - currentValue) 
+export const keyExtract = (obj, value) => {
+    let arr = [];
+    let res 
+    Object.entries(obj).forEach(
+    ([key, value]) => {
+        arr.push({[key] : value});
+    });
+    res = arr.filter(item => Object.keys(item)[0] === value)
+    return res[0]
+    }
+export const setValueDefault = (obj) => {
+    const [result] = Object.keys(obj).map(key => ({ value: obj[key] }));
+    return result
+}
+
+
 
 //Info Objects
 export const infoModal = [
@@ -278,24 +292,7 @@ export const fieldInfoRecords = [
     id:"concept", 
     placeHolder:"Ingress concept", 
     htmlFor:"concept", 
-    registerInfo:{ required: {
-        value: true,
-        message:'Concept is required'
-    },
-    maxLength:{
-        value: 20,
-        message:'Maximum 20 characters'
-    },
-    minLength: {
-        value: 5,
-        message: 'Minimum 5 characters'
-    },
-    validate: (value) => {
-        return [
-            /^[A-Za-z\s]+$/ 
-        ].every((pattern) => pattern.test(value)) || "Only letters"
-        }
-    }
+
 },
     
 
@@ -305,24 +302,7 @@ export const fieldInfoRecords = [
     id:"amount", 
     placeHolder:"Ingress amount", 
     htmlFor:"amount", 
-    registerInfo:{ required: {
-        value: true,
-        message:'Amount is required'
-    },
-    maxLength:{
-        value: 5, 
-        message:'Maximum 5 characters'
-    },
-    minLength: {
-        value: 2,
-        message: 'Minimum 2 characters'
-    },
-    validate: (value) => {
-        return [
-            /^[1-9]\d*$/
-        ].every((pattern) => pattern.test(value)) || "Only Numbers"
-    }
-}
+  
 },
     {type:"date",
     inputType:"input",

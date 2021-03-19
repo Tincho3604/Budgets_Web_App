@@ -58,9 +58,10 @@ const GlobalTable = ({
             setDisabled(id)
             setValueFields(options[result.value])
             setShow(!show)
+            swal("Remember click Load Inputs button to select the correct field", {
+                icon: "info",
+            });
         })
-
-        
     }
 
     

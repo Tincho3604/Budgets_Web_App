@@ -79,18 +79,20 @@ router.delete("/deleteRecord/:id", (req, res) => {
 });
 
 //UPDATE AMOUNT
-router.put("/updateAmount", (req, res) => {
-    const amount = req.body.amount;
+router.put("/update/:id", (req, res) => {
+    const row = req.body.value.valueField.toLowerCase()
+    const value = req.body.value.value
     const id = req.body.id
+    console.log('Row',row, 'Value ',value,'Id', id)
     db.query(
-        "UPDATE records SET amount = ? WHERE id = ?",
-        [amount,id],
-        (err, result) => {
+        `UPDATE records SET ${row} = ? WHERE id = ?`,
+            [value,id],
+            (err, result) => {
             if(err){
                 console.log(err)
             }else{
                 res.send(result);
-        }
+            }
         }
     );
 })
