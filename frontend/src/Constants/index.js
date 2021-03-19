@@ -7,7 +7,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2'
 import deletedIcon from '../Images/delete-icon.jpg'
 import successIcon from '../Images/success-icon.jpg'
-import infoIcon from '../Images/info-modal.png'
+import InfoIcon from '../Images/info-modal.png'
 //Size
 export const IconSize = 25;
 export const valueWidth = {width:'100%'};
@@ -57,85 +57,47 @@ export const filterAmountTypes = [
 ]
 
 //Functions
-export const alertsForm = () =>(async () => {
-    const {value} = await Swal.fireSwal.fire({
-	//title: title,
-	//text: text,
-	// html:
-	//icon:,
-	confirmButtonText: 'confirmar',
-	// footer:
-	//   width: '50%',
+export const alertsForm = () => {
+    const {value: item} = Swal.fire({
+	title: 'Select the option you want to change',
+	confirmButtonText: 'Confirm',
 	padding: '1rem',
-	// background:
-	// grow:
 	backdrop: true,
 	timer: 10000,
 	timerProgressBar: true,
-	// toast: true,
-	 position: 'center',
+	position: 'center',
 	allowOutsideClick: false,
 	allowEscapeKey: false,
 	allowEnterKey: false,
 	stopKeydownPropagation: true,
-
-	// input:
-	// inputPlaceholder:
-	// inputValue:
-	// inputOptions:
-	
-	//  customClass:
-	// 	container:
-	// 	popup:
-	// 	header:
-	// 	title:
-	// 	closeButton:
-	// 	icon:
-	// 	image:
-	// 	content:
-	// 	input:
-	// 	actions:
-	// 	confirmButton:
-	// 	cancelButton:
-	// 	footer:	
-
-	// showConfirmButton:
-	// confirmButtonColor:
-	// confirmButtonAriaLabel:
-
-	// showCancelButton:
-	// cancelButtonText:
-	// cancelButtonColor:
+	input:'select', 
+	inputOptions: options,
 	cancelButtonAriaLabel: 'Cerrar Alerta',
-	
-	// buttonsStyling:
 	showCloseButton: true,
-	// closeButtonAriaLabel:
-
-
-	//imageUrl: image,
-	//imageWidth: width || '200px',
-	// imageHeight:
 	imageAlt: 'Icon Deleted'
-});
-})
+}).then((result) => {
+    
+    return result.value
+  })
+
+}
 
 
 
 export const onShowInfo = value => {
     const found = infoModal.find(element => {
+     
     return element.type === value
 });
+swal({
+    type: 'info',
+    title: found.text, 
+    text: "Information Field", 
+    icon: InfoIcon, 
+    button: 'Continue',
+})
 }
 
-
-/*   
-alertsForm(
-    found.text, 
-    "Information Field", 
-    'Continue', 
-    infoIcon
-    */  
 
 
 export const infoFunction = type => onShowInfo(type)
@@ -160,28 +122,6 @@ export const sumAmountsByAmount = arr => {
     }
 export const formatDate = (date) => moment(date).format('MM/DD/YYYY')
 export const calculateCurrentMoney = (arr) => arr.reduce((accum, currentValue) => accum - currentValue) 
-export const checkEdit = (arr) => {
-    let index = parseInt(arr[0])
-    let value = arr[1]
-    
-    if(options[index] === "DATE"){
-        if(value.length > 7 && value.length <= 10){
-            return formatDate(value) === 'Ivalid date' ? false : formatDate(value)
-    }else{
-        return false
-    }
-} else if(options[index] === "AMOUNT")  {
-    if(value.split('').length >= 2 && value.split('').length <= 5){
-        return [/^[1-9]\d*$/].every((pattern) => pattern.test(value)) || "Only Numbers"
-        }
-    } else if (options[index] === "CONCEPT"){
-    if(value.length >= 5 && value.length <= 20){
-        return [/^[A-Za-z\s]+$/].every((pattern) => pattern.test(value)) || "Only letters"
-        }else{
-            return false
-        }
-    }
-}
 
 //Info Objects
 export const infoModal = [

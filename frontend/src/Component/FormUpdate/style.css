@@ -1,7 +1,7 @@
 .mainUpdateFormContainer{
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     justify-content: space-around;
     background: rgb(63,94,251);
     background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(144,197,237,1) 100%, rgba(74,252,70,1) 100%);
@@ -10,6 +10,7 @@
     font-family: 'Goldman', cursive;
     box-shadow: 50px 50px 50px rgba(0, 0, 0, 0.15);
     width:30vw;
+    height: 32vh;
     opacity: 0.7;
     padding-bottom:15px;
     border-radius: 15px;
@@ -21,7 +22,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    align-content: center;
+    justify-content: center;
+    align-self: center;
+    padding-left: 60px;
+    height: 10vh;
+}
+.notFound{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(255, 116, 116);
+    margin-right: 50px;
+    border-radius: 12px;
+}
+.notFound h2{
+    font-size:25px;
 }
 
 .buttonUpdater{
@@ -29,17 +44,16 @@
     background-color: rgb(141, 227, 230);
     color:rgb(0, 0, 0);
     font-weight: bold;
-    width: 12vw;
+    width: 18vw;
     height: 5vh;
     font-family: 'Goldman', cursive;
     font-size: 1rem;
     border-radius: 10px;
     letter-spacing: 1px;
-    margin-top: 10px;
-    margin-right: 40px;
+    margin: 0 auto;
 }
 
-.buttonUpdater{
+.buttonUpdater, .notFound{
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
@@ -50,58 +64,125 @@
     -webkit-transition-property: transform;
     transition-property: transform;
 }
-.buttonUpdater:hover, .buttonUpdater:focus, .buttonUpdater:active {
+.buttonUpdater:hover,
+.loadInputs:hover, 
+.notFound:hover,
+.buttonUpdater:focus, 
+.loadInputs:focus, 
+.notFound:focus,
+.notFound:active,
+.buttonUpdater:active , 
+.loadInputs:active{
+
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
     outline: none;
 }
 
 
-
-
-
-@media (max-width: 800px)and (min-width: 300px){
-    .mainUpdateFormContainer{
-        width: 70vw;
-    }
-    .mainUpdateFormContainer h2{
-        font-size: 1.2rem;
-    }
-    .updater{
-        flex-direction: column;
-        height: 30vh;
-    }
-    #selectFilter{
-        height: 4vh;
-        width: 30vw;
-    }
-
-    
-    .buttonUpdater{
-        margin: 0 auto;
-        width: 35vw;
-        height: 5vh;
-        font-family: 'Goldman', cursive;
-        font-size: 0.7rem;
-        margin-top: 15px;
-    }
+.loadInputs{
+    border:none;
+    background-color: rgb(106, 96, 238);
+    color:rgb(0, 0, 0);
+    font-weight: bold;
+    width: 18vw;
+    height: 5vh;
+    font-family: 'Goldman', cursive;
+    font-size: 1rem;
+    border-radius: 10px;
+    letter-spacing: 1px;
+    margin: 0 auto;
 }
+
+@media (max-width: 1500px)and (min-width: 1000px){
+.notFound{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(255, 116, 116);
+    margin-right: 50px;
+    border-radius: 12px;
+    height: 15vh;
+    width: 20vw;
+}
+.notFound h2{
+    font-size:20px;
+}
+}
+
 
 @media (max-width: 1000px)and (min-width: 800px){
     .mainUpdateFormContainer{
         width: 50vw;
+        height: 42vh;
+    }
+    .updater{
+        height: 15vh;
     }
     #selectFilter{
         height: 4vh;
-        width: 15vw;
+        width: 18vw;
     }
-
+.loadInputs{
+    width: 22vw;
+    margin-top: 20px;
+    height: 5vh;
+}
     .buttonUpdater{
-        margin: 0 auto;
-        width: 15vw;
+        width: 23vw;
         height: 5vh;
         font-family: 'Goldman', cursive;
         font-size: 0.8rem;
-        margin-top: 20px;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 800px)and (min-width: 500px){
+    .mainUpdateFormContainer{
+        width: 70vw;
+        height: 42vh;
+    }
+    .updater{
+        height: 15vh;
+    }
+    #selectFilter{
+        height: 4vh;
+        width: 18vw;
+    }
+.loadInputs{
+    width: 30vw;
+    margin-top: 20px;
+    height: 5vh;
+}
+    .buttonUpdater{
+        width: 30vw;
+        height: 5vh;
+        font-family: 'Goldman', cursive;
+        font-size: 0.8rem;
+        margin-top: 5px;
+    }
+}
+@media (max-width: 500px)and (min-width: 200px){
+    .mainUpdateFormContainer{
+        width: 75vw;
+        height: 42vh;
+    }
+    .updater{
+        height: 15vh;
+    }
+    #selectFilter{
+        height: 4vh;
+        width: 18vw;
+    }
+.loadInputs{
+    width: 46vw;
+    margin-top: 20px;
+    height: 5vh;
+}
+    .buttonUpdater{
+        width: 46vw;
+        height: 5vh;
+        font-family: 'Goldman', cursive;
+        font-size: 0.8rem;
+        margin-top: 5px;
     }
 }

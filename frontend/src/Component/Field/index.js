@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { useForm } from 'react-hook-form';
 import './style.css'
 
+
 const Field = ({
     name, 
     id, 
@@ -19,8 +20,10 @@ const Field = ({
     classInput,
     disabled
 }) => {
-    
+    const [t, setT]  = useState ({val:'hola', id:500})
+
         if(inputType === "input"){ 
+
         return(
             <div className={classInput}>
                 <label htmlFor={htmlFor} id="form-label">{labelText}</label>
@@ -37,6 +40,7 @@ const Field = ({
                             placeholder={placeHolder} 
                             ref={refForm}
                             disabled={disabled}
+                            
                         />
                     </div>
                 </div>

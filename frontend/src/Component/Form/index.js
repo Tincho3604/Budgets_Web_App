@@ -4,10 +4,9 @@ import {fieldInfo} from '../../Constants/index';
 import './style.css';
 import backGroundForm from '../../Images/registrerWallpaper.jpg';
 import { useForm } from 'react-hook-form';
-import {alertsForm} from '../../Constants/index';
 import {createRecord} from '../../Redux/actions/recordsActions';
 import { connect } from 'react-redux';
-import successIcon from '../../Images/success-icon.jpg'
+import swal from 'sweetalert';
 
 const Form = ({title,props}) => {
     const {register, handleSubmit, errors } = useForm();
@@ -15,12 +14,9 @@ const Form = ({title,props}) => {
     const onSubmit = (data,e) => {
         e.preventDefault();
         e.target.reset();
-        alertsForm("Register Saved", 
-        "Record saved succesfully", 
-        'Continue', 
-        successIcon,
-        '100px'
-        )
+        swal("Your record has been saved!", {
+            icon: "success",
+        });
         createRecord(data)
     }
 
