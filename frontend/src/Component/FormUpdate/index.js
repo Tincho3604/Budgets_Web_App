@@ -3,10 +3,10 @@ import Field from '../Field/index';
 import {ROUTE_API, fieldInfoRecords, keyExtract, setValueDefault} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
 import Axios from 'axios';
-import * as FcIcons from "react-icons/fc"
+import * as FcIcons from "react-icons/fc";
 import './style.css';
 import swal from 'sweetalert';
-
+import {updateRecords} from '../../Redux/actions/recordsActions';
 
 
 const FormUpdate = (id, disabled, valueField) => {
@@ -30,18 +30,9 @@ const FormUpdate = (id, disabled, valueField) => {
     const onSubmit = (data,e) => {
         const dataInfo = setValueDefault(keyExtract(data,idItem.valueField.toLowerCase()))
         const objParams = {...idItem, ...dataInfo};
-        console.log(objParams)
         e.preventDefault();
         e.target.reset();
-
-    Axios.put(`${ROUTE_API}/update/:id`, {
-        value: objParams,
-        id: objParams.id
-    }).then((response) => {
-        console.log(response)
-        }).catch((err) => {
-            console.log(err)
-        })
+        updateRecords(objParams)
     }
 
 

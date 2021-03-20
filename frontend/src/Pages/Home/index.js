@@ -1,28 +1,22 @@
-import React,{useEffect,useState} from 'react'
-import Header from '../../Component/Header/index'
-import Footer from '../../Component/Footer/index'
-import Balance from '../../Component/Balance/index'
-import './style.css'
-import Axios from 'axios';
-import {ROUTE_API, totalEgressIngress} from '../../Constants/index';
-
+import React,{useEffect,useState} from 'react';
+import Header from '../../Component/Header/index';
+import Footer from '../../Component/Footer/index';
+import Balance from '../../Component/Balance/index';
+import './style.css';
+import {totalEgressIngress} from '../../Constants/index';
+import {getAllRecords, getFirstTenRecords} from '../../Redux/actions/recordsActions';
+import { connect } from 'react-redux';
 
 const Home = (props) => {
-const[list, setList] = useState()
-const [allList, setAllList] = useState()
 
-const currentEgressAmount = totalEgressIngress(allList,'Egress')
-const currentIngressAmount = totalEgressIngress(allList,'Ingress')
+const currentEgressAmount = totalEgressIngress(props.records,'Egress')
+const currentIngressAmount = totalEgressIngress(props.records,'Ingress')
 
 const currentValue =  currentIngressAmount - currentEgressAmount 
 
 useEffect(() => {
-    Axios.get(`${ROUTE_API}/getFirstTenRecords`).then((response) => {
-        setList(response.data)
-    })
-    Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
-        setAllList(response.data)
-    })
+    props.allRecords()
+    props.allFirstRecords()
     }, []);
 
     return (
@@ -31,12 +25,25 @@ useEffect(() => {
         <Balance
         numValue={[currentIngressAmount, currentEgressAmount]}
         currentValue={[currentValue]}
-        listRecords={list}
+        listRecords={props.firstTenRecords}
         />
         <Footer/>
     </>
     )
 }
 
-export default Home
+const mapStateToProps = state => {
+    return {
+        records: state.recordsReducer.records,
+        firstTenRecords: state.recordsReducer.firstTenRecords
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        allRecords: () => dispatch(getAllRecords()),  
+        allFirstRecords: () => dispatch(getFirstTenRecords())
+    }
+}
+export default  connect(mapStateToProps, mapDispatchToProps)(Home)
 
