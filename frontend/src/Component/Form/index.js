@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React from 'react';
 import Field from '../../Component/Field/index';
 import {fieldInfo} from '../../Constants/index';
 import './style.css';
@@ -8,7 +8,7 @@ import {createRecord} from '../../Redux/actions/recordsActions';
 import { connect } from 'react-redux';
 import swal from 'sweetalert';
 
-const Form = ({title,props}) => {
+const Form = ({title}) => {
     const {register, handleSubmit, errors } = useForm();
     
     const onSubmit = (data,e) => {

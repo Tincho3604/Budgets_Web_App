@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import Header from '../../Component/Header/index';
 import Footer from '../../Component/Footer/index';
 import Balance from '../../Component/Balance/index';

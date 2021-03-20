@@ -72,6 +72,7 @@ router.delete("/deleteRecord/:id", (req, res) => {
         if(err){
             console.log(err)
         }else{
+            console.log(result)
             res.send(result);
             }
         }
@@ -80,12 +81,13 @@ router.delete("/deleteRecord/:id", (req, res) => {
 
 //UPDATE AMOUNT
 router.put("/update/:id", (req, res) => {
-    const row = req.body.value.valueField.toLowerCase()
-    const value = req.body.value.value
-    const id = req.body.id
+    const concept = req.body.value.concept
+    const amount = req.body.value.amount
+    const date = req.body.value.date
+    const id = req.body.value.id
     db.query(
-        `UPDATE records SET ${row} = ? WHERE id = ?`,
-            [value,id],
+        `UPDATE records SET concept = ?, amount = ?, date= ? WHERE id = ?`,
+            [concept,amount,date,id],
             (err, result) => {
             if(err){
                 console.log(err)

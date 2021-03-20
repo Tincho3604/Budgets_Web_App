@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './style.css'
     const HomeTable = ({numValue, titleColumn, title}) => {
-
+		const currentMoney = numValue < 0 ? "negativeAmout" : ''
 return (
 <div className="main-container-table">
     <h1>{title}</h1>
@@ -16,7 +16,7 @@ return (
 	    <tbody>
 		    <tr>
 		        {numValue?.map((num,index) => {
-	            return <td key={index}>$ {num}</td>
+	            return  <td id={currentMoney} key={index}>$ {num}</td>
 			})}
 		    </tr>
 	    </tbody>

@@ -1,5 +1,4 @@
-import React,{useState} from 'react';
-import { useForm } from 'react-hook-form';
+import React from 'react';
 import './style.css'
 
 
@@ -20,7 +19,7 @@ const Field = ({
     classInput,
     disabled
 }) => {
-    const [t, setT]  = useState ({val:'hola', id:500})
+
 
         if(inputType === "input"){ 
 

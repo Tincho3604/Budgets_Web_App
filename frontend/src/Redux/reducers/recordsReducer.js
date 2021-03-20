@@ -1,6 +1,7 @@
 const initialState = {
 	records:[],
-	firstTenRecords:[]
+	firstTenRecords:[],
+	secondRecords:[]
 }
 
 function recordsReducer(state = initialState, action) {
@@ -11,6 +12,7 @@ function recordsReducer(state = initialState, action) {
             
 				...state,
 				records: action.payload,
+				secondRecords:action.payload,
 			}
             
         case "GET_FIRST_TEN_RECORDS":	
@@ -24,6 +26,11 @@ function recordsReducer(state = initialState, action) {
                 ...state,
                 records: action.payload
             }
+			case "DELETE_RECORD":
+				return {
+			    ...state,
+			    //secondRecords: state.secondRecords.filter(ex => ex.id !== action.payload.id)
+			}                           
         default:
 			return state
 	}

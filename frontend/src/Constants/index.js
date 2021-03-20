@@ -4,7 +4,6 @@ import * as FcIcons from "react-icons/fc";
 import * as FiIcons from "react-icons/fi";
 import swal from 'sweetalert';
 import moment from 'moment';
-import Swal from 'sweetalert2'
 import InfoIcon from '../Images/info-modal.png'
 //Size
 export const IconSize = 25;
@@ -55,33 +54,6 @@ export const filterAmountTypes = [
 ]
 
 //Functions
-export const alertsForm = () => {
-    const {value: item} = Swal.fire({
-	title: 'Select the option you want to change',
-	confirmButtonText: 'Confirm',
-	padding: '1rem',
-	backdrop: true,
-	timer: 10000,
-	timerProgressBar: true,
-	position: 'center',
-	allowOutsideClick: false,
-	allowEscapeKey: false,
-	allowEnterKey: false,
-	stopKeydownPropagation: true,
-	input:'select', 
-	inputOptions: options,
-	cancelButtonAriaLabel: 'Cerrar Alerta',
-	showCloseButton: true,
-	imageAlt: 'Icon Deleted'
-}).then((result) => {
-    
-    return result.value
-  })
-
-}
-
-
-
 export const onShowInfo = value => {
     const found = infoModal.find(element => {
      
@@ -95,8 +67,6 @@ swal({
     button: 'Continue',
 })
 }
-
-
 
 export const infoFunction = type => onShowInfo(type)
 export const parseNum = value => parseInt(value.split('-').slice(1).slice(0,1))
@@ -116,9 +86,9 @@ export const sumAmountsByAmount = arr => {
         return o;
     })
     
-    return result
+    return result                                    
     }
-export const formatDate = (date) => moment(date).format('MM/DD/YYYY')
+export const formatDate = (date) => moment(date).format('YYYY-MM-DD')
 export const calculateCurrentMoney = (arr) => arr.reduce((accum, currentValue) => accum - currentValue) 
 export const keyExtract = (obj, value) => {
     let arr = [];

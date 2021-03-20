@@ -1,6 +1,6 @@
-import React, {useState,useEffect} from 'react'
+import React from 'react'
 import './style.css'
-import {Ingress, showHalf, hideHalf, formatDate} from '../../Constants/index'
+import {Ingress, formatDate} from '../../Constants/index'
 import * as MdIcons from "react-icons/md";
 
 const TableRecords = ({listRecords, textColumn, title}) => { 
