@@ -1,0 +1,34 @@
+.modalContainer{
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0.8;
+}
+.modalContainer h2{
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 5px;
+    font-size: 2rem;
+
+}
+#modal{
+    width: 25vw;
+    height: 40vh;
+    border-radius: 20px;
+    opacity: 0.8;
+}
+
+  @media (max-width: 1000px) and (min-width: 500px){
+
+    #modal{
+        width: 55vw;
+        height: 50vh;
+    }
+}
+@media (max-width: 500px) and (min-width: 300px){
+    #modal{
+        width: 55vw;
+        height: 35vh;
+    }
+}

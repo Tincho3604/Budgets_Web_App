@@ -16,11 +16,9 @@ import Axios from 'axios';
 import FormUpdate from '../FormUpdate/index';
 import Filter from '../../Component/Filter/index'
 import swal from 'sweetalert';
+import ModalError from '../../Component/ModalError';
 
-
-const GlobalTable = ({
-    props
-}) => {
+const GlobalTable = () => {
     
     const [show, setShow] = useState (false)
     const [currentList, setCurrentList] = useState()
@@ -51,7 +49,7 @@ const GlobalTable = ({
             }else{
         swal({
             title: "Are you sure?",
-            text: `You are going to edit this registry:!`,
+            text: `You are going to edit this registry!`,
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -124,6 +122,7 @@ const GlobalTable = ({
             </div>
             
         <div className="MainGlobalTable" style={{'overflowX':'auto'}}>
+        {currentList?.length !== 0 ? (
             <table className="styledTable">
                 <thead>
                 <tr>
@@ -135,8 +134,9 @@ const GlobalTable = ({
                     <th>Edit</th>
                 </tr>
             </thead>
+          
             <tbody>
-
+       
         {currentList?.map((item,index) => {
             return (
                     <tr key={index}>
@@ -149,8 +149,12 @@ const GlobalTable = ({
                     </tr>
             )
         })}
+         
+            
             </tbody>
+           
             </table>
+              ) : (<ModalError/>)}
         </div>
     </>
     )
