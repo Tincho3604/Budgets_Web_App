@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.css';
 import TableRecords from '../TableRecords/index';
 import HomeTable from '../HomeTable/index';
 import {columnInfo} from '../../Constants/index';

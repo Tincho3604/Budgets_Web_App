@@ -5,7 +5,7 @@ import * as FiIcons from "react-icons/fi";
 import swal from 'sweetalert';
 import moment from 'moment';
 import InfoIcon from '../Images/info-modal.png'
-//Size
+//SIZE
 export const IconSize = 25;
 export const valueWidth = {width:'100%'};
 
@@ -13,7 +13,7 @@ export const valueWidth = {width:'100%'};
 export const ROUTE_API = 'http://localhost:4000';
 
 
-//Strings
+//STRINGS
 export const defaultTitleBarTable = 'Income / Expense bars table';
 export const defaultTitleCakeTable = 'Income / Expense pie table';
 export const formRegisterTitle = 'Transaction registration form';
@@ -55,7 +55,7 @@ export const columnInfo = [
 ]
 
 
-//Numbers
+//NUMBERS
 export const borderWidth = 1
 export const amountIngress = [0,0,0,0,0,0,0,0,0,0,0,0]
 export const amountEgress = [0,0,0,0,0,0,0,0,0,0,0,0]
@@ -67,11 +67,11 @@ export const filterAmountTypes = [
     "+ 50000 "
 ]
 
-//Functions
+//FUNCTIONS
 export const firstTenRecors = (arr) => arr.splice(0,10)
 export const onShowInfo = value => {
     const found = infoModal.find(element => {
-     
+
     return element.type === value
 });
 swal({
@@ -123,7 +123,7 @@ export const filterDate = (arr, dateParam, amountParam) => {
 
 
 
-//Info Objects
+// OBJECTS
 export const infoModal = [
     {type:"amount", text:"Enter the amount of money you want to deposit / withdraw."},
     {type:"concept", text:"Enter the concept of the record."},
@@ -244,7 +244,7 @@ export const fieldFilterInfo = [
 
 
 
-// Nav Info
+// NAV INFO
 export const SidebarData = [
     {
     title: 'Home',
@@ -289,7 +289,7 @@ export const fieldsEditForm = [
     id:"amount", 
     placeHolder:"Ingress amount", 
     htmlFor:"amount", 
-  
+
 },
     {type:"date",
     inputType:"input",

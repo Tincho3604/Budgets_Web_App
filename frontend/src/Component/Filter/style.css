@@ -79,22 +79,14 @@ outline: none;
 }
 
 @media (max-width: 2000px)and (min-width: 800px){
-    .mainFilterContainer{
-        width: 30vw;
-    }
-    .mainFilterContainer h2{
 
-    }
     .filter{
         flex-direction: column;
     }
     .buttonFilter{
-      
         width: 20vw;
         margin-top: 20px;
-        
     }
-
 }
 
 @media (max-width: 800px)and (min-width: 300px){
@@ -109,16 +101,12 @@ outline: none;
         height: 30vh;
     }
     #selectFilter{
-        height: 4vh;
         width: 30vw;
     }
 
     
     .buttonFilter{
-        margin: 0 auto;
         width: 35vw;
-        height: 5vh;
-        font-family: 'Goldman', cursive;
         font-size: 0.7rem;
         margin-top: 15px;
     }
@@ -129,15 +117,12 @@ outline: none;
         width: 50vw;
     }
     #selectFilter{
-        height: 4vh;
         width: 15vw;
     }
 
     .buttonFilter{
-        margin: 0 auto;
         width: 15vw;
         height: 5vh;
-        font-family: 'Goldman', cursive;
         font-size: 0.8rem;
         margin-top: 20px;
     }
