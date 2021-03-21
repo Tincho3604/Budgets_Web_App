@@ -1,21 +1,40 @@
+// Importing express
 const express = require('express');
 const app = express();
-const mysql = require('mysql');
 const cors = require('cors');
-const recordsRoute = require('./routes/records');
 
-//importing routes
+
+// Importing routes
 const recordsRoutes = require('./routes/records')
+
+// Invoke Dotenv
+const dotenv = require('dotenv');
+dotenv.config({path:'./env/.env'})
+
+// Statics files
+app.use('/resources', express.static('public'))
+app.use('/resources', express.static(__dirname + '../frontend/public'))
+console.log('Test --> ',__dirname)
+
+// Invoke a bcryptjs
+const bcryptjs = require('bcryptjs')
+
+// Var. de session
+const session = require('express-session');
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
+// We invoke the database connection module.
+const db = require('./database/db');
+
+
 
 app.use(cors())
 app.use(express.json());
 
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'budget_db'
-});
 
 app.use(recordsRoutes);
 

@@ -14,7 +14,6 @@ return(
         <Header/>
         <div className="mainRecordsContainer">
             <GlobalTable/>
-
         </div>
 
      <Footer/>

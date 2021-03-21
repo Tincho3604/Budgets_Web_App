@@ -134,9 +134,9 @@ const GlobalTable = () => {
                     <th>Edit</th>
                 </tr>
             </thead>
-          
+        
             <tbody>
-       
+    
         {currentList?.map((item,index) => {
             return (
                     <tr key={index}>
@@ -149,12 +149,12 @@ const GlobalTable = () => {
                     </tr>
             )
         })}
-         
+        
             
             </tbody>
-           
+            
             </table>
-              ) : (<ModalError/>)}
+                ) : (<ModalError/>)}
         </div>
     </>
     )

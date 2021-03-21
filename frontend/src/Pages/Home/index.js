@@ -5,6 +5,8 @@ import Balance from '../../Component/Balance/index';
 import './style.css';
 import {totalEgressIngress, ROUTE_API} from '../../Constants/index';
 import Axios from 'axios';
+import SignIn from '../../Pages/SingIn/index';
+
 
 const Home = ({props}) => {
 
@@ -14,7 +16,6 @@ const [firstTenRecords, setFirstTenRecords] = useState()
 const currentEgressAmount = totalEgressIngress(allRecords,'Egress')
 const currentIngressAmount = totalEgressIngress(allRecords,'Ingress')
 const currentValue =  currentIngressAmount - currentEgressAmount 
-
 
 useEffect(() => {
     Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
@@ -28,13 +29,9 @@ useEffect(() => {
 
     return (
     <>
-        <Header/>
-        <Balance
-        numValue={[currentIngressAmount, currentEgressAmount]}
-        currentValue={[currentValue]}
-        listRecords={firstTenRecords}
-        />
-        <Footer/>
+    <SignIn/>
+
+ 
     </>
     )
 }
@@ -42,3 +39,14 @@ useEffect(() => {
 
 export default Home
 
+/*
+
+        <Header/>
+        <Balance
+        numValue={[currentIngressAmount, currentEgressAmount]}
+        currentValue={[currentValue]}
+        listRecords={firstTenRecords}
+        />
+        <Footer/>
+
+*/

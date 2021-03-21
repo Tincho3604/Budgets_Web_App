@@ -304,3 +304,21 @@ export const fieldsEditForm = [
         }
     },
 ]
+
+export const fieldsSignIn = [
+    {
+    type:"email", 
+    inputType:"input", 
+    name:"email", 
+    id:"email", 
+    placeHolder:"Ingress email", 
+    htmlFor:"email", 
+},
+    {
+    type:"password", 
+    inputType:"input",
+    name:"password", 
+    id:"password", 
+    placeHolder:"Ingress password", 
+    htmlFor:"password", 
+}]
