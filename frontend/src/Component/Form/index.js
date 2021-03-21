@@ -17,16 +17,15 @@ const Form = ({title}) => {
     const onSubmit = (data,e) => {
         e.preventDefault();
         e.target.reset();
-        swal("Your record has been saved!", {
-            icon: "success",
-        });
         Axios.post(`${ROUTE_API}/createRegister`, {
             concept: data.concept,
             amount: data.amount,
             date: data.date,
             type: data.type
         }).then((res) => {
-        
+            swal("Your record has been saved!", {
+                icon: "success",
+            });
         }).catch((err) => {
             console.log(err)
         })

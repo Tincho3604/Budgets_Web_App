@@ -305,20 +305,64 @@ export const fieldsEditForm = [
     },
 ]
 
-export const fieldsSignIn = [
+export const fieldsUserInfo = [
+    {type:"text", 
+    inputType:"input",
+    name:"username", 
+    id:"username", 
+    placeHolder:"Ingress username", 
+    htmlFor:"username", 
+    labelText:"Username", 
+    icon:<FcIcons.FcSurvey 
+    size={IconSize} 
+    onClick={()=>infoFunction("username")} />,
+    registerInfo:{ required: {
+        value: true,
+        message:'username is required'
+    },
+    maxLength:{
+        value: 20,
+        message:'Maximum 20 characters'
+    },
+    minLength: {
+        value: 5,
+        message: 'Minimum 5 characters'
+    },
+    validate: (value) => {
+        return [
+            /^[A-Za-z\s]+$/ 
+        ].every((pattern) => pattern.test(value)) || "Only letters"
+        }
+    }
+},
+
     {
     type:"email", 
     inputType:"input", 
+    labelText:"E-mail", 
     name:"email", 
     id:"email", 
     placeHolder:"Ingress email", 
-    htmlFor:"email", 
+    htmlFor:"email",
+    registerInfo:{ required: {
+        value: true,
+        message: "Enter a valid e-mail address",
+    },
+    validate: (value) => {
+        return [
+            /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+        ].every((pattern) => pattern.test(value)) || "E-mail format wrong"
+    }
+}
 },
     {
     type:"password", 
     inputType:"input",
+    labelText:"Password", 
     name:"password", 
     id:"password", 
     placeHolder:"Ingress password", 
     htmlFor:"password", 
-}]
+}
+
+]

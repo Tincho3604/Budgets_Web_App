@@ -5,7 +5,8 @@ import Balance from '../../Component/Balance/index';
 import './style.css';
 import {totalEgressIngress, ROUTE_API} from '../../Constants/index';
 import Axios from 'axios';
-import SignIn from '../../Pages/SingIn/index';
+import CreateAccount from '../../Pages/CreateAccount/index';
+import SignIn from '../../Pages/SingIn'
 
 
 const Home = ({props}) => {
@@ -29,9 +30,9 @@ useEffect(() => {
 
     return (
     <>
-    <SignIn/>
 
- 
+  <SignIn/>
+  <CreateAccount/>
     </>
     )
 }
@@ -40,8 +41,9 @@ useEffect(() => {
 export default Home
 
 /*
+  // 
 
-        <Header/>
+       <Header/>
         <Balance
         numValue={[currentIngressAmount, currentEgressAmount]}
         currentValue={[currentValue]}

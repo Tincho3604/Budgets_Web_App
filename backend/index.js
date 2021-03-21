@@ -6,7 +6,7 @@ const cors = require('cors');
 
 // Importing routes
 const recordsRoutes = require('./routes/records')
-
+const userRoutes = require('./routes/users')
 // Invoke Dotenv
 const dotenv = require('dotenv');
 dotenv.config({path:'./env/.env'})
@@ -14,10 +14,8 @@ dotenv.config({path:'./env/.env'})
 // Statics files
 app.use('/resources', express.static('public'))
 app.use('/resources', express.static(__dirname + '../frontend/public'))
-console.log('Test --> ',__dirname)
 
-// Invoke a bcryptjs
-const bcryptjs = require('bcryptjs')
+
 
 // Var. de session
 const session = require('express-session');
@@ -37,6 +35,7 @@ app.use(express.json());
 
 
 app.use(recordsRoutes);
+app.use(userRoutes)
 
 const port = process.env.PORT || 4000;
 const host = process.env.HOST || '0.0.0.0';

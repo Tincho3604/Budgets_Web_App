@@ -1,14 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const router = express.Router();
-
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'budget_db'
-});
-
+const db = require('../database/db');
 
 // Routes
 
@@ -98,6 +91,22 @@ router.put("/update/:id", (req, res) => {
     );
 })
 
+router.post("/register", async (req, res) => {
+const email = req.body.email
+const password = req.body.password
+let passWordHash = await bcryptjs.hash(password, 8)
+db.query(
+    `INSERT INTO users SET email = ?, password = ?`,
+        [email, passWordHash],
+        (err, result) => {
+        if(err){
+            console.log(err)
+        }else{
+            res.send(result);
+        }
+    }
+);
+})
 
 
 module.exports = router;

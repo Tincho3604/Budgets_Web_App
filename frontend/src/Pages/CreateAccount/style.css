@@ -1,7 +1,7 @@
-.mainSignContainer{
+.mainCreateAccountContainer{
     display: flex;
-    background: rgb(34,193,195);
-    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(144,197,237,1) 100%, rgba(74,252,70,1) 100%);
     border-radius: 15px;
     height: 45vh;
     width: 25vw;
@@ -13,7 +13,7 @@
     margin-top: 45px;
     text-align: center;
 }
-.signInputsContainer{
+.CreateAccountInputsContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,9 +22,9 @@
     text-align: left;
     margin: 25px;
 }
-.signInButton{
+.CreateAccountButton{
     margin-top: 15px;
-    background-color: rgb(126, 100, 240);
+    background-color: rgb(80, 253, 239);
 }
 .errorMessages{
     color:rgb(255, 30, 0);
@@ -33,7 +33,7 @@
     font-family: 'Orbitron', sans-serif;
 }
 
-.signInButton {
+.CreateAccountButton {
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
@@ -44,9 +44,9 @@
     -webkit-transition-property: transform;
     transition-property: transform;
 }
-.signInButton:hover,
-.signInButton:focus, 
-.signInButton:active{
+.CreateAccountButton:hover,
+.CreateAccountButton:focus, 
+.CreateAccountButton:active{
 
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
