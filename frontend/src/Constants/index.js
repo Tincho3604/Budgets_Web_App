@@ -33,6 +33,20 @@ export const options = ["AMOUNT","DATE","CONCEPT"]
 export const defaultBackgroundColorEgress = 'rgba(247, 120, 112)';
 export const defaultBackgroundColorIngress = 'rgba(53, 238, 198)';
 export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September', 'October', 'November', 'December'];
+const monthsFilter = [
+    {id:'01', value:'January'},
+    {id:'02', value:'February'}, 
+    {id:'03', value:'March'}, 
+    {id:'04', value:'April'},
+    {id:'05', value:'May'}, 
+    {id:'06', value:'June'}, 
+    {id:'07', value:'July'},
+    {id:'08', value:'August'},
+    {id:'09', value:'September'}, 
+    {id:'10', value:'October'}, 
+    {id:'11', value:'November'}, 
+    {id:'12', value:'December'},
+    ];
 export const columnInfo = [
     {title:'Date'},
     {title:'Type'},
@@ -54,6 +68,7 @@ export const filterAmountTypes = [
 ]
 
 //Functions
+export const firstTenRecors = (arr) => arr.splice(0,10)
 export const onShowInfo = value => {
     const found = infoModal.find(element => {
      
@@ -90,20 +105,21 @@ export const sumAmountsByAmount = arr => {
     }
 export const formatDate = (date) => moment(date).format('YYYY-MM-DD')
 export const calculateCurrentMoney = (arr) => arr.reduce((accum, currentValue) => accum - currentValue) 
-export const keyExtract = (obj, value) => {
-    let arr = [];
-    let res 
-    Object.entries(obj).forEach(
-    ([key, value]) => {
-        arr.push({[key] : value});
-    });
-    res = arr.filter(item => Object.keys(item)[0] === value)
-    return res[0]
+export const replaceElement = (arr, value) => arr.map((dato) => {
+    if(dato.id === value.id){
+        dato = value
     }
-export const setValueDefault = (obj) => {
-    const [result] = Object.keys(obj).map(key => ({ value: obj[key] }));
-    return result
-}
+        return dato;
+    });
+
+export const filterDate = (arr, dateParam, amountParam) => {
+        let dataIndex
+        let amountParams = amountParam.split('-').map(item => parseInt(item))
+            dataIndex = monthsFilter.find(item => item.value === dateParam)
+            const filterValue = arr.filter(item => moment(item.date).format('MM') === dataIndex.id).filter(item => ((item.amount >= amountParams[0])&&(item.amount <= amountParams[1])))
+        return filterValue
+    }
+
 
 
 
@@ -208,24 +224,25 @@ export const fieldInfo = [
     />},
 ]
 
-export const fieldFilterAmount = [
-    {name:"type", 
+export const fieldFilterInfo = [
+    {name:"amount", 
     inputType:"select", 
     placeHolder:"Select Amount", 
-    htmlFor:"date", 
+    htmlFor:"amount", 
     labelText:"Filter by income",
     optionText: filterAmountTypes,
+    },
+    {
+        name:"date", 
+        inputType:"select", 
+        placeHolder:"Select Month", 
+        htmlFor:"date", 
+        labelText:"Filter by months",
+        optionText: months,
     }
 ]
 
-export const fieldFilterMonths = [{
-    name:"type", 
-    inputType:"select", 
-    placeHolder:"Select Month", 
-    htmlFor:"date", 
-    labelText:"Filter by months",
-    optionText: months,
-}]
+
 
 // Nav Info
 export const SidebarData = [
@@ -255,7 +272,7 @@ export const SidebarData = [
         },
 ];
 
-export const fieldInfoRecords = [
+export const fieldsEditForm = [
     {type:"text", 
     inputType:"input",
     name:"concept", 

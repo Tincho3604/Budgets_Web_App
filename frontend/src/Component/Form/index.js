@@ -4,20 +4,32 @@ import {fieldInfo} from '../../Constants/index';
 import './style.css';
 import backGroundForm from '../../Images/registrerWallpaper.jpg';
 import { useForm } from 'react-hook-form';
-import {createRecord} from '../../Redux/actions/recordsActions';
-import { connect } from 'react-redux';
 import swal from 'sweetalert';
+import Axios from 'axios';
+import {ROUTE_API} from '../../Constants/index';
 
 const Form = ({title}) => {
+    
+
     const {register, handleSubmit, errors } = useForm();
     
+
     const onSubmit = (data,e) => {
         e.preventDefault();
         e.target.reset();
         swal("Your record has been saved!", {
             icon: "success",
         });
-        createRecord(data)
+        Axios.post(`${ROUTE_API}/createRegister`, {
+            concept: data.concept,
+            amount: data.amount,
+            date: data.date,
+            type: data.type
+        }).then((res) => {
+        
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
     return (    
@@ -58,10 +70,22 @@ const Form = ({title}) => {
     )
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-	createRecord
-    }
-}
 
-export default connect(null, mapDispatchToProps)(Form)
+export default Form
+
+
+
+
+
+/*
+  Axios.post(`${ROUTE_API}/createRegister`, {
+        concept: data.concept,
+        amount: data.amount,
+        date: data.date,
+        type: data.type
+    }).then((res) => {
+    
+    }).catch((err) => {
+        console.log(err)
+    })
+*/

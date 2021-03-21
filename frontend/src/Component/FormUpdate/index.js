@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import Field from '../Field/index';
-import {fieldInfoRecords, formatDate} from '../../Constants/index';
+import {fieldsEditForm, formatDate} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import './style.css';
@@ -9,6 +9,14 @@ import {updateRecords} from '../../Redux/actions/recordsActions';
 
 
 const FormUpdate = ({id, uniqueItem, handleItem}) => {
+    
+    const [type, setType] = useState('')
+
+
+    useEffect(() => {
+        setType(uniqueItem[0].type)
+    }, []);
+    
     const {register, handleSubmit, errors } = useForm({
         defaultValues: {
             concept: uniqueItem[0]?.concept,
@@ -16,16 +24,16 @@ const FormUpdate = ({id, uniqueItem, handleItem}) => {
             date: (formatDate(uniqueItem[0]?.date)),
         }
     });
-console.log(formatDate(uniqueItem[0]?.date))
+
+    
     const onSubmit = (data,e) => {
-        handleItem(false)
-        const objParams = {id, ...data};
+        const objParams = {id, ...data, type};
         e.preventDefault();
-        console.log('objParams',objParams)
         updateRecords(objParams)
         swal("Your record has been edit!", {
             icon: "success",
         })
+        handleItem(false,objParams)
     }
 
 
@@ -35,7 +43,7 @@ return <>
     <form onSubmit={handleSubmit(onSubmit)}>
         <h3>Form Update</h3>
             <div className="updater">
-            {fieldInfoRecords.map((item,index) => {
+            {fieldsEditForm.map((item,index) => {
                             return( 
                                     <Field
                                         type={item.type}

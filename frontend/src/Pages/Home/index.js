@@ -1,22 +1,29 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import Header from '../../Component/Header/index';
 import Footer from '../../Component/Footer/index';
 import Balance from '../../Component/Balance/index';
 import './style.css';
-import {totalEgressIngress} from '../../Constants/index';
-import {getAllRecords, getFirstTenRecords} from '../../Redux/actions/recordsActions';
-import { connect } from 'react-redux';
+import {totalEgressIngress, ROUTE_API} from '../../Constants/index';
+import Axios from 'axios';
 
-const Home = (props) => {
+const Home = ({props}) => {
 
-const currentEgressAmount = totalEgressIngress(props.records,'Egress')
-const currentIngressAmount = totalEgressIngress(props.records,'Ingress')
+const [allRecords, setAllRecords] = useState()
+const [firstTenRecords, setFirstTenRecords] = useState()
 
+const currentEgressAmount = totalEgressIngress(allRecords,'Egress')
+const currentIngressAmount = totalEgressIngress(allRecords,'Ingress')
 const currentValue =  currentIngressAmount - currentEgressAmount 
 
+
 useEffect(() => {
-    props.allRecords()
-    props.allFirstRecords()
+    Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
+        setAllRecords(response.data)
+    })
+    
+        Axios.get(`${ROUTE_API}/getFirstTenRecords`).then((response) => {
+            setFirstTenRecords(response.data)
+        })
     }, []);
 
     return (
@@ -25,25 +32,13 @@ useEffect(() => {
         <Balance
         numValue={[currentIngressAmount, currentEgressAmount]}
         currentValue={[currentValue]}
-        listRecords={props.firstTenRecords}
+        listRecords={firstTenRecords}
         />
         <Footer/>
     </>
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        records: state.recordsReducer.records,
-        firstTenRecords: state.recordsReducer.firstTenRecords
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        allRecords: () => dispatch(getAllRecords()),  
-        allFirstRecords: () => dispatch(getFirstTenRecords())
-    }
-}
-export default  connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Home
 

@@ -1,49 +1,47 @@
 import React from 'react';
 import Field from '../../Component/Field/index';
-import {fieldFilterAmount, fieldFilterMonths, FilterButtonText} from '../../Constants/index';
+import {fieldFilterInfo} from '../../Constants/index';
+import { useForm } from 'react-hook-form';
 import './style.css';
 
-const Filter = () => {
-return(
+const Filter = ({changeDate, restore,estado}) => {
+
+    const {register, handleSubmit } = useForm()
+
+const onSubmit = (data,e) => {  
+    changeDate(data)
+}
+const collapseList = () => {
+    restore()
+}
+
+    return(
     <div className="mainFilterContainer">
-        <h2>Records filter</h2>
-        <div className="filter">
-            {fieldFilterAmount.map((item,index) => {
-                return (
-                    <Field
-                        name={item.name}
-                        inputType={item.inputType}
-                        placeHolder={item.placeHolder}
-                        htmlFor={item.htmlFor}
-                        type={item.type}
-                        labelText={item.labelText}
-                        id={item.id}
-                        optionText={item.optionText}
-                        key={index}
-                        idSelect={'selectFilter'}
-                        classSelect={'classFilter'}
-                    />
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <h2>Records filter</h2>
+                <div className="filter">
+                    {fieldFilterInfo.map((item,index) => {
+                        return (
+                            <Field
+                                name={item.name}
+                                inputType={item.inputType}
+                                placeHolder={item.placeHolder}
+                                htmlFor={item.htmlFor}
+                                type={item.type}
+                                labelText={item.labelText}
+                                id={item.id}
+                                optionText={item.optionText}
+                                key={index}
+                                refForm={register(item.registerInfo)}
+                                idSelect={'selectFilter'}
+                                classSelect={'classFilter'}
+                            />
                 )
             })}
-            {fieldFilterMonths.map((item,index) => {
-                return (
-                    <Field
-                    name={item.name}
-                    inputType={item.inputType}
-                    placeHolder={item.placeHolder}
-                    htmlFor={item.htmlFor}
-                    type={item.type}
-                    labelText={item.labelText}
-                    id={item.id}
-                    optionText={item.optionText}
-                    key={index}
-                    idSelect={'selectFilter'}
-                    classSelect={'classFilter'}
-                />
-                )
-            })}
-        </div>
-        <button className="buttonFilter">{FilterButtonText}</button>
+            </div>
+            <input type="submit" className="buttonFilter" value="Filter Values"/>
+        </form>
+        <button className="buttonFilter" onClick={() => collapseList()}>Show all list</button>
     </div>
     )
 } 

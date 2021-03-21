@@ -7,7 +7,8 @@ import {Ingress,
         deleteButtonText, 
         editButtonText, 
         ROUTE_API,
-        options
+        replaceElement,
+        filterDate,
     } 
     from '../../Constants/index';
 import * as MdIcons from "react-icons/md";
@@ -15,24 +16,24 @@ import Axios from 'axios';
 import FormUpdate from '../FormUpdate/index';
 import Filter from '../../Component/Filter/index'
 import swal from 'sweetalert';
-import Swal from 'sweetalert2'
+
 
 const GlobalTable = ({
-    recordsList,
     props
 }) => {
     
     const [show, setShow] = useState (false)
-    const [deleteFile, setDeleteFile] = useState()
-    const [valueFields, setValueFields] = useState()
-    const [disabled, setDisabled] = useState('')
+    const [currentList, setCurrentList] = useState()
+    const [idItem, setIdItem] = useState('')
     const [editBlock, setEditBlock] = useState(false)
-
     useEffect(() => {
-            setDeleteFile(recordsList)
+        Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
+            setCurrentList(response.data)
+        })
+        
     }, []);
 
-    const sendId = (id) =>  {
+    const editItem = (id) =>  {
         if(editBlock){
             swal({
                 title: "You can not edit other file now",
@@ -42,7 +43,7 @@ const GlobalTable = ({
                 dangerMode: true,
             }).then((change) => {
             if (change) {
-                setDisabled(id)
+                setIdItem(id)
                 setEditBlock(true)
                 setShow(!show)
             }
@@ -57,7 +58,7 @@ const GlobalTable = ({
         })
         .then((edit) => {
             if (edit) {
-                setDisabled(id)
+                setIdItem(id)
                 setEditBlock(true)
                 setShow(!show)
             } else {
@@ -67,13 +68,18 @@ const GlobalTable = ({
         }  
     }
 
-    const handleItems = (e) => {
+    const handleItems = (e, value) => {
         setShow(e)
         setEditBlock(e)
+        setCurrentList(replaceElement(currentList,value))
     }
 
-
-
+    const handleDate = (e) => {
+        setCurrentList(filterDate(currentList, e.date, e.amount))
+    }
+    const restoreList = (e) => {
+        window.location.reload(); 
+    }
 
     const deleteRecord = (id) => {
         swal({
@@ -86,10 +92,11 @@ const GlobalTable = ({
         .then((willDelete) => {
             if (willDelete) {
                 Axios.delete(`${ROUTE_API}/deleteRecord/${id}`).then((response) => {
-                    setDeleteFile(recordsList.filter((value) => {
+                    setCurrentList(currentList?.filter((value) => {
                         return value.id !== id;
                     }))
                 })
+                
                 swal("Your record has been deleted!", {
                 icon: "success",
             });
@@ -104,14 +111,16 @@ const GlobalTable = ({
             <div className="formRecordContainer">
                 {show &&  
                 <FormUpdate 
-                    id={disabled}
-                    valueField={valueFields}
-                    allList={recordsList}
-                    uniqueItem={recordsList.filter(item => item.id === disabled)}
+                    id={idItem}
+                    uniqueItem={currentList?.filter(item => item.id === idItem)}
                     handleItem={handleItems}
                 />
                 }
-                <Filter />
+                <Filter 
+                changeDate={handleDate}
+                restore={restoreList}
+                estado={currentList}
+                />
             </div>
             
         <div className="MainGlobalTable" style={{'overflowX':'auto'}}>
@@ -127,15 +136,16 @@ const GlobalTable = ({
                 </tr>
             </thead>
             <tbody>
-        {recordsList?.map((item,index) => {
+
+        {currentList?.map((item,index) => {
             return (
                     <tr key={index}>
                         <td>{item.concept}</td>
                         <td style={item.type === Ingress ?{color:IngressIconColor} : {color:EgressIconColor}}>{item.amount}</td>
                         <td>{formatDate(item.date)}</td>
-                        <td>{item.type === Ingress ? <MdIcons.MdAttachMoney color={IngressIconColor}/> : <MdIcons.MdMoneyOff color={EgressIconColor}/>}</td>
+                        <td>{item?.type === Ingress ? <MdIcons.MdAttachMoney color={IngressIconColor}/> : <MdIcons.MdMoneyOff color={EgressIconColor}/>}</td>
                         <td><button className="deleteButton" onClick={() => deleteRecord(item.id)}>{deleteButtonText}</button></td>
-                        <td><button className="editButton" onClick={() => sendId(item.id)}>{editButtonText}</button></td>
+                        <td><button className="editButton" onClick={() => editItem(item.id)}>{editButtonText}</button></td>
                     </tr>
             )
         })}
@@ -147,3 +157,5 @@ const GlobalTable = ({
 }
 
 export default  GlobalTable
+
+
