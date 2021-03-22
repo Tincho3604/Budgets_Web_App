@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import Field from '../../Component/Field/index';
 import {fieldsUserInfo} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
@@ -9,21 +9,26 @@ import swal from 'sweetalert';
 
 
 const SignIn = () => {
-    const {register, handleSubmit, errors } = useForm();
-
-
+    const {register, handleSubmit, errors } = useForm({
+        defaultValues: {
+            username: 'martin',
+            email: 'admin@root.com',
+            password: 'data',
+        }
+    });
     const onSubmit = (data,e) => {
         e.preventDefault();
-        Axios.get(`${ROUTE_API}/auth`, {
+        console.log(data)
+        Axios.post(`${ROUTE_API}/auth`, {
             email: data.email,
             password: data.password,
-            
+            username: data.username
         }).then((res) => {
             swal("¡Your login was successfully confirmed!", {
                 icon: "success",
             });
         }).catch((err) => {
-            console.log('ERROR',err)
+            console.log('ERROR ASHE',err)
         })
         e.target.reset();
     }

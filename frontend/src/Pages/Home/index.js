@@ -23,8 +23,8 @@ useEffect(() => {
         setAllRecords(response.data)
     })
     
-        Axios.get(`${ROUTE_API}/getFirstTenRecords`).then((response) => {
-            setFirstTenRecords(response.data)
+    Axios.get(`${ROUTE_API}/getFirstTenRecords`).then((response) => {
+        setFirstTenRecords(response.data)
         })
     }, []);
 

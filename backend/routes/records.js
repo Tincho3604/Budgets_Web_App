@@ -91,22 +91,7 @@ router.put("/update/:id", (req, res) => {
     );
 })
 
-router.post("/register", async (req, res) => {
-const email = req.body.email
-const password = req.body.password
-let passWordHash = await bcryptjs.hash(password, 8)
-db.query(
-    `INSERT INTO users SET email = ?, password = ?`,
-        [email, passWordHash],
-        (err, result) => {
-        if(err){
-            console.log(err)
-        }else{
-            res.send(result);
-        }
-    }
-);
-})
+
 
 
 module.exports = router;

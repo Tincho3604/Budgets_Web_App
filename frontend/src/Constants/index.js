@@ -313,9 +313,6 @@ export const fieldsUserInfo = [
     placeHolder:"Ingress username", 
     htmlFor:"username", 
     labelText:"Username", 
-    icon:<FcIcons.FcSurvey 
-    size={IconSize} 
-    onClick={()=>infoFunction("username")} />,
     registerInfo:{ required: {
         value: true,
         message:'username is required'

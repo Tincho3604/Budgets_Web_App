@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcryptjs = require('bcryptjs')
 const db = require('../database/db');
+const { response } = require("express");
 
 // INSERT USER
 router.post("/createUser", async (req, res) => {
@@ -21,28 +22,28 @@ router.post("/createUser", async (req, res) => {
             }
         }
     );
-    })
-
-    // AUTH USER
-router.get("/auth", async (req, res) => {
-    const user = req.body.email
-    const pass = req.body.password
-    const id = 4
-    let passWordHash = await bcryptjs.hash(pass,8) 
-        
-    try{
-        db.query(    
-            `SELECT * FROM users WHERE idusers = ?`, 
-                [id], 
-                (error, results) => {
-                    console.log('Mi results',results)
-            }
-        )
-    }catch(err){
-        console.log(err)
-    }
 })
 
+    // AUTH USER
+router.post("/auth",  async (req, res) => {
+    const email = req.body.email
+    const pass = req.body.password
+    const username = req.body.username
+    let passwordHash = await bcryptjs.hash(pass, 8)
+    db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
+        if(!results ||  await bcryptjs.compare(pass, results[0].password)){
+            console.log('RESULTS',results)
+        }else{
+            console.log('ERROR',error)
+        }
+    })
+        
+    
+})
 
-    module.exports = router;
+module.exports = router;
+
+
+
+
 
