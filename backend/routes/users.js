@@ -24,7 +24,7 @@ router.post("/createUser", async (req, res) => {
     );
 })
 
-    // AUTH USER
+// AUTH USER
 router.post("/auth",  async (req, res) => {
     const email = req.body.email
     const pass = req.body.password
@@ -32,13 +32,27 @@ router.post("/auth",  async (req, res) => {
     let passwordHash = await bcryptjs.hash(pass, 8)
     db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
         if(!results ||  await bcryptjs.compare(pass, results[0].password)){
-            console.log('RESULTS',results)
+            req.session.user = results
+            res.send(results)
         }else{
-            console.log('ERROR',error)
+            res.send({message: "Invalid username or password"})
         }
     })
-        
-    
+})
+
+router.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        res.clearCookie('user_sid').send('cleared cookie');
+     });
+})
+
+// LOGIN
+router.get("/login", (req, res) => {
+    if (req.session.user){
+        res.send({logged: true, user: req.session.user})
+    }else{
+        res.send({loggedIn: false})
+    }
 })
 
 module.exports = router;

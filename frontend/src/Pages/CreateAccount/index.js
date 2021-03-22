@@ -7,6 +7,9 @@ import {ROUTE_API} from '../../Constants/index';
 import swal from 'sweetalert';
 import './style.css';
 
+
+
+Axios.defaults.withCredentials = true
 const CreateAccount = () => {
     const {register, handleSubmit, errors } = useForm();
 
@@ -49,7 +52,7 @@ return (
         )
         
     })}  
-         {errors.email && <p className="errorMessages">{errors.email.message}</p>}
+        {errors.email && <p className="errorMessages">{errors.email.message}</p>}
         </div>
         <input type="submit" className="CreateAccountButton" value="Create account"/>
     </form>

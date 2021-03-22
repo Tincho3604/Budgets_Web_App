@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import Field from '../../Component/Field/index';
 import {fieldsUserInfo} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
@@ -8,7 +8,11 @@ import './style.css';
 import swal from 'sweetalert';
 
 
+Axios.defaults.withCredentials = true
 const SignIn = () => {
+
+    const [loginStatus, setLoginStatus] = useState(false)
+    const [currentUser, setCurrentUser] = useState('')
     const {register, handleSubmit, errors } = useForm({
         defaultValues: {
             username: 'martin',
@@ -28,12 +32,31 @@ const SignIn = () => {
                 icon: "success",
             });
         }).catch((err) => {
-            console.log('ERROR ASHE',err)
+            console.log('ERROR',err)
         })
         e.target.reset();
     }
 
+useEffect(() => {
+Axios.get(`${ROUTE_API}/login`).then((response) => {
+    if(response.data.logged){
+        setLoginStatus(response.data.logged)
+        setCurrentUser(response.data.user[0].username)
+    }else{
+        console.log('nada pa', response.data)
+        
+    }
+})
+}, []);
 
+
+const closeSession = () => {
+    console.log('closeSession')
+    Axios.get(`${ROUTE_API}/logout`).then((response) => {
+        console.log('LOG OUT',response.data)
+    })
+}
+   
 
 return (
 <div className="mainSignContainer">
@@ -54,14 +77,16 @@ return (
                 refForm={register(item.registerInfo)}
             />
         )
-        
     })}  
+
+
         {errors.email && <p className="errorMessages">{errors.email.message}</p>}
         </div>
         <input type="submit" className="signInButton" value="Sign"/>
+        <h1 style={{'fontSize':30}}>{loginStatus ?  'LOGEADO' : 'NO LOGEADO'}</h1>
+        <h1 style={{'fontSize':30}}>{`BIENVENIDO  ${currentUser}`}</h1>
     </form>
-
-
+    <button onClick={() => closeSession()}>LOG OUT</button>
 </div>)
 }
 

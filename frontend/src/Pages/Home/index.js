@@ -30,25 +30,16 @@ useEffect(() => {
 
     return (
     <>
-
-  <SignIn/>
-  <CreateAccount/>
+        <Header/>
+            <Balance
+                numValue={[currentIngressAmount, currentEgressAmount]}
+                currentValue={[currentValue]}
+                listRecords={firstTenRecords}
+            />
+        <Footer/>
     </>
     )
 }
 
 
 export default Home
-
-/*
-  // 
-
-       <Header/>
-        <Balance
-        numValue={[currentIngressAmount, currentEgressAmount]}
-        currentValue={[currentValue]}
-        listRecords={firstTenRecords}
-        />
-        <Footer/>
-
-*/
