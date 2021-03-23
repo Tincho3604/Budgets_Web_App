@@ -31,6 +31,7 @@ const SignIn = () => {
             swal("¡Your login was successfully confirmed!", {
                 icon: "success",
             });
+            localStorage.setItem("token", res.data.token)
         }).catch((err) => {
             console.log('ERROR',err)
         })
@@ -43,11 +44,22 @@ Axios.get(`${ROUTE_API}/login`).then((response) => {
         setLoginStatus(response.data.logged)
         setCurrentUser(response.data.user[0].username)
     }else{
-        console.log('nada pa', response.data)
+        console.log('No hay info', response.data)
         
     }
 })
 }, []);
+
+const checkUserInfo = () => {
+    Axios.get(`${ROUTE_API}/infoUser`, {
+        headers: {
+            "authorization": localStorage.getItem('token'),
+        },
+    }).then((response) => {
+        console.log(response)
+    })
+}
+
 
 
 const closeSession = () => {
@@ -87,6 +99,7 @@ return (
         <h1 style={{'fontSize':30}}>{`BIENVENIDO  ${currentUser}`}</h1>
     </form>
     <button onClick={() => closeSession()}>LOG OUT</button>
+    <button onClick={() => checkUserInfo()}> check log</button>
 </div>)
 }
 

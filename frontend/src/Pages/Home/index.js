@@ -6,7 +6,7 @@ import './style.css';
 import {totalEgressIngress, ROUTE_API} from '../../Constants/index';
 import Axios from 'axios';
 import CreateAccount from '../../Pages/CreateAccount/index';
-import SignIn from '../../Pages/SingIn'
+import SignIn from '../SignIn'
 
 
 const Home = ({props}) => {

@@ -77,8 +77,8 @@
     margin-left: 16px;
   }
   .logo{
-    width: 200px;
-    height: 8vh;
+    width: 150px;
+    height: 5vh;
   }
   @media (max-width: 450px) and (min-width: 200px) {
     .logo{
