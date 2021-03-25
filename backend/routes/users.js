@@ -12,19 +12,28 @@ router.post("/createUser", async (req, res) => {
     const password = req.body.password
     const username = req.body.username
     let passWordHash = await bcryptjs.hash(password, 8)
-
-    db.query(
-        `INSERT INTO users SET  email = ?, password = ?, username = ?`,
-            [email, passWordHash, username],
-            (err, result) => {
-            if(err){
-                console.log(err)
-            }else{
-                res.send(result);
-            }
+    
+    db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
+        if(results.length > 0){
+            res.send({message:'The user already exist'})
+        }else{
+            db.query(
+                `INSERT INTO users SET  email = ?, password = ?, username = ?`,
+                    [email, passWordHash, username],
+                    (err, result) => {
+                    if(err){
+                        console.log(err)
+                    }else{
+                        res.send({message:'You user was created succesfully', result});
+                    }
+                }
+            );
         }
-    );
+    })
 })
+
+
+
 const verifyJWT = (req, res, next) => {
     const token = req.headers["authorization"];
     if(!token){
@@ -41,8 +50,8 @@ const verifyJWT = (req, res, next) => {
     }
 };
 
-// AUTH USER
-router.post("/auth", async (req, res) => {
+// LOGIN
+router.post("/logInUser", async (req, res) => {
     const email = req.body.email
     const username = req.body.username
     const pass = req.body.password
@@ -54,19 +63,19 @@ router.post("/auth", async (req, res) => {
                 res.send({results,token,message: "Your login was succesfully done!"})
             })
         }else{
-            res.send({message: "Password or email not found"})
+            res.send({message: "The email or password is invalid"})
             }
         })
     })
 
 
 
-router.get("/infoUser", verifyJWT, (req, res) => {
+router.get("/authUser", verifyJWT, (req, res) => {
     res.send("You are Autenticathed")
 })
 
+// AUTH USER
 
-// LOGIN
 router.get("/login", (req, res) => {
     if (req.session.user){
         res.send({logged: true, user: req.session.user})

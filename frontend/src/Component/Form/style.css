@@ -17,11 +17,11 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(20, 20, 20);
+    background-image: url('../../Images/form-records-wallpaper.jpg');
     width: 50vh;
     height: 80vh;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
     text-align: center;
     border-radius: 15px;
 }

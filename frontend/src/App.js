@@ -6,6 +6,7 @@ import Register from '../src/Pages/Register/index';
 import Statistics from  '../src/Pages/Statistics/index';
 import Records from '../src/Pages/Records/index';
 import SignIn from './Pages/SignIn/index';
+import CreateAccount from './Pages/CreateAccount/index';
 const token = localStorage.getItem('token')
 
 function App() {
@@ -29,8 +30,9 @@ function App() {
      return(
        <Router>
           <Switch>
-            <Route path='/SignIn' exact component={SignIn} />
-            <Redirect to="/SignIn" component={SignIn}/>
+            <Route path='/signIn' exact component={SignIn} />
+            <Route path='/createAccount' component={CreateAccount} />
+            <Redirect to="/signIn" component={SignIn}/>
           </Switch>
       </Router>
     )

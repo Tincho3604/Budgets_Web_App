@@ -4,12 +4,9 @@ import {fieldsUserInfo} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
 import Axios from 'axios';
 import {ROUTE_API, saveToken} from '../../Constants/index';
-import './style.css';
 import swal from 'sweetalert';
 import Header from '../../Component/Header';
-import CreateAccount from '../CreateAccount/index';
-
-
+import { Link } from 'react-router-dom';
 
 
 Axios.defaults.withCredentials = true
@@ -21,10 +18,9 @@ const SignIn = () => {
 
 
 
-
     const onSubmit = (data,e) => {
         e.preventDefault();
-        Axios.post(`${ROUTE_API}/auth`, {
+        Axios.post(`${ROUTE_API}/logInUser`, {
             email: data.email,
             password: data.password,
             username: data.username
@@ -34,34 +30,23 @@ const SignIn = () => {
                     icon: "success",
                 }).then(() => {
                     saveToken(res.data.token)
+                }).then(() => {
+                    checkUserInfo()
                 }) 
-            
             }else{
                 swal(res.data.message, {
                     icon: "warning",
                 });
             }
         }).catch((err) => {
-        
-            console.log('ERROR DE USUARIO',err)
+            console.log('User Error',err)
         })
         e.target.reset();
     }
 
 
-useEffect(() => {
-Axios.get(`${ROUTE_API}/login`).then((response) => {
-    if(response.data.logged){
-        setLoginStatus(response.data.logged)
-        setCurrentUser(response.data.user[0].username)
-    }
-})
-}, []);
-
-
-
 const checkUserInfo = () => {
-    Axios.get(`${ROUTE_API}/infoUser`, {
+    Axios.get(`${ROUTE_API}/authUser`, {
         headers: {
             "authorization": localStorage.getItem('token'),
         },
@@ -70,17 +55,12 @@ const checkUserInfo = () => {
     })
 }
 
-
-
-
-
-
 return (
 <>
-<div className="mainSignContainer">
+<div className="mainUserFormContainer">
     <form onSubmit={handleSubmit(onSubmit)} className="forValue">
         <h1>SIGN IN</h1>
-        <div className="signInputsContainer">
+        <div className="secondaryUserContainer">
             {fieldsUserInfo?.filter(item => item.name !== 'username').map((item,index) => {
                 return (
                 <Field
@@ -98,14 +78,14 @@ return (
                 />
             )
         })}  
-
-
-        {errors.email && <p className="errorMessages">{errors.email.message}</p>}
         </div>
-        <input type="submit" className="signInButton" value="Sign"/>
+        <input type="submit" className="buttonUserForm" value="Sign"/>
+        <Link to='/createAccount' className="formAccountLink">
+            <p>If you not have an account CREATE ONE</p>
+        </Link>
     </form>
 </div>
-<CreateAccount/>
+
 </>
 )
 }

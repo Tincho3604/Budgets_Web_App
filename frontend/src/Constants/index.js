@@ -97,11 +97,9 @@ export const onShowInfo = value => {
     return element.type === value
 });
 swal({
-    type: 'info',
-    title: found.text, 
-    text: "Information Field", 
-    icon: InfoIcon, 
+    text: found.text, 
     button: 'Continue',
+    icon:"info"
 })
 }
 

@@ -93,6 +93,7 @@ const GlobalTable = () => {
                     setCurrentList(currentList?.filter((value) => {
                         return value.id !== id;
                     }))
+                    console.log(response)
                 })
                 
                 swal("Your record has been deleted!", {

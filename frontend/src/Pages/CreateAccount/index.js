@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import Axios from 'axios';
 import {ROUTE_API} from '../../Constants/index';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 
@@ -12,7 +13,6 @@ import './style.css';
 Axios.defaults.withCredentials = true
 const CreateAccount = () => {
     const {register, handleSubmit, errors } = useForm();
-
 
     const onSubmit = (data,e) => {
         e.preventDefault();
@@ -22,20 +22,27 @@ const CreateAccount = () => {
         password: data.password,
         username: data.username
     }).then((res) => {
-        swal("Your user has been created!", {
-            icon: "success",
-        });
+        if(res.data.results){
+            swal(res.data.message, {
+                    icon: "success",
+                })
+            }else{
+                swal("The user already exist", {
+                    icon: "warning",
+                });
+            }
     }).catch((err) => {
         console.log(err)
     })
-    
     e.target.reset();
     }
+
+
 return (
-<div className="mainCreateAccountContainer">
+<div className="mainUserFormContainer">
     <form onSubmit={handleSubmit(onSubmit)} className="forValue">
         <h1>Create Account</h1>
-        <div className="CreateAccountInputsContainer">
+        <div className="secondaryUserContainer">
             {fieldsUserInfo?.map((item,index) => {
                 return (
                 <Field
@@ -52,12 +59,13 @@ return (
         )
         
     })}  
-        {errors.email && <p className="errorMessages">{errors.email.message}</p>}
+
         </div>
-        <input type="submit" className="CreateAccountButton" value="Create account"/>
+        <input type="submit" className="buttonUserForm" value="Create account"/>
+        <Link to='/signIn' className="formAccountLink">
+            <p>If you have an account SIGN IN</p>
+        </Link>
     </form>
-
-
 </div>)
 }
 

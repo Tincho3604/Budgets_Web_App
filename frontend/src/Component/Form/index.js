@@ -72,20 +72,3 @@ const Form = ({title}) => {
 
 
 export default Form
-
-
-
-
-
-/*
-  Axios.post(`${ROUTE_API}/createRegister`, {
-        concept: data.concept,
-        amount: data.amount,
-        date: data.date,
-        type: data.type
-    }).then((res) => {
-    
-    }).catch((err) => {
-        console.log(err)
-    })
-*/
