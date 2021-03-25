@@ -68,6 +68,32 @@ export const filterAmountTypes = [
 ]
 
 //FUNCTIONS
+export const saveToken = (value) => {
+    localStorage.setItem('token',value)
+    window.location.reload(); 
+} 
+export const saveEmail = (value) => {
+    localStorage.setItem('email',value)
+} 
+export const logOut = () => {swal({
+    title: "Are you sure you want to log out?",
+    text: "You will be redirected to the login form.",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+}).then((out) => {
+if (out) {
+    localStorage.removeItem('token')
+    localStorage.removeItem('email')
+        swal("Goodbyle, see you soon", {
+            icon: "success",
+        }).then((res) => {
+            window.location.reload(); 
+        })
+    }
+})
+
+}
 export const firstTenRecors = (arr) => arr.splice(0,10)
 export const onShowInfo = value => {
     const found = infoModal.find(element => {
@@ -75,15 +101,14 @@ export const onShowInfo = value => {
     return element.type === value
 });
 swal({
-    type: 'info',
-    title: found.text, 
-    text: "Information Field", 
-    icon: InfoIcon, 
+    text: found.text, 
     button: 'Continue',
+    icon:"info"
 })
 }
 
 export const infoFunction = type => onShowInfo(type)
+export const none = () => console.log("")
 export const parseNum = value => parseInt(value.split('-').slice(1).slice(0,1))
 export const sumArray = (arr) => arr.reduce((sum, value) => ( sum + value ), 0);
 export const totalEgressIngress = (arr, key) => arr?.filter(item => item.type === key).map(item => item.amount).reduce((sum, value) => ( sum + value ), 0)
@@ -247,29 +272,40 @@ export const fieldFilterInfo = [
 // NAV INFO
 export const SidebarData = [
     {
-    title: 'Home',
-    path: '/',
-    icon: <AiIcons.AiFillHome />,
-    cName: 'nav-text'
+        title: 'Home',
+        path: '/',
+        icon: <AiIcons.AiFillHome />,
+        cName: 'nav-text',
+        func: none
 },
     {
-    title: 'Statistics',
-    path: '/statistics',
-    icon: <BsIcons.BsGraphUp />,
-    cName: 'nav-text'
+        title: 'Statistics',
+        path: '/statistics',
+        icon: <BsIcons.BsGraphUp />,
+        cName: 'nav-text',
+        func: none
     },
     {
-    title: 'Register operation',
-    path: '/register',
-    icon: <BsIcons.BsPencil/>,
-    cName: 'nav-text'
+        title: 'Register operation',
+        path: '/register',
+        icon: <BsIcons.BsPencil/>,
+        cName: 'nav-text',
+        func: none
     },
     {
         title: 'Global Records',
         path: '/records',
         icon: <FiIcons.FiDatabase/>,
-        cName: 'nav-text'
-        },
+        cName: 'nav-text',
+        func: none
+    },
+    {
+        title: 'Log Out',
+        path: '/SignIn',
+        icon: <FiIcons.FiUserX/>,
+        cName: 'nav-text',
+        func: logOut
+    },
 ];
 
 export const fieldsEditForm = [
@@ -303,4 +339,67 @@ export const fieldsEditForm = [
             },
         }
     },
+]
+
+export const fieldsUserInfo = [
+    {type:"text", 
+    inputType:"input",
+    name:"username", 
+    id:"username", 
+    placeHolder:"Ingress username", 
+    htmlFor:"username", 
+    labelText:"Username", 
+    registerInfo:{ required: {
+        value: true,
+        message:'username is required'
+    },
+    maxLength:{
+        value: 20,
+        message:'Maximum 20 characters'
+    },
+    minLength: {
+        value: 5,
+        message: 'Minimum 5 characters'
+    },
+    validate: (value) => {
+        return [
+            /^[A-Za-z\s]+$/ 
+        ].every((pattern) => pattern.test(value)) || "Only letters"
+        }
+    }
+},
+
+    {
+    type:"email", 
+    inputType:"input", 
+    labelText:"E-mail", 
+    name:"email", 
+    id:"email", 
+    placeHolder:"Ingress email", 
+    htmlFor:"email",
+    registerInfo:{ required: {
+        value: true,
+        message: "Enter a valid e-mail address",
+    },
+    validate: (value) => {
+        return [
+            /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+        ].every((pattern) => pattern.test(value)) || "E-mail format wrong"
+    }
+}
+},
+    {
+    type:"password", 
+    inputType:"input",
+    labelText:"Password", 
+    name:"password", 
+    id:"password", 
+    placeHolder:"Ingress password", 
+    htmlFor:"password", 
+    registerInfo:{ required: {
+        value: true,
+        message: "Password is required",
+        },
+    },
+}
 ]

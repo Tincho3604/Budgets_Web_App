@@ -6,9 +6,16 @@
     justify-content:space-evenly;
     align-items: center;
   }
-  #title{
-    color: rgb(255, 255, 255);
-    letter-spacing: 10px;
+
+  .titleNavContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .titleNavContainer h1{
+    color: rgb(9, 87, 255);
+    letter-spacing: 8px;
+    font-size: 25px;
   }
   .menu-bars {
     margin-right: 5rem;
@@ -80,11 +87,15 @@
     width: 150px;
     height: 5vh;
   }
-  @media (max-width: 450px) and (min-width: 200px) {
+  @media (max-width: 500px) and (min-width: 200px) {
     .logo{
     display: none;
     }
     .navbar {
       justify-content: flex-end;
+    }
+    .titleNavContainer h1{
+    font-size: 20px;
+    padding-right: 65px;
     }
 }

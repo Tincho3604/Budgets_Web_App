@@ -24,8 +24,10 @@ const GlobalTable = () => {
     const [currentList, setCurrentList] = useState()
     const [idItem, setIdItem] = useState('')
     const [editBlock, setEditBlock] = useState(false)
+    
+    
     useEffect(() => {
-        Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
+        Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('email')}`).then((response) => {
             setCurrentList(response.data)
         })
         
@@ -93,6 +95,7 @@ const GlobalTable = () => {
                     setCurrentList(currentList?.filter((value) => {
                         return value.id !== id;
                     }))
+                    console.log(response)
                 })
                 
                 swal("Your record has been deleted!", {
@@ -134,9 +137,9 @@ const GlobalTable = () => {
                     <th>Edit</th>
                 </tr>
             </thead>
-          
+        
             <tbody>
-       
+    
         {currentList?.map((item,index) => {
             return (
                     <tr key={index}>
@@ -149,12 +152,9 @@ const GlobalTable = () => {
                     </tr>
             )
         })}
-         
-            
-            </tbody>
-           
+                </tbody>
             </table>
-              ) : (<ModalError/>)}
+                ) : (<ModalError/>)}
         </div>
     </>
     )

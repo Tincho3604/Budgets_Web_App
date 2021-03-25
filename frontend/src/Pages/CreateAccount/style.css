@@ -1,0 +1,125 @@
+.mainUserFormContainer{
+    display: flex;
+background-image: url('../../Images//form-user-wallpaper.jpg');
+    border-radius: 15px;
+    height: 50vh;
+    width: 20vw;
+    margin: 0 auto;
+    padding-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+    text-align: center;
+    border: 2px solid black;
+}
+.mainUserFormContainer h1{
+    color: rgb(255, 255, 255);
+}
+.secondaryUserContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-left: 45px;
+    text-align: left;
+
+}
+.buttonUserForm{
+    margin-top: 15px;
+    background-color: rgb(80, 253, 239);
+}
+.errorMessages{
+    color:rgb(255, 30, 0);
+    font-family: 'Cutive Mono', monospace;
+    font-size: 0.5rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.buttonUserForm {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+.buttonUserForm:hover,
+.buttonUserForm:focus, 
+.buttonUserForm:active{
+
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    outline: none;
+}
+.formAccountLink{ 
+    text-decoration: none;
+    font-family: 'Exo', sans-serif;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 12px;
+}
+
+
+@media (max-width: 1700px) and (min-width: 1000px){
+    .mainUserFormContainer{
+        width: 30vw;
+        height: 60vh
+    }
+    .secondaryUserContainer{
+        height: 35vh;
+        width: 50vw;
+        justify-content: space-around;
+    }
+    .formAccountLink{ 
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1000px) and (min-width: 500px){
+    .mainUserFormContainer{
+        width: 50vw;
+        height: 60vh
+    }
+    .secondaryUserContainer{
+        height: 35vh;
+        width: 50vw;
+        justify-content: space-around;
+    }
+    .formAccountLink{ 
+        justify-content: center;
+    }
+}
+
+@media (max-width: 500px) and (min-width: 200px){
+    .mainUserFormContainer{
+        width: 70vw;
+        height: 60vh;
+       
+    }
+    .mainUserFormContainer h1{
+        font-size: 25px;
+    } 
+
+    .secondaryUserContainer{
+        height: 35vh;
+        width: 50vw;
+        justify-content: space-around;
+    }
+    .formAccountLink{ 
+        justify-content: center;
+    }
+}
+
+@media (max-height: 700px){
+    .secondaryUserContainer{
+        height: 35vh;
+        width: 50vw;
+        align-items: flex-end;
+    }
+}

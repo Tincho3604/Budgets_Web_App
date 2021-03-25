@@ -15,25 +15,24 @@ const currentEgressAmount = totalEgressIngress(allRecords,'Egress')
 const currentIngressAmount = totalEgressIngress(allRecords,'Ingress')
 const currentValue =  currentIngressAmount - currentEgressAmount 
 
-
 useEffect(() => {
-    Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
+    Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('email')}`).then((response) => {
         setAllRecords(response.data)
     })
     
-        Axios.get(`${ROUTE_API}/getFirstTenRecords`).then((response) => {
-            setFirstTenRecords(response.data)
+    Axios.get(`${ROUTE_API}/getFirstTenRecords/${localStorage.getItem('email')}`).then((response) => {
+        setFirstTenRecords(response.data)
         })
     }, []);
 
     return (
     <>
         <Header/>
-        <Balance
-        numValue={[currentIngressAmount, currentEgressAmount]}
-        currentValue={[currentValue]}
-        listRecords={firstTenRecords}
-        />
+            <Balance
+                numValue={[currentIngressAmount, currentEgressAmount]}
+                currentValue={[currentValue]}
+                listRecords={firstTenRecords}
+            />
         <Footer/>
     </>
     )
@@ -41,4 +40,3 @@ useEffect(() => {
 
 
 export default Home
-

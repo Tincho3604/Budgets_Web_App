@@ -35,6 +35,7 @@ const collapseList = () => {
                                 refForm={register(item.registerInfo)}
                                 idSelect={'selectFilter'}
                                 classSelect={'classFilter'}
+                                
                             />
                 )
             })}
