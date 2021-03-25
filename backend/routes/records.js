@@ -54,7 +54,6 @@ router.get("/getFirstTenRecords", (req, res) => {
     );
 });
 
-
 //DELETE RECORD
 router.delete("/deleteRecord/:id",(req, res) => {
     const id = req.params.id; 

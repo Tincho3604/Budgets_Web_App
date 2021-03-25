@@ -3,17 +3,14 @@ import Field from '../../Component/Field/index';
 import {fieldsUserInfo} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
 import Axios from 'axios';
-import {ROUTE_API, saveToken} from '../../Constants/index';
+import {ROUTE_API, saveToken, saveEmail} from '../../Constants/index';
 import swal from 'sweetalert';
-import Header from '../../Component/Header';
 import { Link } from 'react-router-dom';
 
 
 Axios.defaults.withCredentials = true
 const SignIn = () => {
 
-    const [loginStatus, setLoginStatus] = useState(false)
-    const [currentUser, setCurrentUser] = useState('')
     const {register, handleSubmit, errors } = useForm();
 
 
@@ -25,11 +22,14 @@ const SignIn = () => {
             password: data.password,
             username: data.username
         }).then((res) => {
+            
             if(res.data.results){
             swal(res.data.message, {
                     icon: "success",
                 }).then(() => {
+                    saveEmail(res.data.results[0].email)
                     saveToken(res.data.token)
+                    
                 }).then(() => {
                     checkUserInfo()
                 }) 
@@ -43,6 +43,7 @@ const SignIn = () => {
         })
         e.target.reset();
     }
+
 
 
 const checkUserInfo = () => {

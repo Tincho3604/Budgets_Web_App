@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { SidebarData } from '../../Constants/index';
+import { SidebarData, ROUTE_API } from '../../Constants/index';
 import './style.css';
 import { IconContext } from 'react-icons';
 import Logo from '../../Images/Logo.jpg';
+import Axios from 'axios';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+  const [currentUser, setCurrentUser] = useState('');
+
+  
+  useEffect(() => {
+    Axios.post(`${ROUTE_API}/bringUser`, {
+      email: localStorage.getItem('email')
+    }).then((response) => {
+        setCurrentUser(response.data[0].username)
+    })
+    }, []);
+    
+
 
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -16,14 +29,16 @@ function Navbar() {
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
         <div className='navbar'>
-            <div id="title">
+            <div id="title" className="titleNavContainer">
               <Link to='/' className='menu-bars'>
                 <img src={Logo} alt="Logo" className="logo"/>
               </Link>
+              <h1 style={{color:'white'}}>{`Welcome ${currentUser}`}</h1>
             </div>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={showSidebar} />
           </Link>
+          
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showSidebar}>

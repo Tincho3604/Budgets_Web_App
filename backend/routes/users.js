@@ -15,7 +15,7 @@ router.post("/createUser", async (req, res) => {
     
     db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
         if(results.length > 0){
-            res.send({message:'The user already exist'})
+            res.send({message:'The user already exist', error:'error'})
         }else{
             db.query(
                 `INSERT INTO users SET  email = ?, password = ?, username = ?`,
@@ -50,10 +50,16 @@ const verifyJWT = (req, res, next) => {
     }
 };
 
+router.post("/bringUser", async (req, res) => {
+    const email = req.body.email
+    db.query("SELECT username FROM users WHERE email = ?", [email], async (error,results) => {
+        res.send(results)
+    })
+})
+
 // LOGIN
 router.post("/logInUser", async (req, res) => {
     const email = req.body.email
-    const username = req.body.username
     const pass = req.body.password
 
     db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
@@ -69,12 +75,11 @@ router.post("/logInUser", async (req, res) => {
     })
 
 
-
+// AUTH USER
 router.get("/authUser", verifyJWT, (req, res) => {
     res.send("You are Autenticathed")
 })
 
-// AUTH USER
 
 router.get("/login", (req, res) => {
     if (req.session.user){

@@ -72,6 +72,9 @@ export const saveToken = (value) => {
     localStorage.setItem('token',value)
     window.location.reload(); 
 } 
+export const saveEmail = (value) => {
+    localStorage.setItem('email',value)
+} 
 export const logOut = () => {swal({
     title: "Are you sure you want to log out?",
     text: "You will be redirected to the login form.",
@@ -81,6 +84,7 @@ export const logOut = () => {swal({
 }).then((out) => {
 if (out) {
     localStorage.removeItem('token')
+    localStorage.removeItem('email')
         swal("Goodbyle, see you soon", {
             icon: "success",
         }).then((res) => {

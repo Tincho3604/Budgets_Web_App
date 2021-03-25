@@ -22,13 +22,13 @@ const CreateAccount = () => {
         password: data.password,
         username: data.username
     }).then((res) => {
-        if(res.data.results){
+        if(res.data.error){
             swal(res.data.message, {
-                    icon: "success",
+                    icon: "warning",
                 })
             }else{
-                swal("The user already exist", {
-                    icon: "warning",
+                swal(res.data.message, {
+                    icon: "success",
                 });
             }
     }).catch((err) => {
