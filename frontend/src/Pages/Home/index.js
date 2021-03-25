@@ -16,11 +16,11 @@ const currentIngressAmount = totalEgressIngress(allRecords,'Ingress')
 const currentValue =  currentIngressAmount - currentEgressAmount 
 
 useEffect(() => {
-    Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
+    Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('email')}`).then((response) => {
         setAllRecords(response.data)
     })
     
-    Axios.get(`${ROUTE_API}/getFirstTenRecords`).then((response) => {
+    Axios.get(`${ROUTE_API}/getFirstTenRecords/${localStorage.getItem('email')}`).then((response) => {
         setFirstTenRecords(response.data)
         })
     }, []);

@@ -24,8 +24,10 @@ const GlobalTable = () => {
     const [currentList, setCurrentList] = useState()
     const [idItem, setIdItem] = useState('')
     const [editBlock, setEditBlock] = useState(false)
+    
+    
     useEffect(() => {
-        Axios.get(`${ROUTE_API}/getAllRegisters`).then((response) => {
+        Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('email')}`).then((response) => {
             setCurrentList(response.data)
         })
         

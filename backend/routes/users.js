@@ -32,8 +32,6 @@ router.post("/createUser", async (req, res) => {
     })
 })
 
-
-
 const verifyJWT = (req, res, next) => {
     const token = req.headers["authorization"];
     if(!token){

@@ -11,10 +11,10 @@ router.post("/createRegister", (req, res) => {
     const amount = req.body.amount;
     const date = req.body.date;
     const type = req.body.type;
-    
+    const author = req.body.author
     db.query(
-        "INSERT INTO records (concept, amount , date, type) VALUES (?,?,?,?)",
-    [concept, amount , date, type],
+        "INSERT INTO records (concept, amount , date, type, author) VALUES (?,?,?,?,?)",
+    [concept, amount , date, type, author],
     (err, result) => {
         if(err){
             console.log(err)
@@ -26,9 +26,10 @@ router.post("/createRegister", (req, res) => {
 });
 
 //GET REGISTERS
-router.get("/getAllRegisters", (req, res) => {
+router.get("/getAllRegisters/:email", (req, res) => {
+    const author = req.params.email
     db.query(
-        "SELECT * FROM records",
+        "SELECT * FROM records WHERE author = ?",[author],
     (err, result) => {
         if(err){
             console.log(err)
@@ -41,9 +42,11 @@ router.get("/getAllRegisters", (req, res) => {
 
 
 //SELECT FIRST 10 RECORDS
-router.get("/getFirstTenRecords", (req, res) => {
+router.get("/getFirstTenRecords/:email", (req, res) => {
+    const author = req.params.email
+    console.log(author)
     db.query(
-        "SELECT * FROM records LIMIT 10",
+        "SELECT * FROM records WHERE author = ? LIMIT 10",[author],
     (err, result) => {
         if(err){
             console.log(err)
@@ -89,8 +92,6 @@ router.put("/update/:id", (req, res) => {
         }
     );
 })
-
-
 
 
 module.exports = router;
