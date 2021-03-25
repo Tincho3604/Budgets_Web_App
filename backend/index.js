@@ -13,9 +13,6 @@ const recordsRoutes = require('./routes/records')
 const userRoutes = require('./routes/users')
 
 
-// Invoke Dotenv
-const dotenv = require('dotenv');
-dotenv.config({path:'./env/.env'})
 
 // Statics files
 app.use('/resources', express.static('public'))

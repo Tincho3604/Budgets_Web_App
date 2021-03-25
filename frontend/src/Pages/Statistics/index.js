@@ -4,8 +4,8 @@ import Footer from '../../Component/Footer/index'
 import Bars from '../../Component/Graphics/Bars/index';
 import Cake from '../../Component/Graphics/Cake/index';
 import HorizontalBarTable from '../../Component/Graphics/HorizontalBarTable/index';
-import {getAllRecords} from '../../Redux/actions/recordsActions';
-import { connect } from 'react-redux';
+import {ROUTE_API} from '../../Constants'
+import Axios from 'axios';
 import {
     defaultLabel, 
     Ingress, 
@@ -37,7 +37,7 @@ const Statistics = (props) => {
         {id:'',amount:''},
     ])
     
-    const [general, setGeneral] = useState()
+    const [general, setGeneral] = useState([])
 
     ingress?.ingress?.map((item) => amountIngress[item.id] = item.amount)
     egress?.egress?.map((item) => amountEgress[item.id] = item.amount)
@@ -46,22 +46,25 @@ const Statistics = (props) => {
     const GraphicAmountEgress = totalEgressIngress(general, 'Egress')
 
 useEffect(() => {
-    props.allRecords()
-    setGeneral(props.records)    
-    
+    Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('email')}`).then((response) => {
+        setGeneral(response.data)
+    })
+}, []);
+
+
+
+useEffect(() => {
     setIngress({
-            ingress: sumAmountsByAmount(props.records.filter(item => item.type === 'Ingress').map(item => {
+            ingress: sumAmountsByAmount(general?.filter(item => item.type === 'Ingress').map(item => {
                 return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
             })
         )})
 
         setEgress({
-            egress: sumAmountsByAmount(props.records.filter(item => item.type === 'Egress').map(item => {
+            egress: sumAmountsByAmount(general?.filter(item => item.type === 'Egress').map(item => {
                 return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
             })
         )})
-
-
 }, []);
 
     return(
@@ -109,15 +112,4 @@ useEffect(() => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        records: state.recordsReducer.records,
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        allRecords: () => dispatch(getAllRecords()),  
-    }
-}
-export default  connect(mapStateToProps, mapDispatchToProps)(Statistics)
+export default Statistics

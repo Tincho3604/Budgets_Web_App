@@ -4,7 +4,7 @@ import * as FcIcons from "react-icons/fc";
 import * as FiIcons from "react-icons/fi";
 import swal from 'sweetalert';
 import moment from 'moment';
-import InfoIcon from '../Images/info-modal.png'
+
 //SIZE
 export const IconSize = 25;
 export const valueWidth = {width:'100%'};

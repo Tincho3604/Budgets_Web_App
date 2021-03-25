@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from 'react';
 import Field from '../Field/index';
-import {fieldsEditForm, formatDate} from '../../Constants/index';
+import {fieldsEditForm, formatDate, ROUTE_API} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import './style.css';
 import swal from 'sweetalert';
 import {updateRecords} from '../../Redux/actions/recordsActions';
-
+import Axios from 'axios';
 
 const FormUpdate = ({id, uniqueItem, handleItem}) => {
     
@@ -29,7 +29,10 @@ const FormUpdate = ({id, uniqueItem, handleItem}) => {
     const onSubmit = (data,e) => {
         const objParams = {id, ...data, type};
         e.preventDefault();
-        updateRecords(objParams)
+        Axios.put(`${ROUTE_API}/update/:id`, {
+            value: objParams,
+            id: objParams.id
+        })
         swal("Your record has been edit!", {
             icon: "success",
         })

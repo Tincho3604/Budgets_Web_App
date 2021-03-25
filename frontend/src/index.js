@@ -19,12 +19,12 @@ const myStore = createStore(
 
 ReactDOM.render(
 <Provider store={myStore}>
-    <React.StrictMode>
-      <PersistGate persistor={persistor}>
-        <App/>
-      </PersistGate>
-    </React.StrictMode>,
-  </Provider>,
+  <React.StrictMode>
+    <PersistGate persistor={persistor}>
+      <App/>
+    </PersistGate>
+  </React.StrictMode>,
+</Provider>,
   document.getElementById('root')
 );
 
