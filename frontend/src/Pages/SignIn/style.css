@@ -3,8 +3,8 @@
     background: rgb(34,193,195);
     background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
     border-radius: 15px;
-    height: 45vh;
-    width: 25vw;
+    height: 55vh;
+    width: 30vw;
     margin: 0 auto;
     padding-bottom: 15px;
     justify-content: center;
@@ -12,6 +12,7 @@
     align-content: center;
     margin-top: 45px;
     text-align: center;
+    
 }
 .signInputsContainer{
     display: flex;
@@ -21,11 +22,16 @@
     padding-left: 45px;
     text-align: left;
     margin: 25px;
+    
+
 }
 .signInButton{
     margin-top: 15px;
     background-color: rgb(126, 100, 240);
 }
+.inputSignIn{
+    margin-top: 15px;
+   }
 .errorMessages{
     color:rgb(255, 30, 0);
     font-family: 'Cutive Mono', monospace;
@@ -33,7 +39,7 @@
     font-family: 'Orbitron', sans-serif;
 }
 
-.signInButton {
+.signInButton , #idSignIn{
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
@@ -45,10 +51,93 @@
     transition-property: transform;
 }
 .signInButton:hover,
+#idSignIn:hover,
 .signInButton:focus, 
-.signInButton:active{
+#idSignIn:focus,
+.signInButton:active,
+#idSignIn:active
+{
 
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
     outline: none;
+}
+
+
+
+
+
+
+@media (max-width: 1100px) and (min-width: 1000px){
+    .mainSignContainer{
+        height: 55vh;
+        width: 40vw;
+    }
+    .inputSignIn{
+        width: 28vw;
+    }
+    #idSignIn{
+        width: 40vw;
+        
+    }
+    .signInButton{
+        width: 15vw;
+    }
+}
+
+@media (max-width: 1000px) and (min-width: 900px){
+    .mainSignContainer{
+        height: 55vh;
+        width: 50vw;
+    }
+    .inputSignIn{
+        width: 28vw;
+    
+    }
+    #idSignIn{
+        width: 25vw;
+    }
+    .signInButton{
+        width: 15vw;
+    }
+}
+
+@media (max-width: 900px) and (min-width: 500px){
+    .mainSignContainer{
+        height: 55vh;
+        width: 60vw;
+    }
+    .inputSignIn{
+        width: 28vw;
+        padding-right: 100px;
+    
+    }
+    #idSignIn{
+        width: 40vw;
+    }
+    .signInButton{
+        width: 15vw;
+    }
+}
+
+@media (max-width: 500px) and (min-width: 300px){
+    .mainSignContainer{
+        height: 65vh;
+        width: 60vw;
+
+    }
+    .inputSignIn{
+        width: 20vw;
+        padding-right: 150px;
+        margin-top: 15px;
+    
+    }
+    #idSignIn{
+        width: 40vw;
+        
+    }
+    .signInButton{
+        width: 35vw;
+        height: 5vh;
+    }
 }

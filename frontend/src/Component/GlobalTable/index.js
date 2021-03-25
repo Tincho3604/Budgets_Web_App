@@ -149,10 +149,7 @@ const GlobalTable = () => {
                     </tr>
             )
         })}
-        
-            
-            </tbody>
-            
+                </tbody>
             </table>
                 ) : (<ModalError/>)}
         </div>

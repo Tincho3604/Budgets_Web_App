@@ -28,11 +28,11 @@ router.post("/createUser", async (req, res) => {
 const verifyJWT = (req, res, next) => {
     const token = req.headers["authorization"];
     if(!token){
-        res.send("Token need")
+        res.send("You need tokeen")
     }else{
         jwt.verify(token, 'secret', (err, decoded) => {
             if(err){
-            res.json({auth: false, message:"U failed to authenticate"})
+            res.json({auth: false, message:"Failed to authenticate"})
             }else{
                 req.userId = decoded.id;
                 next();
@@ -44,38 +44,30 @@ const verifyJWT = (req, res, next) => {
 // AUTH USER
 router.post("/auth", async (req, res) => {
     const email = req.body.email
-    const pass = req.body.password
     const username = req.body.username
-    let passwordHash = await bcryptjs.hash(pass, 8)
+    const pass = req.body.password
+
     db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
-        if(!results ||  await bcryptjs.compare(pass, results[0].password)){
+        if(results.length > 0 && (await bcryptjs.compare(pass, results[0].password))){
             const token = await jwt.sign({results:results}, 'secret', (err,token) => {
-            
-
                 req.session.user = results
-                res.send({results,token})
+                res.send({results,token,message: "Your login was succesfully done!"})
             })
-         
         }else{
-            res.json({message:'User and pass are incorrect'})
-            res.send({message: "Invalid username or password"})
-        }
+            res.send({message: "Password or email not found"})
+            }
+        })
     })
-})
 
-router.get("/logout", (req, res) => {
-    req.session.destroy((err) => {
-        res.clearCookie('user_sid').send('cleared cookie');
-     });
-})
+
 
 router.get("/infoUser", verifyJWT, (req, res) => {
     res.send("You are Autenticathed")
 })
 
+
 // LOGIN
 router.get("/login", (req, res) => {
-
     if (req.session.user){
         res.send({logged: true, user: req.session.user})
     }else{

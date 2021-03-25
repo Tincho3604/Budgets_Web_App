@@ -9,14 +9,12 @@ import './style.css';
 const Records = (props) => {
 
 return(
-    <>
-   
+    <> 
         <Header/>
-        <div className="mainRecordsContainer">
-            <GlobalTable/>
-        </div>
-
-     <Footer/>
+            <div className="mainRecordsContainer">
+                <GlobalTable/>
+            </div>
+        <Footer/>
     </>
     )
 }

@@ -17,7 +17,8 @@ const Field = ({
     idSelect,
     classSelect,
     classInput,
-    disabled
+    disabled,
+    inputStyle
 }) => {
 
 
@@ -32,14 +33,14 @@ const Field = ({
                             {icon}
                         </div>
                         <input 
-                            className="eachInput"
+                            className={inputStyle}
                             type={type} 
                             name={name} 
                             id={id} 
                             placeholder={placeHolder} 
                             ref={refForm}
                             disabled={disabled}
-                            
+
                         />
                     </div>
                 </div>

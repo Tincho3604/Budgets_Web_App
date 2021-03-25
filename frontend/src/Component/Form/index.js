@@ -58,6 +58,7 @@ const Form = ({title}) => {
                                     idSelect={'selectForm'}
                                     classSelect={'inputs'}
                                     classInput={'inputs'}
+                                    inputStyle={'eachInput'}
                                 />
                             )
                         })}

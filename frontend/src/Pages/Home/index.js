@@ -5,9 +5,6 @@ import Balance from '../../Component/Balance/index';
 import './style.css';
 import {totalEgressIngress, ROUTE_API} from '../../Constants/index';
 import Axios from 'axios';
-import CreateAccount from '../../Pages/CreateAccount/index';
-import SignIn from '../SignIn'
-
 
 const Home = ({props}) => {
 

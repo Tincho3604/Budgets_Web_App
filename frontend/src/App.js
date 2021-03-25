@@ -9,8 +9,10 @@ import SignIn from './Pages/SignIn/index';
 const token = localStorage.getItem('token')
 
 function App() {
+  
   if(token){
-  return (
+  
+    return (
     <>
       <Router>
         <Switch>
@@ -30,8 +32,8 @@ function App() {
             <Route path='/SignIn' exact component={SignIn} />
             <Redirect to="/SignIn" component={SignIn}/>
           </Switch>
-       </Router>
-     )
+      </Router>
+    )
   }
 }
 
