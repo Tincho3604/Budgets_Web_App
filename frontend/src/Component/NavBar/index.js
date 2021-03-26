@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
+import * as FcIcons from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 import { SidebarData, ROUTE_API } from '../../Constants/index';
 import './style.css';
@@ -34,9 +35,12 @@ function Navbar() {
         <div className='navbar'>
             <div id="title" className="titleNavContainer">
               <Link to='/' className='menu-bars'>
-                <img src={Logo} alt="Logo" className="logo"/>
+                <h1>BUDGET APP</h1>
               </Link>
-              <h1 style={{color:'white'}}>{`Welcome ${currentUser}`}</h1>
+              <div className="userNav">
+                <h2>{`${currentUser}`}</h2>
+                <FcIcons.FcOk size={30}/>
+              </div>
             </div>
             <Link to='#' className='menu-bars'>
               <FaIcons.FaBars onClick={showSidebar} />

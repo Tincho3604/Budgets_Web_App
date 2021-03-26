@@ -297,7 +297,7 @@ export const SidebarData = [
     },
     {
         title: 'Dash Board',
-        path: '/dashboard',
+        path: '/dashBoard',
         icon: <CgIcons.CgMenuBoxed/>,
         cName: 'nav-text',
     },

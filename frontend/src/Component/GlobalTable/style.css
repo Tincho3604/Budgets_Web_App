@@ -49,7 +49,7 @@ margin:0 auto;
 
 
 
-.deleteButton{
+.operationButton{
     border:none;
     background-color: rgb(250, 64, 64);
     color:rgb(0, 0, 0);
@@ -63,7 +63,7 @@ margin:0 auto;
     }
     
     
-    .deleteButton{
+    .operationButton{
         display: inline-block;
         vertical-align: middle;
         -webkit-transform: perspective(1px) translateZ(0);
@@ -74,13 +74,13 @@ margin:0 auto;
         -webkit-transition-property: transform;
         transition-property: transform;
     }
-    .deleteButton:hover, .deleteButton:focus, .deleteButton:active {
+    .operationButton:hover, .operationButton:focus, .operationButton:active {
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
         outline: none;
     }
 
-    .editButton{
+    #editButton{
         border:none;
         background-color: rgb(69, 111, 226);
         color:rgb(0, 0, 0);
@@ -99,7 +99,7 @@ margin:0 auto;
             align-items: center;
         }
         
-        .editButton{
+        #editButton{
             display: inline-block;
             vertical-align: middle;
             -webkit-transform: perspective(1px) translateZ(0);
@@ -110,7 +110,7 @@ margin:0 auto;
             -webkit-transition-property: transform;
             transition-property: transform;
         }
-        .editButton:hover, .editButton:focus, .editButton:active {
+        #editButton:hover, #editButton:focus, #editButton:active {
             -webkit-transform: scale(1.1);
             transform: scale(1.1);
             outline: none;

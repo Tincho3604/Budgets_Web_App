@@ -8,8 +8,6 @@ import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-
-
 Axios.defaults.withCredentials = true
 const CreateAccount = () => {
     const {register, handleSubmit, errors } = useForm();

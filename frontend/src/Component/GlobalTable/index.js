@@ -147,8 +147,8 @@ const GlobalTable = () => {
                         <td style={item.type === Ingress ?{color:IngressIconColor} : {color:EgressIconColor}}>{item.amount}</td>
                         <td>{formatDate(item.date)}</td>
                         <td>{item?.type === Ingress ? <MdIcons.MdAttachMoney color={IngressIconColor}/> : <MdIcons.MdMoneyOff color={EgressIconColor}/>}</td>
-                        <td><button className="deleteButton" onClick={() => deleteRecord(item.id)}>{deleteButtonText}</button></td>
-                        <td><button className="editButton" onClick={() => editItem(item.id)}>{editButtonText}</button></td>
+                        <td><button className="operationButton" onClick={() => deleteRecord(item.id)}>{deleteButtonText}</button></td>
+                        <td><button id="editButton" className="operationButton" onClick={() => editItem(item.id)}>{editButtonText}</button></td>
                     </tr>
             )
         })}
