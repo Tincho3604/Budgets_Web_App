@@ -12,9 +12,7 @@ Axios.defaults.withCredentials = true
 const SignIn = () => {
 
     const {register, handleSubmit, errors } = useForm();
-
-
-
+    
     const onSubmit = (data,e) => {
         e.preventDefault();
         Axios.post(`${ROUTE_API}/logInUser`, {
@@ -22,11 +20,12 @@ const SignIn = () => {
             password: data.password,
             username: data.username
         }).then((res) => {
-            
+
             if(res.data.results){
             swal(res.data.message, {
                     icon: "success",
                 }).then(() => {
+                    
                     saveEmail(res.data.results[0].email)
                     saveToken(res.data.token)
                     
@@ -44,8 +43,6 @@ const SignIn = () => {
         e.target.reset();
     }
 
-
-
 const checkUserInfo = () => {
     Axios.get(`${ROUTE_API}/authUser`, {
         headers: {
@@ -55,9 +52,7 @@ const checkUserInfo = () => {
         console.log(response)
     })
 }
-
 return (
-<>
 <div className="mainUserFormContainer">
     <form onSubmit={handleSubmit(onSubmit)} className="forValue">
         <h1>SIGN IN</h1>
@@ -86,9 +81,7 @@ return (
         </Link>
     </form>
 </div>
-
-</>
-)
+    )
 }
 
 export default SignIn

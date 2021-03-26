@@ -45,15 +45,13 @@ const Statistics = (props) => {
     const GraphicAmountIngress = totalEgressIngress(general, 'Ingress')
     const GraphicAmountEgress = totalEgressIngress(general, 'Egress')
 
+
+
 useEffect(() => {
     Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('email')}`).then((response) => {
         setGeneral(response.data)
     })
-}, []);
 
-
-
-useEffect(() => {
     setIngress({
             ingress: sumAmountsByAmount(general?.filter(item => item.type === 'Ingress').map(item => {
                 return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
@@ -66,6 +64,8 @@ useEffect(() => {
             })
         )})
 }, []);
+
+
 
     return(
     <>

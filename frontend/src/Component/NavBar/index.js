@@ -11,20 +11,23 @@ import Axios from 'axios';
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const [currentUser, setCurrentUser] = useState('');
-
+  const [navItems, showNavItems] = useState(SidebarData)
   
   useEffect(() => {
     Axios.post(`${ROUTE_API}/bringUser`, {
       email: localStorage.getItem('email')
     }).then((response) => {
-        setCurrentUser(response.data[0].username)
+      setCurrentUser(response.data[0].username)
+      if(response.data[0].username !== 'admin'){
+        showNavItems(navItems.filter(item => item.title !== 'Dash Board'))
+      }else{
+        showNavItems(SidebarData)
+      }
     })
-    }, []);
+  }, []);
     
 
-
   const showSidebar = () => setSidebar(!sidebar);
-
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -47,10 +50,11 @@ function Navbar() {
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
-            {SidebarData?.map((item, index) => {
+  
+            {navItems?.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
-                  <Link to={item.path} onClick={() => item?.func()}>
+                  <Link to={item.path} onClick={item.func ? () => item.func() : ''}>
                     {item.icon}
                     <span>{item.title}</span>
                 </Link>

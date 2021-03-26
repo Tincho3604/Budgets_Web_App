@@ -13,9 +13,10 @@
     align-items: center;
   }
   .titleNavContainer h1{
-    color: rgb(9, 87, 255);
+    color: rgb(255, 255, 255);
     letter-spacing: 8px;
-    font-size: 25px;
+    font-size: 20px;
+    text-transform: uppercase;
   }
   .menu-bars {
     margin-right: 5rem;

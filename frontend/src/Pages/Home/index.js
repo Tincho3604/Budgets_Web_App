@@ -5,7 +5,7 @@ import Balance from '../../Component/Balance/index';
 import './style.css';
 import {totalEgressIngress, ROUTE_API} from '../../Constants/index';
 import Axios from 'axios';
-
+import Swal from 'sweetalert2'
 const Home = ({props}) => {
 
 const [allRecords, setAllRecords] = useState()
@@ -24,7 +24,6 @@ useEffect(() => {
         setFirstTenRecords(response.data)
         })
     }, []);
-
     return (
     <>
         <Header/>

@@ -2,6 +2,7 @@ import * as AiIcons from 'react-icons/ai';
 import * as BsIcons from "react-icons/bs";
 import * as FcIcons from "react-icons/fc";
 import * as FiIcons from "react-icons/fi";
+import * as CgIcons from "react-icons/cg"
 import swal from 'sweetalert';
 import moment from 'moment';
 
@@ -108,7 +109,6 @@ swal({
 }
 
 export const infoFunction = type => onShowInfo(type)
-export const none = () => console.log("")
 export const parseNum = value => parseInt(value.split('-').slice(1).slice(0,1))
 export const sumArray = (arr) => arr.reduce((sum, value) => ( sum + value ), 0);
 export const totalEgressIngress = (arr, key) => arr?.filter(item => item.type === key).map(item => item.amount).reduce((sum, value) => ( sum + value ), 0)
@@ -276,28 +276,30 @@ export const SidebarData = [
         path: '/',
         icon: <AiIcons.AiFillHome />,
         cName: 'nav-text',
-        func: none
 },
     {
         title: 'Statistics',
         path: '/statistics',
         icon: <BsIcons.BsGraphUp />,
         cName: 'nav-text',
-        func: none
     },
     {
         title: 'Register operation',
         path: '/register',
         icon: <BsIcons.BsPencil/>,
         cName: 'nav-text',
-        func: none
     },
     {
         title: 'Global Records',
         path: '/records',
         icon: <FiIcons.FiDatabase/>,
         cName: 'nav-text',
-        func: none
+    },
+    {
+        title: 'Dash Board',
+        path: '/dashboard',
+        icon: <CgIcons.CgMenuBoxed/>,
+        cName: 'nav-text',
     },
     {
         title: 'Log Out',

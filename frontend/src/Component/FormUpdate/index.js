@@ -2,10 +2,8 @@ import React,{useState,useEffect} from 'react';
 import Field from '../Field/index';
 import {fieldsEditForm, formatDate, ROUTE_API} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
-import { connect } from 'react-redux';
 import './style.css';
 import swal from 'sweetalert';
-import {updateRecords} from '../../Redux/actions/recordsActions';
 import Axios from 'axios';
 
 const FormUpdate = ({id, uniqueItem, handleItem}) => {
@@ -71,10 +69,8 @@ return <>
 </>
 }
 
-const mapDispatchToProps ={
-    updateRecords,  
-}
-export default  connect(null, mapDispatchToProps)(FormUpdate)
+
+export default  FormUpdate
 
 
 

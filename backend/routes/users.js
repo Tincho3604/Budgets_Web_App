@@ -11,10 +11,17 @@ router.post("/createUser", async (req, res) => {
     const email = req.body.email
     const password = req.body.password
     const username = req.body.username
+    console.log(email, username)
     let passWordHash = await bcryptjs.hash(password, 8)
     
-    db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
-        if(results.length > 0){
+    db.query("SELECT * FROM users", [email, username], async (error,results) => {
+        let flag = false
+        for(let i = 0; i< results.length ; i++){
+            if((results[i].username === username) || (results[i].email === email)){
+                flag = true
+            }
+        }
+        if(flag){
             res.send({message:'The user already exist', error:'error'})
         }else{
             db.query(
@@ -49,12 +56,14 @@ const verifyJWT = (req, res, next) => {
     }
 };
 
+// BRING USER INFO
 router.post("/bringUser", async (req, res) => {
     const email = req.body.email
-    db.query("SELECT username FROM users WHERE email = ?", [email], async (error,results) => {
+    db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
         res.send(results)
     })
 })
+
 
 // LOGIN
 router.post("/logInUser", async (req, res) => {

@@ -44,7 +44,6 @@ router.get("/getAllRegisters/:email", (req, res) => {
 //SELECT FIRST 10 RECORDS
 router.get("/getFirstTenRecords/:email", (req, res) => {
     const author = req.params.email
-    console.log(author)
     db.query(
         "SELECT * FROM records WHERE author = ? LIMIT 10",[author],
     (err, result) => {
