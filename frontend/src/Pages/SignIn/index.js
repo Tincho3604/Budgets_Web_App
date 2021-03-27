@@ -43,6 +43,9 @@ const SignIn = () => {
         e.target.reset();
     }
 
+
+
+    
 const checkUserInfo = () => {
     Axios.get(`${ROUTE_API}/authUser`, {
         headers: {
@@ -52,6 +55,10 @@ const checkUserInfo = () => {
         console.log(response)
     })
 }
+
+
+
+
 return (
 <div className="mainUserFormContainer">
     <form onSubmit={handleSubmit(onSubmit)} className="forValue">

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { SidebarData, ROUTE_API } from '../../Constants/index';
 import './style.css';
 import { IconContext } from 'react-icons';
-import Logo from '../../Images/Logo.jpg';
 import Axios from 'axios';
 
 function Navbar() {

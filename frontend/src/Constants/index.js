@@ -65,7 +65,7 @@ export const filterAmountTypes = [
     "1000 - 5000",
     "5000 - 10000",
     "10000 - 50000",
-    "+ 50000 "
+    "50000 - 100000"
 ]
 
 //FUNCTIONS
@@ -76,6 +76,7 @@ export const saveToken = (value) => {
 export const saveEmail = (value) => {
     localStorage.setItem('email',value)
 } 
+
 export const logOut = () => {swal({
     title: "Are you sure you want to log out?",
     text: "You will be redirected to the login form.",
@@ -90,10 +91,9 @@ if (out) {
             icon: "success",
         }).then((res) => {
             window.location.reload(); 
-        })
-    }
-})
-
+            })
+        }
+    })
 }
 export const firstTenRecors = (arr) => arr.splice(0,10)
 export const onShowInfo = value => {
