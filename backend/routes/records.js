@@ -40,6 +40,7 @@ router.get("/getAllRegisters/:email", (req, res) => {
     );
 });
 
+//GET AMOUNT BY USER
 
 //SELECT FIRST 10 RECORDS
 router.get("/getFirstTenRecords/:email", (req, res) => {

@@ -56,10 +56,27 @@ const verifyJWT = (req, res, next) => {
     }
 };
 
-// BRING USER INFO
+
+//DELETE USER
+router.delete("/deleteUser/:id", async (req, res) => {
+    const id = req.params.id; 
+    db.query("DELETE FROM users WHERE idusers = ?", [id], async (error,results) => {
+        res.send(results)
+    })
+})
+
+
+// BRING USER INFO BY EMAIL
 router.post("/bringUser", async (req, res) => {
     const email = req.body.email
     db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
+        res.send(results)
+    })
+})
+
+// SELECT ALL USERS
+router.get("/getAllUsers", async (req, res) => {
+    db.query("SELECT * FROM users ", async (error,results) => {
         res.send(results)
     })
 })
@@ -88,7 +105,7 @@ router.get("/authUser", verifyJWT, (req, res) => {
     res.send("You are Autenticathed")
 })
 
-
+// LOGIN STATUS
 router.get("/login", (req, res) => {
     if (req.session.user){
         res.send({logged: true, user: req.session.user})
