@@ -45,15 +45,15 @@ return (
             {fieldsUserInfo?.map((item,index) => {
                 return (
                 <Field
-                type={item.type}
-                name={item.name}
-                placeHolder={item.placeHolder}
-                htmlFor={item.htmlFor}
-                labelText={item.labelText}
-                inputType={item.inputType}
-                errors={errors}
-                key={index}
-                refForm={register(item.registerInfo)}
+                    type={item.type}
+                    name={item.name}
+                    placeHolder={item.placeHolder}
+                    htmlFor={item.htmlFor}
+                    labelText={item.labelText}
+                    inputType={item.inputType}
+                    errors={errors}
+                    key={index}
+                    refForm={register(item.registerInfo)}
             />
         )
         

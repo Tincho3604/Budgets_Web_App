@@ -15,6 +15,9 @@ export const ROUTE_API = 'http://localhost:4000';
 
 
 //STRINGS
+export const linkedinLink = 'https://www.linkedin.com/in/martin-cumpe-77736a198/'
+export const githubLink = "https://github.com/Tincho3604"
+export const instagramLink = "https://www.instagram.com/clave_code/?hl=es"
 export const defaultTitleBarTable = 'Income / Expense bars table';
 export const defaultTitleCakeTable = 'Income / Expense pie table';
 export const formRegisterTitle = 'Transaction registration form';
