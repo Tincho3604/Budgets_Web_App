@@ -1,11 +1,17 @@
 import React from 'react';
+import Instagram from '../../Images/instagram.png'
+import Linkedin from '../../Images/linkedin.png'
+import Github from '../../Images/github.png'
+import {linkedinLink, githubLink, instagramLink} from '../../Constants/index';
 import './style.css';
 
 const Footer = () => {
 return (
     <div className="mainFooterContainer">
         <div className="footer">
-            <p>All rights reserved © 2021</p>
+            <a href={instagramLink}><img src={Instagram} alt="instagram"/></a>
+            <a href={linkedinLink} ><img src={Linkedin} alt="linkedin"/></a>
+            <a href={githubLink}><img src={Github} alt="github"/></a>
         </div>
     </div>
 )

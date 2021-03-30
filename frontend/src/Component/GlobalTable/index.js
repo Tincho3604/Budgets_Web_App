@@ -27,7 +27,7 @@ const GlobalTable = () => {
     
     
     useEffect(() => {
-        Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('email')}`).then((response) => {
+        Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('idUser')}`).then((response) => {
             setCurrentList(response.data)
         })
         
@@ -74,12 +74,18 @@ const GlobalTable = () => {
         setCurrentList(replaceElement(currentList,value))
     }
 
+
     const handleDate = (e) => {
         setCurrentList(filterDate(currentList, e.date, e.amount))
     }
+
+
     const restoreList = (e) => {
         window.location.reload(); 
     }
+
+
+
 
     const deleteRecord = (id) => {
         swal({
@@ -97,7 +103,6 @@ const GlobalTable = () => {
                     }))
                     console.log(response)
                 })
-                
                 swal("Your record has been deleted!", {
                 icon: "success",
             });
@@ -128,33 +133,32 @@ const GlobalTable = () => {
         {currentList?.length !== 0 ? (
             <table className="styledTable">
                 <thead>
-                <tr>
-                    <th>Concept</th>
-                    <th>Amount</th>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Delete</th>
-                    <th>Edit</th>
-                </tr>
-            </thead>
-        
+                    <tr>
+                        <th>Concept</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
             <tbody>
-    
+
         {currentList?.map((item,index) => {
             return (
                     <tr key={index}>
                         <td>{item.concept}</td>
-                        <td style={item.type === Ingress ?{color:IngressIconColor} : {color:EgressIconColor}}>{item.amount}</td>
+                        <td style={item.types === Ingress ?{color:IngressIconColor} : {color:EgressIconColor}}>{item.amount}</td>
                         <td>{formatDate(item.date)}</td>
-                        <td>{item?.type === Ingress ? <MdIcons.MdAttachMoney color={IngressIconColor}/> : <MdIcons.MdMoneyOff color={EgressIconColor}/>}</td>
-                        <td><button className="deleteButton" onClick={() => deleteRecord(item.id)}>{deleteButtonText}</button></td>
-                        <td><button className="editButton" onClick={() => editItem(item.id)}>{editButtonText}</button></td>
+                        <td>{item.types === Ingress ? <MdIcons.MdAttachMoney color={IngressIconColor}/> : <MdIcons.MdMoneyOff color={EgressIconColor}/>}</td>
+                        <td><button className="operationButton" onClick={() => deleteRecord(item.id)}>{deleteButtonText}</button></td>
+                        <td><button id="editButton" className="operationButton" onClick={() => editItem(item.id)}>{editButtonText}</button></td>
                     </tr>
             )
         })}
                 </tbody>
             </table>
-                ) : (<ModalError/>)}
+                ) : (<ModalError text={'RECORDS NOT FOUND'}/>)}
         </div>
     </>
     )

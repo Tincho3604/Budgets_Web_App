@@ -2,9 +2,10 @@ import * as AiIcons from 'react-icons/ai';
 import * as BsIcons from "react-icons/bs";
 import * as FcIcons from "react-icons/fc";
 import * as FiIcons from "react-icons/fi";
+import * as CgIcons from "react-icons/cg"
 import swal from 'sweetalert';
 import moment from 'moment';
-import InfoIcon from '../Images/info-modal.png'
+
 //SIZE
 export const IconSize = 25;
 export const valueWidth = {width:'100%'};
@@ -14,6 +15,9 @@ export const ROUTE_API = 'http://localhost:4000';
 
 
 //STRINGS
+export const linkedinLink = 'https://www.linkedin.com/in/martin-cumpe-77736a198/'
+export const githubLink = "https://github.com/Tincho3604"
+export const instagramLink = "https://www.instagram.com/clave_code/?hl=es"
 export const defaultTitleBarTable = 'Income / Expense bars table';
 export const defaultTitleCakeTable = 'Income / Expense pie table';
 export const formRegisterTitle = 'Transaction registration form';
@@ -64,7 +68,7 @@ export const filterAmountTypes = [
     "1000 - 5000",
     "5000 - 10000",
     "10000 - 50000",
-    "+ 50000 "
+    "50000 - 100000"
 ]
 
 //FUNCTIONS
@@ -72,9 +76,10 @@ export const saveToken = (value) => {
     localStorage.setItem('token',value)
     window.location.reload(); 
 } 
-export const saveEmail = (value) => {
-    localStorage.setItem('email',value)
+export const saveIdUser = (value) => {
+    localStorage.setItem('idUser',value)
 } 
+
 export const logOut = () => {swal({
     title: "Are you sure you want to log out?",
     text: "You will be redirected to the login form.",
@@ -84,17 +89,16 @@ export const logOut = () => {swal({
 }).then((out) => {
 if (out) {
     localStorage.removeItem('token')
-    localStorage.removeItem('email')
+    localStorage.removeItem('idUser')
         swal("Goodbyle, see you soon", {
             icon: "success",
         }).then((res) => {
             window.location.reload(); 
-        })
-    }
-})
-
+            })
+        }
+    })
 }
-export const firstTenRecors = (arr) => arr.splice(0,10)
+
 export const onShowInfo = value => {
     const found = infoModal.find(element => {
 
@@ -108,12 +112,11 @@ swal({
 }
 
 export const infoFunction = type => onShowInfo(type)
-export const none = () => console.log("")
 export const parseNum = value => parseInt(value.split('-').slice(1).slice(0,1))
 export const sumArray = (arr) => arr.reduce((sum, value) => ( sum + value ), 0);
-export const totalEgressIngress = (arr, key) => arr?.filter(item => item.type === key).map(item => item.amount).reduce((sum, value) => ( sum + value ), 0)
-export const sumAmountsByAmount = arr => { 
+export const totalEgressIngress = (arr, key) => arr?.filter(item => item.types === key).map(item => item.amount).reduce((sum, value) => ( sum + value ), 0)
 
+export const sumAmountsByAmount = arr => { 
     const group = arr.reduce((p,c)=>{ 
         p[c.id] = (p[c.id]  || 0)+c.amount;
         return p;
@@ -128,6 +131,10 @@ export const sumAmountsByAmount = arr => {
     
     return result                                    
     }
+
+
+
+
 export const formatDate = (date) => moment(date).format('YYYY-MM-DD')
 export const calculateCurrentMoney = (arr) => arr.reduce((accum, currentValue) => accum - currentValue) 
 export const replaceElement = (arr, value) => arr.map((dato) => {
@@ -276,28 +283,30 @@ export const SidebarData = [
         path: '/',
         icon: <AiIcons.AiFillHome />,
         cName: 'nav-text',
-        func: none
 },
     {
         title: 'Statistics',
         path: '/statistics',
         icon: <BsIcons.BsGraphUp />,
         cName: 'nav-text',
-        func: none
     },
     {
         title: 'Register operation',
         path: '/register',
         icon: <BsIcons.BsPencil/>,
         cName: 'nav-text',
-        func: none
     },
     {
         title: 'Global Records',
         path: '/records',
         icon: <FiIcons.FiDatabase/>,
         cName: 'nav-text',
-        func: none
+    },
+    {
+        title: 'Dash Board',
+        path: '/dashBoard',
+        icon: <CgIcons.CgMenuBoxed/>,
+        cName: 'nav-text',
     },
     {
         title: 'Log Out',
@@ -315,7 +324,24 @@ export const fieldsEditForm = [
     id:"concept", 
     placeHolder:"Ingress concept", 
     htmlFor:"concept", 
-
+    registerInfo:{ required: {
+        value: true,
+        message:'Concept is required'
+    },
+    maxLength:{
+        value: 20,
+        message:'Maximum 20 characters'
+    },
+    minLength: {
+        value: 5,
+        message: 'Minimum 5 characters'
+    },
+    validate: (value) => {
+        return [
+            /^[A-Za-z\s]+$/ 
+        ].every((pattern) => pattern.test(value)) || "Only letters"
+        }
+    }
 },
     
 
@@ -325,8 +351,26 @@ export const fieldsEditForm = [
     id:"amount", 
     placeHolder:"Ingress amount", 
     htmlFor:"amount", 
-
+    registerInfo:{ required: {
+        value: true,
+        message:'Amount is required'
+    },
+    maxLength:{
+        value: 5, 
+        message:'Maximum 5 characters'
+    },
+    minLength: {
+        value: 2,
+        message: 'Minimum 2 characters'
+    },
+    validate: (value) => {
+        return [
+            /^[1-9]\d*$/
+        ].every((pattern) => pattern.test(value)) || "Only Numbers"
+        }
+    }
 },
+
     {type:"date",
     inputType:"input",
     name:"date", 

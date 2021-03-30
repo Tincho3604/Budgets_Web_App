@@ -1,0 +1,217 @@
+
+.tableContainer{
+    overflow: scroll;
+    position: relative;
+}
+
+.tableContainer table{
+    white-space: nowrap;
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-top: 25px;
+    width: 70%;
+}
+::-webkit-scrollbar {
+    display: none;
+    }
+    .customers tr:nth-child(n){background-color: #f2f2f2;}
+    .customers tr:hover {background-color: #ddd;}
+    .customers th {
+        
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #000000;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 5px;
+    
+}
+
+
+.content-table thead tr {
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 20px;
+    letter-spacing: 5px;
+    
+}
+
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+    font-family: 'Fredoka One', cursive;
+    text-transform: uppercase;
+    
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #000000;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    letter-spacing: 2px;
+    
+    
+}
+
+.content-table tbody tr:nth-of-type(n) {
+    background-color: #ffffff;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: none;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+    
+}
+
+#deleteInfo{
+    width: 50%;
+}
+#seeInfo{
+    background-color: rgb(141, 253, 219);
+    width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+<div className="infoDashTable">
+    <h2>Dash Table information</h2>
+    <p>In the following table you will be able to view each user registered in the app and the information of each registration that they make.</p>
+</div>
+<div className="dashTablesContainer">
+        <table id="userTable" className="customers">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Delete User</th>
+                    <th>Show user Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                {userTest?.filter(users => users.email !== "admin@root.com" ).map((user,index) => {
+                    return (
+                    <>
+                <tr key={index}>
+                    <td>{user.username}</td>
+                    <td>{user.email}</td>
+                    <td><button id="deleteInfo" className="operationButton" onClick={() => deleteUser(user.idusers)}>Delete</button></td>
+                    <td><button id="seeInfo" className="operationButton" onClick={() => viewInfoUser(user.email)}>See Info</button></td>
+                </tr>
+                </>
+                )})}
+            </tbody>
+        </table>
+    <div style={{display: table ? 'block' : 'none'}} className="infoContainer">
+    <table id="infoTable" className="customers">
+        <thead>
+            <tr>
+                <th>Money Egress</th>
+                <th>Money Income</th>
+                <th>Number of records</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style={{color:'red'}}>{totalUserEgress}</td>
+                <td style={{color:'green'}}>{totalUserIngress}</td>
+                <td>{operations?.length}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+
+
+
+
+
+const viewInfoUser = (email) => {
+    showTable(!table)
+    Axios.get(`${ROUTE_API}/getAllRegisters/${email}`).then((response) => {
+        setOperations(response.data)
+        setTotalUserIngress(totalEgressIngress(response.data, "Ingress"))
+        setTotalUserEgress(totalEgressIngress(response.data, "Egress"))
+    })
+    
+}
+
+
+
+
+
+.DashBoard{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;
+}
+.customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin: 0 auto;
+}
+.infoDashTable{
+    background-color: rgb(168, 232, 235);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 50%;
+    width: auto;
+    border-radius: 15px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 90px;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.infoDashTable p{
+    font-size: 25px;
+    padding:20px;
+    color: rgb(0, 0, 0);
+}
+.infoDashTable h2{
+    font-size: 35px;
+    font-family: 'Fredoka One', cursive;
+    text-transform: uppercase;
+    
+}
+#infoTable{
+    width: 25vw;
+    height: 15.5vh;
+}
+
+.dashTablesContainer{
+    display: flex;
+
+}
+*/

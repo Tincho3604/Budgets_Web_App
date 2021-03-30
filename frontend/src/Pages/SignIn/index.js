@@ -3,7 +3,7 @@ import Field from '../../Component/Field/index';
 import {fieldsUserInfo} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
 import Axios from 'axios';
-import {ROUTE_API, saveToken, saveEmail} from '../../Constants/index';
+import {ROUTE_API, saveToken, saveIdUser} from '../../Constants/index';
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 
@@ -12,9 +12,7 @@ Axios.defaults.withCredentials = true
 const SignIn = () => {
 
     const {register, handleSubmit, errors } = useForm();
-
-
-
+    
     const onSubmit = (data,e) => {
         e.preventDefault();
         Axios.post(`${ROUTE_API}/logInUser`, {
@@ -22,12 +20,13 @@ const SignIn = () => {
             password: data.password,
             username: data.username
         }).then((res) => {
-            
+
             if(res.data.results){
             swal(res.data.message, {
                     icon: "success",
                 }).then(() => {
-                    saveEmail(res.data.results[0].email)
+                    
+                    saveIdUser(res.data.results[0].idusers)
                     saveToken(res.data.token)
                     
                 }).then(() => {
@@ -46,6 +45,7 @@ const SignIn = () => {
 
 
 
+    
 const checkUserInfo = () => {
     Axios.get(`${ROUTE_API}/authUser`, {
         headers: {
@@ -56,8 +56,10 @@ const checkUserInfo = () => {
     })
 }
 
+
+
+
 return (
-<>
 <div className="mainUserFormContainer">
     <form onSubmit={handleSubmit(onSubmit)} className="forValue">
         <h1>SIGN IN</h1>
@@ -86,9 +88,7 @@ return (
         </Link>
     </form>
 </div>
-
-</>
-)
+    )
 }
 
 export default SignIn

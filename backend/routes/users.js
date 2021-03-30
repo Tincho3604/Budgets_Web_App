@@ -4,17 +4,24 @@ const bcryptjs = require('bcryptjs')
 const db = require('../database/db');
 const { response } = require("express");
 const jwt = require('jsonwebtoken');
-const { token } = require("morgan");
+
 
 // INSERT USER
 router.post("/createUser", async (req, res) => {
     const email = req.body.email
     const password = req.body.password
     const username = req.body.username
+    console.log(email, username)
     let passWordHash = await bcryptjs.hash(password, 8)
     
-    db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
-        if(results.length > 0){
+    db.query("SELECT * FROM users", [email, username], async (error,results) => {
+        let flag = false
+        for(let i = 0; i< results.length ; i++){
+            if((results[i].username === username) || (results[i].email === email)){
+                flag = true
+            }
+        }
+        if(flag){
             res.send({message:'The user already exist', error:'error'})
         }else{
             db.query(
@@ -32,6 +39,10 @@ router.post("/createUser", async (req, res) => {
     })
 })
 
+
+
+
+// VERIFY USER
 const verifyJWT = (req, res, next) => {
     const token = req.headers["authorization"];
     if(!token){
@@ -48,12 +59,33 @@ const verifyJWT = (req, res, next) => {
     }
 };
 
-router.post("/bringUser", async (req, res) => {
-    const email = req.body.email
-    db.query("SELECT username FROM users WHERE email = ?", [email], async (error,results) => {
+
+//DELETE USER
+router.delete("/deleteUser/:id", async (req, res) => {
+    const id = req.params.id; 
+    db.query("DELETE FROM users WHERE idusers = ?", [id], async (error,results) => {
         res.send(results)
     })
 })
+
+
+// BRING USER INFO BY ID
+router.post("/bringUser", async (req, res) => {
+    const id = req.body.id
+    db.query("SELECT * FROM users WHERE idusers = ?", [id], async (error,results) => {
+        res.send(results)
+    })
+})
+
+
+
+// SELECT ALL USERS
+router.get("/getAllUsers", async (req, res) => {
+    db.query("SELECT * FROM users   ", async (error,results) => {
+        res.send(results)
+    })
+})
+
 
 // LOGIN
 router.post("/logInUser", async (req, res) => {
@@ -78,7 +110,7 @@ router.get("/authUser", verifyJWT, (req, res) => {
     res.send("You are Autenticathed")
 })
 
-
+// LOGIN STATUS
 router.get("/login", (req, res) => {
     if (req.session.user){
         res.send({logged: true, user: req.session.user})

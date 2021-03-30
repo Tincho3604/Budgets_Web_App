@@ -2,6 +2,7 @@
 .mainFormContainer{
     display: flex;
     justify-content: center;
+    
 }
 
 .form-registrer{
@@ -17,14 +18,15 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-image: url('../../Images/form-records-wallpaper.jpg');
+    background-image: url('../../Images/form-user-wallpaper.jpg');
     width: 50vh;
     height: 80vh;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
     text-align: center;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
+
 }
 
 .form-container h1{
@@ -44,8 +46,6 @@
     border-top-right-radius: 10px;
 }
 
-
-
 @media (max-width: 995px) and (min-width: 500px){
     .imgContainer{
         display: none;
@@ -54,9 +54,10 @@
     .form-container h1{
         font-size: 25px;
     }
+    .form-container{
+    border-radius: 15px;
+    }
 }
-
-
 
 @media (max-width: 500px)  and (min-width: 200px){
     .imgContainer{
@@ -64,7 +65,7 @@
     }
     
     .form-container{
-
+        border-radius: 15px;
         width: 40vh;
 
     }
@@ -74,9 +75,12 @@
         text-align: center;
     }
 }
+
 @media (max-height: 670px) and (min-height: 300px){
     
-
+    .form-container{
+        border-radius: 15px;
+    }
     .form-container h1{
         text-align: center;
     }

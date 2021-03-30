@@ -8,8 +8,6 @@ import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 import './style.css';
 
-
-
 Axios.defaults.withCredentials = true
 const CreateAccount = () => {
     const {register, handleSubmit, errors } = useForm();
@@ -30,6 +28,7 @@ const CreateAccount = () => {
                 swal(res.data.message, {
                     icon: "success",
                 });
+                
             }
     }).catch((err) => {
         console.log(err)
@@ -46,15 +45,15 @@ return (
             {fieldsUserInfo?.map((item,index) => {
                 return (
                 <Field
-                type={item.type}
-                name={item.name}
-                placeHolder={item.placeHolder}
-                htmlFor={item.htmlFor}
-                labelText={item.labelText}
-                inputType={item.inputType}
-                errors={errors}
-                key={index}
-                refForm={register(item.registerInfo)}
+                    type={item.type}
+                    name={item.name}
+                    placeHolder={item.placeHolder}
+                    htmlFor={item.htmlFor}
+                    labelText={item.labelText}
+                    inputType={item.inputType}
+                    errors={errors}
+                    key={index}
+                    refForm={register(item.registerInfo)}
             />
         )
         
