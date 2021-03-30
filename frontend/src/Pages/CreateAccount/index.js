@@ -28,6 +28,7 @@ const CreateAccount = () => {
                 swal(res.data.message, {
                     icon: "success",
                 });
+                
             }
     }).catch((err) => {
         console.log(err)

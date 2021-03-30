@@ -112,8 +112,8 @@ export const infoFunction = type => onShowInfo(type)
 export const parseNum = value => parseInt(value.split('-').slice(1).slice(0,1))
 export const sumArray = (arr) => arr.reduce((sum, value) => ( sum + value ), 0);
 export const totalEgressIngress = (arr, key) => arr?.filter(item => item.types === key).map(item => item.amount).reduce((sum, value) => ( sum + value ), 0)
-export const sumAmountsByAmount = arr => { 
 
+export const sumAmountsByAmount = arr => { 
     const group = arr.reduce((p,c)=>{ 
         p[c.id] = (p[c.id]  || 0)+c.amount;
         return p;
@@ -128,6 +128,10 @@ export const sumAmountsByAmount = arr => {
     
     return result                                    
     }
+
+
+
+
 export const formatDate = (date) => moment(date).format('YYYY-MM-DD')
 export const calculateCurrentMoney = (arr) => arr.reduce((accum, currentValue) => accum - currentValue) 
 export const replaceElement = (arr, value) => arr.map((dato) => {
@@ -317,7 +321,24 @@ export const fieldsEditForm = [
     id:"concept", 
     placeHolder:"Ingress concept", 
     htmlFor:"concept", 
-
+    registerInfo:{ required: {
+        value: true,
+        message:'Concept is required'
+    },
+    maxLength:{
+        value: 20,
+        message:'Maximum 20 characters'
+    },
+    minLength: {
+        value: 5,
+        message: 'Minimum 5 characters'
+    },
+    validate: (value) => {
+        return [
+            /^[A-Za-z\s]+$/ 
+        ].every((pattern) => pattern.test(value)) || "Only letters"
+        }
+    }
 },
     
 
@@ -327,8 +348,26 @@ export const fieldsEditForm = [
     id:"amount", 
     placeHolder:"Ingress amount", 
     htmlFor:"amount", 
-
+    registerInfo:{ required: {
+        value: true,
+        message:'Amount is required'
+    },
+    maxLength:{
+        value: 5, 
+        message:'Maximum 5 characters'
+    },
+    minLength: {
+        value: 2,
+        message: 'Minimum 2 characters'
+    },
+    validate: (value) => {
+        return [
+            /^[1-9]\d*$/
+        ].every((pattern) => pattern.test(value)) || "Only Numbers"
+        }
+    }
 },
+
     {type:"date",
     inputType:"input",
     name:"date", 

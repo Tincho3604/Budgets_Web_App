@@ -39,6 +39,9 @@ router.post("/createUser", async (req, res) => {
     })
 })
 
+
+
+
 // VERIFY USER
 const verifyJWT = (req, res, next) => {
     const token = req.headers["authorization"];
@@ -66,7 +69,7 @@ router.delete("/deleteUser/:id", async (req, res) => {
 })
 
 
-// BRING USER INFO BY EMAIL
+// BRING USER INFO BY ID
 router.post("/bringUser", async (req, res) => {
     const id = req.body.id
     db.query("SELECT * FROM users WHERE idusers = ?", [id], async (error,results) => {
@@ -74,9 +77,13 @@ router.post("/bringUser", async (req, res) => {
     })
 })
 
+
+
+//DASH BOARD
+
 // SELECT ALL USERS
 router.get("/getAllUsers", async (req, res) => {
-    db.query("SELECT * FROM users ", async (error,results) => {
+    db.query("SELECT * FROM users   ", async (error,results) => {
         res.send(results)
     })
 })

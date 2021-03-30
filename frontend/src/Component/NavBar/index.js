@@ -17,8 +17,9 @@ function Navbar() {
     Axios.post(`${ROUTE_API}/bringUser`, {
       id: localStorage.getItem('idUser')
     }).then((response) => {
+      console.log(response)
       setCurrentUser(response.data[0].username)
-      if(response.data[0].username === 2){
+      if(response.data[0].idusers !== 2){
         showNavItems(navItems.filter(item => item.title !== 'Dash Board'))
       }else{
         showNavItems(SidebarData)

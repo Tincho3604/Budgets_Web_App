@@ -52,13 +52,13 @@ useEffect(() => {
     setIngress({
             ingress: sumAmountsByAmount(general?.filter(item => item.types === 'Ingress').map(item => {
                 return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
-            }).map((item) => amountIngress[item.id] = item.amount)
+            })
         )})
 
         setEgress({
             egress: sumAmountsByAmount(general?.filter(item => item.types === 'Egress').map(item => {
                 return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
-            }).map((item) => amountEgress[item.id] = item.amount)
+            })
         )})
 
 }, []);

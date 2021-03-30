@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const db = require('../database/db');
 
-// Routes
+// ROUTES RECORDS
+
 //CREATE REGISTER
 router.post("/createRegister", (req, res) => {
     const concept= req.body.concept;
@@ -22,6 +23,24 @@ router.post("/createRegister", (req, res) => {
         }
     );
 });
+
+
+
+//GET REGISTERS BY ID
+router.get("/getAllUsersRegisters", (req, res) => {
+    db.query(
+        "SELECT email, username, amount, fk_author, types FROM users INNER JOIN records ON records.fk_author = users.idusers",
+    (err, result) => {
+        if(err){
+            console.log(err)
+        }else{
+            res.send(result);
+            }
+        }
+    );
+});
+
+
 
 //GET REGISTERS BY ID
 router.get("/getAllRegisters/:id", (req, res) => {

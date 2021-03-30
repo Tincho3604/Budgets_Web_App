@@ -8,11 +8,11 @@ import Axios from 'axios';
 
 const FormUpdate = ({id, uniqueItem, handleItem}) => {
     
-    const [type, setType] = useState('')
+    const [types, setTypes] = useState('')
 
 
     useEffect(() => {
-        setType(uniqueItem[0].type)
+        setTypes(uniqueItem[0].types)
     }, []);
     
     const {register, handleSubmit, errors } = useForm({
@@ -25,7 +25,7 @@ const FormUpdate = ({id, uniqueItem, handleItem}) => {
 
     
     const onSubmit = (data,e) => {
-        const objParams = {id, ...data, type};
+        const objParams = {id, ...data, types};
         e.preventDefault();
         Axios.put(`${ROUTE_API}/update/:id`, {
             value: objParams,
@@ -42,7 +42,7 @@ return <>
 
     <div className="mainUpdateFormContainer">
     <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Form Update</h3>
+        <h2>Form Update</h2>
             <div className="updater">
             {fieldsEditForm.map((item,index) => {
                             return( 
