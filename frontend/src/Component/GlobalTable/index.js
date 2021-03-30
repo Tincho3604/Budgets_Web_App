@@ -158,7 +158,7 @@ const GlobalTable = () => {
         })}
                 </tbody>
             </table>
-                ) : (<ModalError/>)}
+                ) : (<ModalError text={'RECORDS NOT FOUND'}/>)}
         </div>
     </>
     )

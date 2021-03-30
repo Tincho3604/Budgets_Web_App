@@ -32,9 +32,6 @@ app.use(session({
 }));
 
 
-// We invoke the database connection module.
-const db = require('./database/db');
-
 app.use(cookieParser())
 app.use(express.json());
 app.use(cors({

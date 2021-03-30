@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import Axios from 'axios';
 import {ROUTE_API} from '../../Constants/index';
+import ModalError from '../ModalError/index';
 import swal from 'sweetalert';
 import './style.css';
 
@@ -43,7 +44,7 @@ const deleteUser = (id) => {
     });
 }
 
-
+if(users?.length > 1){
 return (
 <div className="tableContainer">
     <table className="content-table">
@@ -55,7 +56,7 @@ return (
             </tr>
         </thead>
         <tbody>
-            {users?.filter(users => users.email !== "admin@root.com" ).map((user,index) => {
+            {users?.filter(users => users.idusers !== 2 ).map((user,index) => {
                 return (
                     <>
                         <tr key={index}>
@@ -69,6 +70,9 @@ return (
     </table>
 </div>
     )
+                }else{
+                    return <ModalError text={'USERS NOT FOUND'}/>
+                }
 }
 
 export default DashTable

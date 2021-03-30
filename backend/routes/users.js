@@ -4,7 +4,7 @@ const bcryptjs = require('bcryptjs')
 const db = require('../database/db');
 const { response } = require("express");
 const jwt = require('jsonwebtoken');
-const { token } = require("morgan");
+
 
 // INSERT USER
 router.post("/createUser", async (req, res) => {
@@ -78,8 +78,6 @@ router.post("/bringUser", async (req, res) => {
 })
 
 
-
-//DASH BOARD
 
 // SELECT ALL USERS
 router.get("/getAllUsers", async (req, res) => {

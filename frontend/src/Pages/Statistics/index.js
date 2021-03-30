@@ -42,7 +42,8 @@ const Statistics = (props) => {
 
 const GraphicAmountIngress = totalEgressIngress(general, 'Ingress')
 const GraphicAmountEgress = totalEgressIngress(general, 'Egress')
-
+const totalI = ingress?.ingress?.map((item) => amountIngress[item.id] = item.amount)
+const totalE = egress?.egress?.map((item) => amountEgress[item.id] = item.amount)
 
 useEffect(() => {
     Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('idUser')}`).then((response) => {
@@ -61,12 +62,6 @@ useEffect(() => {
             })
         )})
 
-}, []);
-
-
-useEffect(() => {
-ingress?.ingress?.map((item) => amountIngress[item.id] = item.amount)
-egress?.egress?.map((item) => amountEgress[item.id] = item.amount)
 }, []);
 
 
@@ -104,8 +99,8 @@ egress?.egress?.map((item) => amountEgress[item.id] = item.amount)
                     labels={months}
                     primaryLabel={Egress}
                     secondatyLabel={Ingress}
-                    amountsIngress={amountEgress}
-                    amountsEgress={amountIngress}
+                    amountsIngress={totalE}
+                    amountsEgress={totalI}
                     primaryBackgroundColor={defaultBackgroundColorEgress}
                     secondaryBackgroundColor={defaultBackgroundColorIngress}
                     borderWidth={borderWidth}

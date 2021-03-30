@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, NavLink} from 'react-router-dom';
 import Instagram from '../../Images/instagram.png'
 import Linkedin from '../../Images/linkedin.png'
 import Github from '../../Images/github.png'
