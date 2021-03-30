@@ -27,9 +27,6 @@ margin:0 auto;
 .styledTable td {
     opacity: 0.8;
 }
-.styledTable tbody tr {
-    
-}
 
 .styledTable tbody tr:nth-of-type(even) {
     background-color: #ffffff;
@@ -46,8 +43,6 @@ margin:0 auto;
     border-radius: 15px;
     text-align: center;
 }
-
-
 
 .operationButton{
     border:none;

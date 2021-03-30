@@ -15,10 +15,10 @@ function Navbar() {
   
   useEffect(() => {
     Axios.post(`${ROUTE_API}/bringUser`, {
-      email: localStorage.getItem('email')
+      id: localStorage.getItem('idUser')
     }).then((response) => {
       setCurrentUser(response.data[0].username)
-      if(response.data[0].username !== 'admin'){
+      if(response.data[0].username === 2){
         showNavItems(navItems.filter(item => item.title !== 'Dash Board'))
       }else{
         showNavItems(SidebarData)
@@ -57,7 +57,7 @@ function Navbar() {
             {navItems?.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
-                  <Link to={item.path} onClick={item.func ? () => item.func() : ''}>
+                  <Link to={item.path} onClick={() => item.func ? item.func() : ''}>
                     {item.icon}
                     <span>{item.title}</span>
                 </Link>

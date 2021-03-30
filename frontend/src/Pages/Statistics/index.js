@@ -39,30 +39,34 @@ const Statistics = (props) => {
     
     const [general, setGeneral] = useState([])
 
-    ingress?.ingress?.map((item) => amountIngress[item.id] = item.amount)
-    egress?.egress?.map((item) => amountEgress[item.id] = item.amount)
 
-    const GraphicAmountIngress = totalEgressIngress(general, 'Ingress')
-    const GraphicAmountEgress = totalEgressIngress(general, 'Egress')
-
+const GraphicAmountIngress = totalEgressIngress(general, 'Ingress')
+const GraphicAmountEgress = totalEgressIngress(general, 'Egress')
 
 
 useEffect(() => {
-    Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('email')}`).then((response) => {
+    Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('idUser')}`).then((response) => {
         setGeneral(response.data)
     })
 
     setIngress({
-            ingress: sumAmountsByAmount(general?.filter(item => item.type === 'Ingress').map(item => {
+            ingress: sumAmountsByAmount(general?.filter(item => item.types === 'Ingress').map(item => {
                 return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
-            })
+            }).map((item) => amountIngress[item.id] = item.amount)
         )})
 
         setEgress({
-            egress: sumAmountsByAmount(general?.filter(item => item.type === 'Egress').map(item => {
+            egress: sumAmountsByAmount(general?.filter(item => item.types === 'Egress').map(item => {
                 return { id: (parseNum(item.date)-1), amount: Math.round(item.amount * 100) / 100 };
-            })
+            }).map((item) => amountEgress[item.id] = item.amount)
         )})
+
+}, []);
+
+
+useEffect(() => {
+ingress?.ingress?.map((item) => amountIngress[item.id] = item.amount)
+egress?.egress?.map((item) => amountEgress[item.id] = item.amount)
 }, []);
 
 

@@ -3,7 +3,7 @@ import Field from '../../Component/Field/index';
 import {fieldsUserInfo} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
 import Axios from 'axios';
-import {ROUTE_API, saveToken, saveEmail} from '../../Constants/index';
+import {ROUTE_API, saveToken, saveIdUser} from '../../Constants/index';
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ const SignIn = () => {
                     icon: "success",
                 }).then(() => {
                     
-                    saveEmail(res.data.results[0].email)
+                    saveIdUser(res.data.results[0].idusers)
                     saveToken(res.data.token)
                     
                 }).then(() => {

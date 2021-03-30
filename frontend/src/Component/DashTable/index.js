@@ -14,21 +14,26 @@ const [operations, setOperations] = useState()
 
 useEffect(() => {
     Axios.get(`${ROUTE_API}/getAllUsers`).then((response) => {
-        console.log(response.data)
         setUsers(response.data)
     })
+
 }, []);
 
 
-const viewInfoUser = (email) => {
-    showTable(!table)
-    Axios.get(`${ROUTE_API}/getAllRegisters/${email}`).then((response) => {
-        setOperations(response.data)
-        setTotalUserIngress(totalEgressIngress(response.data, "Ingress"))
-        setTotalUserEgress(totalEgressIngress(response.data, "Egress"))
-    })
-    
-}
+
+useEffect(() => {
+Axios.get(`${ROUTE_API}/getAllRegisters/admin@root.com`).then((response) => {
+console.log('ASHEEE',response.data)
+    //setOperations(response.data)
+    //setTotalUserIngress(totalEgressIngress(response.data, "Ingress"))
+    //setTotalUserEgress(totalEgressIngress(response.data, "Egress"))
+})
+}, []);
+
+
+
+
+
 
 const deleteUser = (id) => {
     swal({
@@ -57,56 +62,41 @@ const deleteUser = (id) => {
 }
 
 
+
+
 return (
-<>
-<div className="infoDashTable">
-    <h2>Dash Table information</h2>
-    <p>In the following table you will be able to view each user registered in the app and the information of each registration that they make.</p>
-</div>
-<div className="dashTablesContainer">
-        <table id="userTable" className="customers">
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Delete User</th>
-                    <th>Show user Info</th>
-                </tr>
-            </thead>
-            <tbody>
-                {users?.filter(users => users.email !== "admin@root.com" ).map((user,index) => {
-                    return (
-                    <>
+<div className="tableContainer">
+<table className="content-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Delete User</th>
+            <th>Money Egress</th>
+            <th>Money Income</th>
+            <th>Number of records</th>
+        </tr>
+    </thead>
+    <tbody>
+        {users?.filter(users => users.email !== "admin@root.com" ).map((user,index) => {
+            return (
+                <>
                 <tr key={index}>
                     <td>{user.username}</td>
                     <td>{user.email}</td>
                     <td><button id="deleteInfo" className="operationButton" onClick={() => deleteUser(user.idusers)}>Delete</button></td>
-                    <td><button id="seeInfo" className="operationButton" onClick={() => viewInfoUser(user.email)}>See Info</button></td>
+                    <td style={{color:'red'}}>{totalUserEgress}</td>
+                    <td style={{color:'green'}}>{totalUserIngress}</td>
+                    <td>{operations?.length}</td>
                 </tr>
                 </>
                 )})}
             </tbody>
-        </table>
-    <div style={{display: table ? 'block' : 'none'}}>
-    <table id="infoTable" className="customers">
-        <thead>
-            <tr>
-                <th>Money Egress</th>
-                <th>Money Income</th>
-                <th>Number of operations</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style={{color:'red'}}>{totalUserEgress}</td>
-                <td style={{color:'green'}}>{totalUserIngress}</td>
-                <td>{operations?.length}</td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
+            
+
+</table>
+
 </div>
-</>
     )
 }
 

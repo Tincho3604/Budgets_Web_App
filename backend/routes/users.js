@@ -68,8 +68,8 @@ router.delete("/deleteUser/:id", async (req, res) => {
 
 // BRING USER INFO BY EMAIL
 router.post("/bringUser", async (req, res) => {
-    const email = req.body.email
-    db.query("SELECT * FROM users WHERE email = ?", [email], async (error,results) => {
+    const id = req.body.id
+    db.query("SELECT * FROM users WHERE idusers = ?", [id], async (error,results) => {
         res.send(results)
     })
 })

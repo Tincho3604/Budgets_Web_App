@@ -5,7 +5,6 @@ import Balance from '../../Component/Balance/index';
 import './style.css';
 import {totalEgressIngress, ROUTE_API} from '../../Constants/index';
 import Axios from 'axios';
-import Swal from 'sweetalert2'
 const Home = ({props}) => {
 
 const [allRecords, setAllRecords] = useState()
@@ -16,11 +15,11 @@ const currentIngressAmount = totalEgressIngress(allRecords,'Ingress')
 const currentValue =  currentIngressAmount - currentEgressAmount 
 
 useEffect(() => {
-    Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('email')}`).then((response) => {
+    Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('idUser')}`).then((response) => {
         setAllRecords(response.data)
     })
     
-    Axios.get(`${ROUTE_API}/getFirstTenRecords/${localStorage.getItem('email')}`).then((response) => {
+    Axios.get(`${ROUTE_API}/getFirstTenRecords/${localStorage.getItem('idUser')}`).then((response) => {
         setFirstTenRecords(response.data)
         })
     }, []);

@@ -21,8 +21,8 @@ const Form = ({title}) => {
             concept: data.concept,
             amount: data.amount,
             date: data.date,
-            type: data.type,
-            author: localStorage.getItem('email')
+            types: data.type,
+            idUsers: localStorage.getItem('idUser')
         }).then((res) => {
             swal("Your record has been saved!", {
                 icon: "success",

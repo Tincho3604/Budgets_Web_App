@@ -1,21 +1,19 @@
 const express = require("express");
-const mysql = require("mysql");
 const router = express.Router();
 const db = require('../database/db');
 
 // Routes
-
 //CREATE REGISTER
 router.post("/createRegister", (req, res) => {
     const concept= req.body.concept;
     const amount = req.body.amount;
     const date = req.body.date;
-    const type = req.body.type;
-    const author = req.body.author
+    const type = req.body.types;
+    const idUsers = req.body.idUsers
     db.query(
-        "INSERT INTO records (concept, amount , date, type, author) VALUES (?,?,?,?,?)",
-    [concept, amount , date, type, author],
-    (err, result) => {
+        "INSERT INTO records (concept, amount , date, types, fk_author) VALUES (?,?,?,?,?)",
+    [concept, amount , date, type, idUsers],
+    (err) => {
         if(err){
             console.log(err)
         }else{
@@ -25,11 +23,11 @@ router.post("/createRegister", (req, res) => {
     );
 });
 
-//GET REGISTERS
-router.get("/getAllRegisters/:email", (req, res) => {
-    const author = req.params.email
+//GET REGISTERS BY ID
+router.get("/getAllRegisters/:id", (req, res) => {
+    const id = req.params.id
     db.query(
-        "SELECT * FROM records WHERE author = ?",[author],
+        "SELECT * FROM records WHERE fk_author = ?",[id],
     (err, result) => {
         if(err){
             console.log(err)
@@ -40,13 +38,13 @@ router.get("/getAllRegisters/:email", (req, res) => {
     );
 });
 
-//GET AMOUNT BY USER
+
 
 //SELECT FIRST 10 RECORDS
-router.get("/getFirstTenRecords/:email", (req, res) => {
-    const author = req.params.email
+router.get("/getFirstTenRecords/:id", (req, res) => {
+    const id = req.params.id
     db.query(
-        "SELECT * FROM records WHERE author = ? LIMIT 10",[author],
+        "SELECT * FROM records WHERE fk_author = ? LIMIT 10",[id],
     (err, result) => {
         if(err){
             console.log(err)

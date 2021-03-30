@@ -27,7 +27,7 @@ const GlobalTable = () => {
     
     
     useEffect(() => {
-        Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('email')}`).then((response) => {
+        Axios.get(`${ROUTE_API}/getAllRegisters/${localStorage.getItem('idUser')}`).then((response) => {
             setCurrentList(response.data)
         })
         
@@ -144,9 +144,9 @@ const GlobalTable = () => {
             return (
                     <tr key={index}>
                         <td>{item.concept}</td>
-                        <td style={item.type === Ingress ?{color:IngressIconColor} : {color:EgressIconColor}}>{item.amount}</td>
+                        <td style={item.types === Ingress ?{color:IngressIconColor} : {color:EgressIconColor}}>{item.amount}</td>
                         <td>{formatDate(item.date)}</td>
-                        <td>{item?.type === Ingress ? <MdIcons.MdAttachMoney color={IngressIconColor}/> : <MdIcons.MdMoneyOff color={EgressIconColor}/>}</td>
+                        <td>{item?.types === Ingress ? <MdIcons.MdAttachMoney color={IngressIconColor}/> : <MdIcons.MdMoneyOff color={EgressIconColor}/>}</td>
                         <td><button className="operationButton" onClick={() => deleteRecord(item.id)}>{deleteButtonText}</button></td>
                         <td><button id="editButton" className="operationButton" onClick={() => editItem(item.id)}>{editButtonText}</button></td>
                     </tr>

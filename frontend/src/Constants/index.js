@@ -73,8 +73,8 @@ export const saveToken = (value) => {
     localStorage.setItem('token',value)
     window.location.reload(); 
 } 
-export const saveEmail = (value) => {
-    localStorage.setItem('email',value)
+export const saveIdUser = (value) => {
+    localStorage.setItem('idUser',value)
 } 
 
 export const logOut = () => {swal({
@@ -86,7 +86,7 @@ export const logOut = () => {swal({
 }).then((out) => {
 if (out) {
     localStorage.removeItem('token')
-    localStorage.removeItem('email')
+    localStorage.removeItem('idUser')
         swal("Goodbyle, see you soon", {
             icon: "success",
         }).then((res) => {
@@ -95,7 +95,7 @@ if (out) {
         }
     })
 }
-export const firstTenRecors = (arr) => arr.splice(0,10)
+
 export const onShowInfo = value => {
     const found = infoModal.find(element => {
 
@@ -111,7 +111,7 @@ swal({
 export const infoFunction = type => onShowInfo(type)
 export const parseNum = value => parseInt(value.split('-').slice(1).slice(0,1))
 export const sumArray = (arr) => arr.reduce((sum, value) => ( sum + value ), 0);
-export const totalEgressIngress = (arr, key) => arr?.filter(item => item.type === key).map(item => item.amount).reduce((sum, value) => ( sum + value ), 0)
+export const totalEgressIngress = (arr, key) => arr?.filter(item => item.types === key).map(item => item.amount).reduce((sum, value) => ( sum + value ), 0)
 export const sumAmountsByAmount = arr => { 
 
     const group = arr.reduce((p,c)=>{ 

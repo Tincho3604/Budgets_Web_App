@@ -22,11 +22,11 @@ return (
         <tbody>
         {listRecords?.map((content,index) => {
         return (
-        <tr className={content.type === Ingress ? 'containerExtrac' : 'containerIngress'} key={index}>
+        <tr className={content.types === Ingress ? 'containerExtrac' : 'containerIngress'} key={index}>
             <td>{formatDate(content.date)}</td>
-            <td>{content.type === Ingress ? <MdIcons.MdAttachMoney/> : <MdIcons.MdMoneyOff/>}</td>
+            <td>{content.types === Ingress ? <MdIcons.MdAttachMoney/> : <MdIcons.MdMoneyOff/>}</td>
             <td>{content.concept}</td>
-            <td>{content.type === Ingress ? '+' : '-'}{content.amount}</td>
+            <td>{content.types === Ingress ? '+' : '-'}{content.amount}</td>
         </tr>
         )
     })}
