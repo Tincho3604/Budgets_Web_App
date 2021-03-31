@@ -1,20 +1,18 @@
 import React,{useState,useEffect} from 'react';
 import Field from '../Field/index';
-import {fieldsEditForm, formatDate} from '../../Constants/index';
+import {fieldsEditForm, formatDate, ROUTE_API} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
-import { connect } from 'react-redux';
 import './style.css';
 import swal from 'sweetalert';
-import {updateRecords} from '../../Redux/actions/recordsActions';
-
+import Axios from 'axios';
 
 const FormUpdate = ({id, uniqueItem, handleItem}) => {
     
-    const [type, setType] = useState('')
+    const [types, setTypes] = useState('')
 
 
     useEffect(() => {
-        setType(uniqueItem[0].type)
+        setTypes(uniqueItem[0].types)
     }, []);
     
     const {register, handleSubmit, errors } = useForm({
@@ -27,9 +25,12 @@ const FormUpdate = ({id, uniqueItem, handleItem}) => {
 
     
     const onSubmit = (data,e) => {
-        const objParams = {id, ...data, type};
+        const objParams = {id, ...data, types};
         e.preventDefault();
-        updateRecords(objParams)
+        Axios.put(`${ROUTE_API}/update/:id`, {
+            value: objParams,
+            id: objParams.id
+        })
         swal("Your record has been edit!", {
             icon: "success",
         })
@@ -41,7 +42,7 @@ return <>
 
     <div className="mainUpdateFormContainer">
     <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Form Update</h3>
+        <h2>Form Update</h2>
             <div className="updater">
             {fieldsEditForm.map((item,index) => {
                             return( 
@@ -68,10 +69,8 @@ return <>
 </>
 }
 
-const mapDispatchToProps ={
-    updateRecords,  
-}
-export default  connect(null, mapDispatchToProps)(FormUpdate)
+
+export default  FormUpdate
 
 
 

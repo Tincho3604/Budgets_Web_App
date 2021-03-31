@@ -4,7 +4,7 @@ import {fieldFilterInfo} from '../../Constants/index';
 import { useForm } from 'react-hook-form';
 import './style.css';
 
-const Filter = ({changeDate, restore,estado}) => {
+const Filter = ({changeDate, restore}) => {
 
     const {register, handleSubmit } = useForm()
 
@@ -35,6 +35,7 @@ const collapseList = () => {
                                 refForm={register(item.registerInfo)}
                                 idSelect={'selectFilter'}
                                 classSelect={'classFilter'}
+                                
                             />
                 )
             })}
