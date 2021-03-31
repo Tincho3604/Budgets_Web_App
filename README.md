@@ -1,4 +1,4 @@
-# HOUSE-MUV
+# Budget Web App
 
 _Web application developed with (MySql, React.js, Node.js, Express,js). It is an application that allows you to enter, edit and delete money records, and have a record of all transactions throughout the year, represented in a section of graphs and tables._
 _This project was an evaluative instance in the Alkemy process._
