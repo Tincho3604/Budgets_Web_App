@@ -8,10 +8,10 @@ _This project was an evaluative instance in the Alkemy process._
 ### Pre-requisites 📋
 
 Include a `.env` file in the server directory with the following environment variables:
-* DB_HOST = localhost
-* DB_USER = root
-* DB_PASSWORD = password
-* DB_DATABASE = budget_db
+* DB_HOST 
+* DB_USER
+* DB_PASSWORD
+* DB_DATABASE 
 
 
 ### Installation adn Starting 🚀🔧
@@ -42,7 +42,7 @@ _After completing these steps you will be able to view the project_
 _Mention the tools you used to create your project_
 * [Node.js] (https://nodejs.org) - Runtime environment for JavaScript.
 * [Express] (https://expressjs.com) - Infrastructure of the web application.
-* [MySql] (https://www.mysql.com/) - Data Base
+* [MySql] (https://www.mysql.com/) - Relational database for the application.
 * [Bcrypt] (https://www.npmjs.com/package/bcrypt) - Library for hashing passwords.
 * [Jsonwebtoken] (https://jwt.io/)
 * [React.js] (https://es.reactjs.org/) - Framework used.
