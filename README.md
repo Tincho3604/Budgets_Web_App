@@ -44,7 +44,7 @@ _Mention the tools you used to create your project_
 * [Express] (https://expressjs.com) - Infrastructure of the web application.
 * [MySql] (https://www.mysql.com/) - Relational database for the application.
 * [Bcrypt] (https://www.npmjs.com/package/bcrypt) - Library for hashing passwords.
-* [Jsonwebtoken] (https://jwt.io/)
+* [Jsonwebtoken] (https://jwt.io/) - Generation and manipulation of tokens. 
 * [React.js] (https://es.reactjs.org/) - Framework used.
 
 
