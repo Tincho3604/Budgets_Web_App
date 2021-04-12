@@ -14,7 +14,7 @@ Include a `.env` file in the server directory with the following environment var
 * DB_DATABASE 
 
 
-### Installation adn Starting 🚀🔧
+### Installation and Starting 🚀🔧
 
 _Enter the repository folder_
 
